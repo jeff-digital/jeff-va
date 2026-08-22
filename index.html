@@ -20,99 +20,127 @@
         <!-- ========================================================= -->
         <!-- NAVIGATION -->
         <!-- ========================================================= -->
-        <nav
-            id="mainNav"
-            class="flex items-center justify-between w-full
-                transition-all duration-300"
+<!-- ================================================= -->
+<!-- NAVIGATION -->
+<!-- ================================================= -->
+
+<nav
+    id="mainNav"
+    class="flex
+           items-center
+           justify-between
+           w-full
+           transition-all
+           duration-300"
+>
+
+    <!-- ================================================= -->
+    <!-- LOGO -->
+    <!-- ================================================= -->
+
+    <a
+        href="#home"
+        class="inline-block"
+    >
+
+        <img
+            src="image/logo.png"
+            alt="JA Logo"
+            class="w-16
+                   h-auto
+                   object-contain"
         >
-            <a href="#home" class="inline-block">
 
-                <img
-                    src="image/logo.png"
-                    alt="JA Logo"
-                    class="w-16 h-auto object-contain"
-                >
-
-            </a>
+    </a>
 
 
 
-            <!-- DESKTOP NAVIGATION -->
+    <!-- ================================================= -->
+    <!-- DESKTOP NAVIGATION -->
+    <!-- ================================================= -->
 
-            <div class="hidden md:flex items-center gap-9">
+    <div
+        class="hidden
+               md:flex
+               items-center
+               gap-9"
+    >
 
-                <a
-                    href="#home"
-                    class="text-white
-                        text-base
-                        font-medium
-                        hover:text-blue-400
-                        transition-colors
-                        duration-200"
-                >
-                    Home
-                </a>
-
-
-                <a
-                    href="#about"
-                    class="text-white
-                        text-base
-                        font-medium
-                        hover:text-blue-400
-                        transition-colors
-                        duration-200"
-                >
-                    About
-                </a>
+        <a
+            href="#home"
+            class="text-white
+                   text-base
+                   font-medium
+                   hover:text-blue-400
+                   transition-colors
+                   duration-200"
+        >
+            Home
+        </a>
 
 
-                <a
-                    href="#projects"
-                    class="text-white
-                        text-base
-                        font-medium
-                        hover:text-blue-400
-                        transition-colors
-                        duration-200"
-                >
-                    Projects
-                </a>
+        <a
+            href="#about"
+            class="text-white
+                   text-base
+                   font-medium
+                   hover:text-blue-400
+                   transition-colors
+                   duration-200"
+        >
+            About
+        </a>
 
 
-                <a
-                    href="#meeting"
-                    class="text-white
-                        text-base
-                        font-medium
-                        hover:text-blue-400
-                        transition-colors
-                        duration-200"
-                >
-                    Meeting
-                </a>
+        <a
+            href="#projects"
+            class="text-white
+                   text-base
+                   font-medium
+                   hover:text-blue-400
+                   transition-colors
+                   duration-200"
+        >
+            Projects
+        </a>
 
 
-                <a
-                    href="#contact"
-                    class="text-white
-                        text-base
-                        font-medium
-                        hover:text-blue-400
-                        transition-colors
-                        duration-200"
-                >
-                    Contact
-                </a>
-
-            </div>
+        <a
+            href="#meeting"
+            class="text-white
+                   text-base
+                   font-medium
+                   hover:text-blue-400
+                   transition-colors
+                   duration-200"
+        >
+            Meeting
+        </a>
 
 
+        <a
+            href="#contact"
+            class="text-white
+                   text-base
+                   font-medium
+                   hover:text-blue-400
+                   transition-colors
+                   duration-200"
+        >
+            Contact
+        </a>
 
-            <!-- ACTIVE STATUS -->
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- ACTIVE STATUS -->
+    <!-- ================================================= -->
 
             <div
-                class="hidden md:flex
+                class="hidden
+                    md:flex
                     items-center
                     bg-green-500
                     rounded-full
@@ -120,9 +148,14 @@
                     py-1"
             >
 
-                <span class="text-xs font-bold mr-2">
+                <span
+                    class="text-xs
+                        font-bold
+                        mr-2"
+                >
                     Active
                 </span>
+
 
                 <span
                     class="w-7
@@ -135,21 +168,219 @@
 
 
 
+            <!-- ================================================= -->
             <!-- MOBILE MENU BUTTON -->
+            <!-- ================================================= -->
 
             <button
+                id="mobileMenuButton"
                 type="button"
-                class="md:hidden
+                class="fixed
+                    top-5
+                    right-5
+                    z-50
+                    md:hidden
+                    w-11
+                    h-11
+                    rounded-full
+                    bg-[#18213f]
                     text-white
                     text-2xl
+                    flex
+                    items-center
+                    justify-center
+                    shadow-lg
                     hover:text-blue-400
                     transition"
                 aria-label="Open navigation"
+                aria-expanded="false"
             >
-                ☰
+
+                <span id="menuIcon">
+                    ☰
+                </span>
+
             </button>
 
         </nav>
+
+
+
+        <!-- ================================================= -->
+        <!-- MOBILE SLIDE MENU -->
+        <!-- ================================================= -->
+
+        <div
+            id="mobileMenu"
+            class="fixed
+                top-0
+                right-0
+                z-40
+                h-full
+                w-72
+                max-w-[85%]
+                bg-[#18213f]
+                shadow-2xl
+                transform
+                translate-x-full
+                transition-transform
+                duration-300
+                ease-in-out
+                md:hidden"
+        >
+
+            <!-- ================================================= -->
+            <!-- MENU HEADER -->
+            <!-- ================================================= -->
+
+            <div
+                class="flex
+                    items-center
+                    justify-between
+                    p-6
+                    border-b
+                    border-white/10"
+            >
+
+                <span
+                    class="text-white
+                        text-lg
+                        font-bold"
+                >
+                    Navigation
+                </span>
+
+            </div>
+
+
+
+            <!-- ================================================= -->
+            <!-- MENU LINKS -->
+            <!-- ================================================= -->
+
+            <div
+                class="flex
+                    flex-col
+                    gap-2
+                    p-6"
+            >
+
+                <!-- HOME -->
+
+                <a
+                    href="#home"
+                    class="mobile-nav-link
+                        text-white
+                        text-base
+                        font-medium
+                        px-4
+                        py-3
+                        rounded-xl
+                        hover:bg-white/10
+                        hover:text-blue-400
+                        transition"
+                >
+                    Home
+                </a>
+
+
+                <!-- ABOUT -->
+
+                <a
+                    href="#about"
+                    class="mobile-nav-link
+                        text-white
+                        text-base
+                        font-medium
+                        px-4
+                        py-3
+                        rounded-xl
+                        hover:bg-white/10
+                        hover:text-blue-400
+                        transition"
+                >
+                    About
+                </a>
+
+
+                <!-- PROJECTS -->
+
+                <a
+                    href="#projects"
+                    class="mobile-nav-link
+                        text-white
+                        text-base
+                        font-medium
+                        px-4
+                        py-3
+                        rounded-xl
+                        hover:bg-white/10
+                        hover:text-blue-400
+                        transition"
+                >
+                    Projects
+                </a>
+
+
+                <!-- MEETING -->
+
+                <a
+                    href="#meeting"
+                    class="mobile-nav-link
+                        text-white
+                        text-base
+                        font-medium
+                        px-4
+                        py-3
+                        rounded-xl
+                        hover:bg-white/10
+                        hover:text-blue-400
+                        transition"
+                >
+                    Meeting
+                </a>
+
+
+                <!-- CONTACT -->
+
+                <a
+                    href="#contact"
+                    class="mobile-nav-link
+                        text-white
+                        text-base
+                        font-medium
+                        px-4
+                        py-3
+                        rounded-xl
+                        hover:bg-white/10
+                        hover:text-blue-400
+                        transition"
+                >
+                    Contact
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================================================= -->
+        <!-- MOBILE MENU OVERLAY -->
+        <!-- ================================================= -->
+
+        <div
+            id="mobileMenuOverlay"
+            class="fixed
+                inset-0
+                z-30
+                bg-black/50
+                opacity-0
+                pointer-events-none
+                transition-opacity
+                duration-300
+                md:hidden"
+        ></div>
 
 
 
@@ -892,144 +1123,169 @@
             <div>
 
 
-                <!-- ================================================= -->
-                <!-- STATISTICS -->
-                <!-- ================================================= -->
+<!-- ================================================= -->
+<!-- STATISTICS -->
+<!-- ================================================= -->
 
-                <div
-                    class="grid
-                           grid-cols-2
-                           gap-4"
-                >
-
-
-                    <!-- DEPLOYED PROJECTS -->
-
-                    <div
-                        class="h-[225px]
-                               border
-                               border-gray-200
-                               rounded-xl
-                               p-6"
-                    >
-
-                        <span
-                            class="text-4xl
-                                   font-bold
-                                   text-navy"
-                        >
-                            4
-                        </span>
-
-                        <h3
-                            class="text-lg
-                                   font-bold
-                                   mt-3"
-                        >
-                            Deployed Projects
-                        </h3>
-
-                        <p
-                            class="text-sm
-                                   text-gray-600
-                                   leading-relaxed
-                                   mt-2"
-                        >
-                            Live client projects featuring
-                            responsive websites, UI designs,
-                            and business solutions.
-                        </p>
-
-                    </div>
+<div
+    class="grid
+           grid-cols-1
+           sm:grid-cols-2
+           gap-4
+           w-full"
+>
 
 
+    <!-- DEPLOYED PROJECTS -->
 
-                    <!-- RECENT PROJECTS -->
+    <div
+        class="border
+               border-gray-200
+               rounded-xl
+               p-6
+               min-h-[225px]
+               flex
+               flex-col
+               overflow-hidden"
+    >
 
-                    <div
-                        class="h-[225px]
-                               border
-                               border-gray-200
-                               rounded-xl
-                               p-6"
-                    >
+        <span
+            class="text-4xl
+                   font-bold
+                   text-navy"
+        >
+            4
+        </span>
 
-                        <span
-                            class="text-4xl
-                                   font-bold
-                                   text-navy"
-                        >
-                            6
-                        </span>
 
-                        <h3
-                            class="text-lg
-                                   font-bold
-                                   mt-3"
-                        >
-                            Recent Projects
-                        </h3>
+        <h3
+            class="text-lg
+                   font-bold
+                   mt-3
+                   break-words"
+        >
+            Deployed Projects
+        </h3>
 
-                        <p
-                            class="text-sm
-                                   text-gray-600
-                                   leading-relaxed
-                                   mt-2"
-                        >
-                            Successfully delivered websites,
-                            marketing assistance, and
-                            administrative support.
-                        </p>
 
-                    </div>
+        <p
+            class="text-sm
+                   text-gray-600
+                   leading-relaxed
+                   mt-2
+                   break-words"
+        >
+            Live client projects featuring
+            responsive websites, UI designs,
+            and business solutions.
+        </p>
+
+    </div>
 
 
 
-                    <!-- SKILLS EXPERIENCE -->
+    <!-- RECENT PROJECTS -->
 
-                    <div
-                        class="col-span-2
-                               h-[100px]
-                               border
-                               border-gray-200
-                               rounded-xl
-                               px-6
-                               flex
-                               items-center"
-                    >
+    <div
+        class="border
+               border-gray-200
+               rounded-xl
+               p-6
+               min-h-[225px]
+               flex
+               flex-col
+               overflow-hidden"
+    >
 
-                        <span
-                            class="text-4xl
-                                   font-bold
-                                   text-navy
-                                   mr-5"
-                        >
-                            5
-                        </span>
+        <span
+            class="text-4xl
+                   font-bold
+                   text-navy"
+        >
+            6
+        </span>
 
-                        <div>
 
-                            <h3
-                                class="text-lg
-                                       font-bold"
-                            >
-                                Skills Experience
-                            </h3>
+        <h3
+            class="text-lg
+                   font-bold
+                   mt-3
+                   break-words"
+        >
+            Recent Projects
+        </h3>
 
-                            <p
-                                class="text-sm
-                                       text-gray-600
-                                       mt-1"
-                            >
-                                Roles across virtual assistance,
-                                administration, and IT support.
-                            </p>
 
-                        </div>
+        <p
+            class="text-sm
+                   text-gray-600
+                   leading-relaxed
+                   mt-2
+                   break-words"
+        >
+            Successfully delivered websites,
+            marketing assistance, and
+            administrative support.
+        </p>
 
-                    </div>
+    </div>
 
-                </div>
+
+
+    <!-- SKILLS EXPERIENCE -->
+
+    <div
+        class="col-span-1
+               sm:col-span-2
+               border
+               border-gray-200
+               rounded-xl
+               p-6
+               flex
+               flex-col
+               sm:flex-row
+               sm:items-center
+               gap-4
+               overflow-hidden"
+    >
+
+        <span
+            class="text-4xl
+                   font-bold
+                   text-navy
+                   shrink-0"
+        >
+            5
+        </span>
+
+
+        <div class="min-w-0">
+
+            <h3
+                class="text-lg
+                       font-bold
+                       break-words"
+            >
+                Skills Experience
+            </h3>
+
+
+            <p
+                class="text-sm
+                       text-gray-600
+                       mt-1
+                       leading-relaxed
+                       break-words"
+            >
+                Roles across virtual assistance,
+                administration, and IT support.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
 
 
 
@@ -1799,43 +2055,52 @@
 
 
 
-            <!-- TECHNICAL SUPPORT CARD -->
+           <!-- TECHNICAL SUPPORT CARD -->
 
             <div
                 class="rounded-2xl
-                       bg-gray-50
-                       border
-                       border-gray-200
-                       p-8"
+                    bg-gray-50
+                    border
+                    border-gray-200
+                    p-5
+                    sm:p-6
+                    lg:p-8
+                    w-full
+                    min-w-0"
             >
 
                 <div
                     class="grid
-                           lg:grid-cols-[1fr_2fr]
-                           gap-10
-                           items-center"
+                        grid-cols-1
+                        lg:grid-cols-[1fr_2fr]
+                        gap-8
+                        lg:gap-10
+                        items-start
+                        min-w-0"
                 >
 
 
                     <!-- LEFT DESCRIPTION -->
 
-                    <div>
+                    <div class="min-w-0">
 
                         <span
                             class="text-xs
-                                   uppercase
-                                   tracking-widest
-                                   text-gray-400"
+                                uppercase
+                                tracking-widest
+                                text-gray-400"
                         >
                             IT Support
                         </span>
 
 
                         <h4
-                            class="text-3xl
-                                   font-bold
-                                   text-navy
-                                   mt-2"
+                            class="text-2xl
+                                sm:text-3xl
+                                font-bold
+                                text-navy
+                                mt-2
+                                break-words"
                         >
                             IT Technical / Support
                         </h4>
@@ -1843,8 +2108,9 @@
 
                         <p
                             class="text-gray-600
-                                   mt-4
-                                   leading-relaxed"
+                                mt-4
+                                leading-relaxed
+                                break-words"
                         >
                             Technical assistance covering
                             installation, troubleshooting,
@@ -1860,94 +2126,137 @@
 
                     <div
                         class="grid
-                               grid-cols-2
-                               sm:grid-cols-3
-                               gap-3"
+                            grid-cols-1
+                            sm:grid-cols-2
+                            lg:grid-cols-3
+                            gap-3
+                            min-w-0"
                     >
+
+
+                        <!-- OS INSTALLATION -->
 
                         <div
                             class="rounded-xl
-                                   bg-white
-                                   border
-                                   border-gray-200
-                                   p-4"
+                                bg-white
+                                border
+                                border-gray-200
+                                p-4
+                                min-w-0
+                                break-words
+                                overflow-wrap-anywhere"
                         >
                             OS Installation
                         </div>
 
 
+                        <!-- HARDWARE UPGRADE -->
+
                         <div
                             class="rounded-xl
-                                   bg-white
-                                   border
-                                   border-gray-200
-                                   p-4"
+                                bg-white
+                                border
+                                border-gray-200
+                                p-4
+                                min-w-0
+                                break-words
+                                overflow-wrap-anywhere"
                         >
                             Hardware Upgrade
                         </div>
 
 
+                        <!-- WINDOWS -->
+
                         <div
                             class="rounded-xl
-                                   bg-white
-                                   border
-                                   border-gray-200
-                                   p-4"
+                                bg-white
+                                border
+                                border-gray-200
+                                p-4
+                                min-w-0
+                                break-words
+                                overflow-wrap-anywhere"
                         >
                             Windows 10/11
                         </div>
 
 
+                        <!-- HARDWARE TROUBLESHOOTING -->
+
                         <div
                             class="rounded-xl
-                                   bg-white
-                                   border
-                                   border-gray-200
-                                   p-4"
+                                bg-white
+                                border
+                                border-gray-200
+                                p-4
+                                min-w-0
+                                break-words
+                                overflow-wrap-anywhere"
                         >
                             Hardware Troubleshooting
                         </div>
 
 
+                        <!-- VIRTUAL MACHINE -->
+
                         <div
                             class="rounded-xl
-                                   bg-white
-                                   border
-                                   border-gray-200
-                                   p-4"
+                                bg-white
+                                border
+                                border-gray-200
+                                p-4
+                                min-w-0
+                                break-words
+                                overflow-wrap-anywhere"
                         >
                             Virtual Machine
                         </div>
 
 
+                        <!-- SOFTWARE INSTALLATION -->
+
                         <div
                             class="rounded-xl
-                                   bg-white
-                                   border
-                                   border-gray-200
-                                   p-4"
+                                bg-white
+                                border
+                                border-gray-200
+                                p-4
+                                min-w-0
+                                break-words
+                                overflow-wrap-anywhere"
                         >
                             Software Installation
                         </div>
 
 
+                        <!-- NETWORK CONFIGURATION -->
+
                         <div
                             class="rounded-xl
-                                   bg-white
-                                   border
-                                   border-gray-200
-                                   p-4"
+                                bg-white
+                                border
+                                border-gray-200
+                                p-4
+                                min-w-0
+                                break-words
+                                overflow-wrap-anywhere"
                         >
                             Network Configuration
                         </div>
 
 
+                        <!-- HOSTING SETUP -->
+
                         <div
                             class="rounded-xl
-                                   bg-white
-                                   border
-                                   border-gray-200
-                                   p-4"
+                                bg-white
+                                border
+                                border-gray-200
+                                p-4
+                                min-w-0
+                                break-words
+                                overflow-wrap-anywhere"
                         >
                             Hosting Setup
                         </div>
@@ -1957,9 +2266,6 @@
                 </div>
 
             </div>
-
-        </div>
-
 
 
         <!-- ================================================= -->
