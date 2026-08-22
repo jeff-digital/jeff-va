@@ -1,15 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" >
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="image/tab.png">
     <title>Jeff | Portfolio</title>
     <link rel="stylesheet" href="css/home.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: "#1a2340",
+                        blueAccent: "#2196F3"
+                    },
+
+                    fontFamily: {
+                        sans: ["Arial", "Helvetica", "sans-serif"],
+                        serif: ["Georgia", "Times New Roman", "serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
+
 <body class="font-sans text-black bg-white">
 
 <!-- ========================================================= -->
@@ -421,19 +445,18 @@
                 <!-- DESCRIPTION -->
 
                 <p
-                    class="text-xl
-                           md:text-[20px]
-                           leading-[1.4]
-                           max-w-[650px]
-                           tracking-wide"
-                           style="text-align: justify;"
+                    class="text-base
+                        sm:text-lg
+                        md:text-[20px]
+                        leading-[1.4]
+                        max-w-[650px]
+                        tracking-wide"
+                    style="text-align: justify;"
                 >
-
                     Provide reliable virtual assistant,
                     administrative, and IT support services
                     to help businesses stay organized,
-                    efficient, and focused on what matters most 
-
+                    efficient, and focused on what matters most
                 </p>
 
 
@@ -445,24 +468,25 @@
                     target="_blank"
                     rel="noopener noreferrer"
                     class="inline-block
-                           mt-7
-                           bg-white
-                           text-black
-                           px-4
-                           py-2
-                           rounded-md
-                           text-base
-                           font-bold
-                           transition-all
-                           duration-200
-                           ease-out
-                           hover:bg-gray-200
-                           hover:-translate-y-1
-                           hover:shadow-md"
+                        mt-7
+                        bg-white
+                        text-black
+                        px-3
+                        py-1.5
+                        md:px-4
+                        md:py-2
+                        rounded-md
+                        text-sm
+                        md:text-base
+                        font-bold
+                        transition-all
+                        duration-200
+                        ease-out
+                        hover:bg-gray-200
+                        hover:-translate-y-1
+                        hover:shadow-md"
                 >
-
                     View Resume
-
                 </a>
 
             </div>
@@ -1429,7 +1453,9 @@
 
 </section>
 
-
+<!-- ========================================================= -->
+<!-- projectt -->
+<!-- ========================================================= -->
 <section id="projects" class="bg-white">
 
     <div
@@ -1755,7 +1781,7 @@
                 >
 
                     <img
-                        src="project/website/ux.jpg"
+                        src="project/website/mobile.png"
                         alt="Mobile App UX Design"
                         class="absolute
                                inset-0
@@ -4181,7 +4207,6 @@
     <script src="js/lucideicon.js"></script>
     <script src="js/menu.js"></script>
     <script src="js/navigation.js"></script>
-    <script src="js/tailwind.js"></script>
     <script src="js/timezone.js"></script>
 </script>
     
