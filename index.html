@@ -36,9 +36,7 @@
 
 <body class="font-sans text-black bg-white">
 
-<!-- ========================================================= -->
 <!-- HERO SECTION -->
-<!-- ========================================================= -->
 <section id="home" class="bg-[#1a2340] text-white min-h-[750px]">
     <div class="max-w-[1250px] mx-auto px-8 py-6">
         <!-- ========================================================= -->
@@ -796,9 +794,7 @@
 
 </section>
 
-<!-- ========================================================= -->
 <!-- ABOUT SECTION -->
-<!-- ========================================================= -->
 <section id="about" class="bg-white">
 
     <div
@@ -807,27 +803,13 @@
                px-8
                py-16"
     >
-
-        <!-- ================================================= -->
-        <!-- MAIN GRID -->
-        <!-- ================================================= -->
-
         <div
             class="grid
                    lg:grid-cols-2
                    gap-12
                    items-start"
         >
-
-
-            <!-- ================================================= -->
-            <!-- LEFT COLUMN -->
-            <!-- ================================================= -->
-
             <div>
-
-
-                <!-- TITLE -->
 
                 <div class="mb-8">
 
@@ -851,10 +833,6 @@
                     </h2>
 
                 </div>
-
-
-
-                <!-- INTRODUCTION -->
 
                 <div class="max-w-[620px]">
 
@@ -889,12 +867,6 @@
 
                 </div>
 
-
-
-                <!-- ================================================= -->
-                <!-- CORE COMPETENCIES -->
-                <!-- ================================================= -->
-
                 <div class="mt-9">
 
                     <h3
@@ -911,9 +883,6 @@
                                sm:grid-cols-2
                                gap-4"
                     >
-
-
-                        <!-- TECHNICAL -->
 
                         <div
                             class="flex
@@ -955,10 +924,6 @@
 
                         </div>
 
-
-
-                        <!-- ADAPTABILITY -->
-
                         <div
                             class="flex
                                    items-center
@@ -998,10 +963,6 @@
                             </span>
 
                         </div>
-
-
-
-                        <!-- TIME MANAGEMENT -->
 
                         <div
                             class="flex
@@ -1043,10 +1004,6 @@
 
                         </div>
 
-
-
-                        <!-- ORGANIZATION -->
-
                         <div
                             class="flex
                                    items-center
@@ -1086,11 +1043,6 @@
                             </span>
 
                         </div>
-
-
-                        <!-- ================================================= -->
-                        <!-- DETAIL-ORIENTED -->
-                        <!-- ================================================= -->
 
                         <div
                             class="flex
@@ -1132,10 +1084,6 @@
 
                         </div>
 
-
-
-                        <!-- PROFESSIONAL COMMUNICATION -->
-
                         <div
                             class="flex
                                 items-center
@@ -1175,28 +1123,11 @@
                             </span>
 
                         </div>
-
-                        
-
                     </div>
-
                 </div>
-
             </div>
 
-
-
-            <!-- ================================================= -->
-            <!-- RIGHT COLUMN -->
-            <!-- ================================================= -->
-
             <div>
-
-
-                <!-- ================================================= -->
-                <!-- STATISTICS -->
-                <!-- ================================================= -->
-
                 <div
                     class="grid
                         grid-cols-1
@@ -1252,10 +1183,6 @@
 
                     </div>
 
-
-
-                    <!-- RECENT PROJECTS -->
-
                     <div
                         class="border
                             border-gray-200
@@ -1299,10 +1226,6 @@
                         </p>
 
                     </div>
-
-
-
-                    <!-- SKILLS EXPERIENCE -->
 
                     <div
                         class="col-span-1
@@ -1356,12 +1279,6 @@
                     </div>
 
                 </div>
-
-
-
-                <!-- ================================================= -->
-                <!-- EDUCATIONAL BACKGROUND -->
-                <!-- ================================================= -->
 
                 <div
                     class="mt-8
@@ -1433,22 +1350,370 @@
                             2025
                         </p>
 
-
                         <div class="mt-5">
 
                             <h4
                                 class="text-lg
-                                       font-bold"
+                                    font-bold"
                             >
                                 Certification
                             </h4>
 
+
                             <p
                                 class="text-gray-600
-                                       mt-1"
+                                    mt-1"
                             >
                                 Ongoing
                             </p>
+
+
+                            <!-- VIEW CERTIFICATE BUTTON -->
+
+                            <button
+                                type="button"
+                                id="viewCertificateButton"
+                                style="
+                                    display: inline-flex !important;
+                                    visibility: visible !important;
+                                    opacity: 1 !important;
+                                "
+                                class="items-center
+                                    mt-4
+                                    bg-[#1a2340]
+                                    text-white
+                                    px-4
+                                    py-2
+                                    rounded-md
+                                    text-sm
+                                    font-bold"
+                            >
+                                View Certificate
+                            </button>
+
+                        </div>
+
+            <!-- CERTIFICATE MODAL -->
+
+            <div
+                id="certificateModal"
+                class="hidden
+                    fixed
+                    inset-0
+                    z-50
+                    items-center
+                    justify-center
+                    bg-black/70
+                    p-4"
+            >
+
+                <!-- MODAL CONTENT -->
+
+                <div
+                    class="w-full
+                        max-w-4xl
+                        max-h-[90vh]
+                        overflow-y-auto
+                        bg-white
+                        rounded-2xl
+                        p-5
+                        md:p-7"
+                >
+
+                    <!-- TITLE -->
+
+                    <h3
+                        class="text-xl
+                            md:text-2xl
+                            font-bold
+                            text-navy"
+                    >
+                        Certifications & Credentials
+                    </h3>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <p
+                        class="text-gray-600
+                            mt-1
+                            mb-5"
+                    >
+                        Certifications and credentials earned or currently in progress.
+                    </p>
+
+
+                    <!-- ================================================= -->
+                    <!-- FILTERS -->
+                    <!-- ================================================= -->
+
+                    <div
+                        class="grid
+                            grid-cols-1
+                            sm:grid-cols-2
+                            gap-3
+                            mb-6"
+                    >
+
+                        <!-- CATEGORY -->
+
+                        <div>
+
+                            <label
+                                for="certificateCategory"
+                                class="block
+                                    text-sm
+                                    font-semibold
+                                    text-gray-700
+                                    mb-1"
+                            >
+                                Category
+                            </label>
+
+                            <select
+                                id="certificateCategory"
+                                class="w-full
+                                    border
+                                    border-gray-300
+                                    rounded-md
+                                    px-3
+                                    py-2
+                                    text-sm
+                                    bg-white
+                                    focus:outline-none"
+                            >
+
+                                <option value="all">
+                                    All Categories
+                                </option>
+
+                                <option value="it-support">
+                                    IT Support
+                                </option>
+
+                                <option value="ccna">
+                                    CCNA
+                                </option>
+
+                                <option value="crm">
+                                    CRM
+                                </option>
+
+                                <option value="digital-marketing">
+                                    Digital Marketing
+                                </option>
+
+                                <option value="administration">
+                                    Administration
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- YEAR -->
+
+                        <div>
+
+                            <label
+                                for="certificateYear"
+                                class="block
+                                    text-sm
+                                    font-semibold
+                                    text-gray-700
+                                    mb-1"
+                            >
+                                Year
+                            </label>
+
+                            <select
+                                id="certificateYear"
+                                class="w-full
+                                    border
+                                    border-gray-300
+                                    rounded-md
+                                    px-3
+                                    py-2
+                                    text-sm
+                                    bg-white
+                                    focus:outline-none"
+                            >
+
+                                <option value="all">
+                                    All Years
+                                </option>
+
+                                <option value="2026">
+                                    2026
+                                </option>
+
+                                <option value="2025">
+                                    2025
+                                </option>
+
+                                <option value="2024">
+                                    2024
+                                </option>
+
+                                <option value="2023">
+                                    2023
+                                </option>
+
+                                <option value="2022">
+                                    2022
+                                </option>
+
+                            </select>
+
+                        </div>
+                    </div>
+                <div
+                    id="certificateList"
+                    class="grid
+                        grid-cols-1
+                        sm:grid-cols-2
+                        gap-4"
+                >
+
+                <!-- DISABLED CERTIFICATE
+                <div
+                    class="certificate-item
+                        border
+                        border-gray-200
+                        rounded-xl
+                        overflow-hidden
+                        bg-white"
+                    data-category="crm"
+                    data-year="2026"
+                >
+
+                    <div
+                        class="w-full
+                            aspect-video
+                            bg-gray-100
+                            flex
+                            items-center
+                            justify-center"
+                    >
+
+                        <span
+                            class="text-sm
+                                text-gray-400"
+                        >
+                            Certificate Preview
+                        </span>
+
+                    </div>
+
+                    <div class="p-4">
+
+                        <h4
+                            class="text-base
+                                font-bold
+                                text-navy"
+                        >
+                            HubSpot Sales Software
+                        </h4>
+
+                        <div
+                            class="flex
+                                flex-wrap
+                                gap-2
+                                mt-3"
+                        >
+
+                            <span
+                                class="text-xs
+                                    bg-gray-100
+                                    text-gray-600
+                                    px-2
+                                    py-1
+                                    rounded"
+                            >
+                                CRM
+                            </span>
+
+                            <span
+                                class="text-xs
+                                    bg-gray-100
+                                    text-gray-600
+                                    px-2
+                                    py-1
+                                    rounded"
+                            >
+                                2026
+                            </span>
+
+                            <span
+                                class="text-xs
+                                    bg-gray-100
+                                    text-gray-600
+                                    px-2
+                                    py-1
+                                    rounded"
+                            >
+                                Completed
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                END DISABLED CERTIFICATE -->
+
+
+                        </div>
+                                <div
+                                    id="noCertificates"
+                                    class="hidden
+                                        text-center
+                                        py-12"
+                                >
+
+                                    <p
+                                        class="text-base
+                                            font-semibold
+                                            text-gray-500"
+                                    >
+                                        No certificates found.
+                                    </p>
+
+                                    <p
+                                        class="text-sm
+                                            text-gray-400
+                                            mt-1"
+                                    >
+                                        Certificates will be displayed here when available.
+                                    </p>
+
+                                </div>
+
+
+                                <div
+                                    class="flex
+                                        justify-end
+                                        mt-6"
+                                >
+
+                                    <button
+                                        type="button"
+                                        id="closeCertificateButton"
+                                        class="bg-[#1a2340]
+                                            text-white
+                                            px-4
+                                            py-2
+                                            rounded-md
+                                            text-sm
+                                            font-bold"
+                                    >
+                                        Close
+                                    </button>
+
+                                </div>
+
+                            </div>
 
                         </div>
 
@@ -1464,9 +1729,7 @@
 
 </section>
 
-<!-- ========================================================= -->
 <!-- QUOTE SECTION -->
-<!-- ========================================================= -->
 <section class="bg-[#1a2340] text-white">
 
     <div
@@ -1499,9 +1762,7 @@
 
 </section>
 
-<!-- ========================================================= -->
 <!-- projectt -->
-<!-- ========================================================= -->
 <section id="projects" class="bg-white">
 
     <div
@@ -3387,9 +3648,7 @@
 
 </section>
 
-<!-- ========================================================= -->
 <!-- SCHEDULE A MEETING -->
-<!-- ========================================================= -->
 <section
     id="meeting"
     class="bg-[#1a2340]
@@ -3727,9 +3986,7 @@
 
 </section>
 
-<!-- ========================================================= -->
 <!-- CONTACT -->
-<!-- ========================================================= -->
 <section id="contact" class="bg-white">
 
     <div
@@ -4025,9 +4282,7 @@
 
 </section>
 
-<!-- ========================================================= -->
 <!-- FOOTER -->
-<!-- ========================================================= -->
 <footer
     class="bg-[#1a2340]
            text-white"
@@ -4316,14 +4571,13 @@
 
 
 
-
-<!-- ========================================================= -->
 <!-- js directories -->
-<!-- ========================================================= -->
     <script src="js/lucideicon.js"></script>
     <script src="js/menu.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/timezone.js"></script>
+    <script src="js/certificate.js"></script>
+
 </script>
     
 </body>
