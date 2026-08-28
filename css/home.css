@@ -1,19 +1,15 @@
-    html {
+html {
             scroll-behavior: smooth;
         }
-
         section {
             scroll-margin-top: 80px;
         }
-
         body {
             margin: 0;
         }
-
         .serif-title {
             font-family: Georgia, "Times New Roman", serif;
         }
-
         .placeholder {
             background: #e5e7eb;
             display: flex;
@@ -22,82 +18,49 @@
             color: #9ca3af;
         }
 
-        
-/* ========================================================= */
-/* SOFTWARE MARQUEE */
-/* ========================================================= */
+        .software-row {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            gap: 8rem;
+            padding-right: 1rem;
 
-.software-row {
+        }
 
-    display: flex;
+        .software-row-left {
+            animation:
+                move-left-right
+                25s
+                linear
+                infinite;
 
-    align-items: center;
+        }
 
-    width: max-content;
+        .software-row-right {
+            animation:
+                move-right-left
+                25s
+                linear
+                infinite;
 
-    gap: 8rem;
-
-    padding-right: 1rem;
-
-}
-
-
-/* ========================================================= */
-/* ROW 1 - LEFT TO RIGHT */
-/* ========================================================= */
-
-.software-row-left {
-
-    animation:
-        move-left-right
-        25s
-        linear
-        infinite;
-
-}
-
-
-/* ========================================================= */
-/* ROW 2 - RIGHT TO LEFT */
-/* ========================================================= */
-
-.software-row-right {
-
-    animation:
-        move-right-left
-        25s
-        linear
-        infinite;
-
-}
-
-
-/* ========================================================= */
-/* ANIMATION */
-/* ========================================================= */
+        }
 
 @keyframes move-left-right {
-
     0% {
         transform: translateX(-20%);
     }
-
     100% {
         transform: translateX(0%);
     }
-
 }
 
 
 @keyframes move-right-left {
-
     0% {
         transform: translateX(0%);
     }
-
     100% {
         transform: translateX(-20%);
     }
-
 }
 
