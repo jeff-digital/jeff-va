@@ -1373,6 +1373,8 @@
 
                         </div>
                     </div>
+
+
                 <div
                     id="certificateList"
                     class="grid
@@ -1381,7 +1383,6 @@
                         gap-4"
                 >
 
-                <!-- DISABLED CERTIFICATE
                 <div
                     class="certificate-item
                         border
@@ -1393,23 +1394,34 @@
                     data-year="2026"
                 >
 
+                   <!-- ================================================= -->
+                    <!-- CERTIFICATE PREVIEW -->
+                    <!-- ================================================= -->
+
                     <div
                         class="w-full
                             aspect-video
                             bg-gray-100
                             flex
                             items-center
-                            justify-center"
+                            justify-center
+                            overflow-hidden"
                     >
 
-                        <span
-                            class="text-sm
-                                text-gray-400"
+                        <img
+                            src="certificate/saleshub.png"
+                            alt="HubSpot Sales Software Certificate"
+                            class="w-full
+                                h-full
+                                object-contain"
                         >
-                            Certificate Preview
-                        </span>
 
                     </div>
+
+
+                    <!-- ================================================= -->
+                    <!-- CERTIFICATE INFORMATION -->
+                    <!-- ================================================= -->
 
                     <div class="p-4">
 
@@ -1418,7 +1430,8 @@
                                 font-bold
                                 text-navy"
                         >
-                            HubSpot Sales Software
+                        HubSpot Sales Hub Software
+
                         </h4>
 
                         <div
@@ -1427,6 +1440,8 @@
                                 gap-2
                                 mt-3"
                         >
+
+                            <!-- CATEGORY -->
 
                             <span
                                 class="text-xs
@@ -1439,6 +1454,9 @@
                                 CRM
                             </span>
 
+
+                            <!-- YEAR -->
+
                             <span
                                 class="text-xs
                                     bg-gray-100
@@ -1449,6 +1467,9 @@
                             >
                                 2026
                             </span>
+
+
+                            <!-- STATUS -->
 
                             <span
                                 class="text-xs
@@ -1463,10 +1484,28 @@
 
                         </div>
 
+
+                        <!-- VIEW CERTIFICATE -->
+
+                        <a
+                            href="https://app-na2.hubspot.com/academy/achievements/4834zrfd/en/1/jeffrey-almocera/hubspot-sales-hub-software-certified"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-block
+                                mt-4
+                                text-sm
+                                font-bold
+                                text-navy
+                                underline
+                                underline-offset-2
+                                hover:text-gray-600"
+                        >
+                            View Certificate
+                        </a>
+
                     </div>
 
                 </div>
-                END DISABLED CERTIFICATE -->
 
 
                         </div>
@@ -4336,7 +4375,7 @@
     <script src="js/navigation.js"></script>
     <script src="js/timezone.js"></script>
     <script src="js/certificate.js"></script>
-
+    <script src="js/opacity.js"></script>
 </body>
 
 </html>
