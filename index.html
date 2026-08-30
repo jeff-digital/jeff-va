@@ -42,127 +42,104 @@
 <!-- HERO SECTION -->
 <section id="home" class="bg-[#1a2340] text-white min-h-[750px]">
     <div class="max-w-[1250px] mx-auto px-8 py-6">
-        <!-- ========================================================= -->
-        <!-- NAVIGATION -->
-        <!-- ========================================================= -->
-<!-- ================================================= -->
-<!-- NAVIGATION -->
-<!-- ================================================= -->
 
-<nav
-    id="mainNav"
-    class="flex
-           items-center
-           justify-between
-           w-full
-           transition-all
-           duration-300"
->
-
-    <!-- ================================================= -->
-    <!-- LOGO -->
-    <!-- ================================================= -->
-
-    <a
-        href="#home"
-        class="inline-block"
-    >
-
-        <img
-            src="image/logo.png"
-            alt="JA Logo"
-            class="w-16
-                   h-auto
-                   object-contain"
+        <nav
+            id="mainNav"
+            class="flex
+                items-center
+                justify-between
+                w-full
+                transition-all
+                duration-300"
         >
 
-    </a>
+            <a
+                href="#home"
+                class="inline-block"
+            >
+
+                <img
+                    src="image/logo.png"
+                    alt="JA Logo"
+                    class="w-16
+                        h-auto
+                        object-contain"
+                >
+
+            </a>
+
+            <div
+                class="hidden
+                    md:flex
+                    items-center
+                    gap-9"
+            >
+
+                <a
+                    href="#home"
+                    class="text-white
+                        text-base
+                        font-medium
+                        hover:text-blue-400
+                        transition-colors
+                        duration-200"
+                >
+                    Home
+                </a>
 
 
-
-    <!-- ================================================= -->
-    <!-- DESKTOP NAVIGATION -->
-    <!-- ================================================= -->
-
-    <div
-        class="hidden
-               md:flex
-               items-center
-               gap-9"
-    >
-
-        <a
-            href="#home"
-            class="text-white
-                   text-base
-                   font-medium
-                   hover:text-blue-400
-                   transition-colors
-                   duration-200"
-        >
-            Home
-        </a>
+                <a
+                    href="#about"
+                    class="text-white
+                        text-base
+                        font-medium
+                        hover:text-blue-400
+                        transition-colors
+                        duration-200"
+                >
+                    About
+                </a>
 
 
-        <a
-            href="#about"
-            class="text-white
-                   text-base
-                   font-medium
-                   hover:text-blue-400
-                   transition-colors
-                   duration-200"
-        >
-            About
-        </a>
+                <a
+                    href="#projects"
+                    class="text-white
+                        text-base
+                        font-medium
+                        hover:text-blue-400
+                        transition-colors
+                        duration-200"
+                >
+                    Projects
+                </a>
 
 
-        <a
-            href="#projects"
-            class="text-white
-                   text-base
-                   font-medium
-                   hover:text-blue-400
-                   transition-colors
-                   duration-200"
-        >
-            Projects
-        </a>
+                <a
+                    href="#meeting"
+                    class="text-white
+                        text-base
+                        font-medium
+                        hover:text-blue-400
+                        transition-colors
+                        duration-200"
+                >
+                    Meeting
+                </a>
 
 
-        <a
-            href="#meeting"
-            class="text-white
-                   text-base
-                   font-medium
-                   hover:text-blue-400
-                   transition-colors
-                   duration-200"
-        >
-            Meeting
-        </a>
+                <a
+                    href="#contact"
+                    class="text-white
+                        text-base
+                        font-medium
+                        hover:text-blue-400
+                        transition-colors
+                        duration-200"
+                >
+                    Contact
+                </a>
 
-
-        <a
-            href="#contact"
-            class="text-white
-                   text-base
-                   font-medium
-                   hover:text-blue-400
-                   transition-colors
-                   duration-200"
-        >
-            Contact
-        </a>
-
-    </div>
-
-
-
-    <!-- ================================================= -->
-    <!-- ACTIVE STATUS -->
-    <!-- ================================================= -->
-
+            </div>
             <div
                 class="hidden
                     md:flex
@@ -201,7 +178,7 @@
                 id="mobileMenuButton"
                 type="button"
                 class="fixed
-                    top-5
+                    top-4
                     right-5
                     z-50
                     md:hidden
@@ -229,12 +206,6 @@
 
         </nav>
 
-
-
-        <!-- ================================================= -->
-        <!-- MOBILE SLIDE MENU -->
-        <!-- ================================================= -->
-
         <div
             id="mobileMenu"
             class="fixed
@@ -254,10 +225,6 @@
                 md:hidden"
         >
 
-            <!-- ================================================= -->
-            <!-- MENU HEADER -->
-            <!-- ================================================= -->
-
             <div
                 class="flex
                     items-center
@@ -276,12 +243,6 @@
                 </span>
 
             </div>
-
-
-
-            <!-- ================================================= -->
-            <!-- MENU LINKS -->
-            <!-- ================================================= -->
 
             <div
                 class="flex
@@ -308,9 +269,6 @@
                     Home
                 </a>
 
-
-                <!-- ABOUT -->
-
                 <a
                     href="#about"
                     class="mobile-nav-link
@@ -326,9 +284,6 @@
                 >
                     About
                 </a>
-
-
-                <!-- PROJECTS -->
 
                 <a
                     href="#projects"
@@ -346,9 +301,6 @@
                     Projects
                 </a>
 
-
-                <!-- MEETING -->
-
                 <a
                     href="#meeting"
                     class="mobile-nav-link
@@ -364,9 +316,6 @@
                 >
                     Meeting
                 </a>
-
-
-                <!-- CONTACT -->
 
                 <a
                     href="#contact"
@@ -388,12 +337,6 @@
 
         </div>
 
-
-
-        <!-- ================================================= -->
-        <!-- MOBILE MENU OVERLAY -->
-        <!-- ================================================= -->
-
         <div
             id="mobileMenuOverlay"
             class="fixed
@@ -405,13 +348,8 @@
                 transition-opacity
                 duration-300
                 md:hidden"
-        ></div>
-
-
-
-        <!-- ================================================= -->
-        <!-- HERO CONTENT -->
-        <!-- ================================================= -->
+        >
+        </div>
 
         <div
             class="grid
@@ -422,13 +360,7 @@
                    lg:mt-8"
         >
 
-
-            <!-- LEFT SIDE -->
-
             <div class="pt-16 lg:pt-20">
-
-
-                <!-- NAME -->
 
                 <h1
                     class="serif-title
@@ -436,19 +368,13 @@
                            md:text-7xl
                            mb-6"
                 >
-
                     JEFF
-
                 </h1>
-
-
-
-                <!-- DESCRIPTION -->
 
                 <p
                     class="text-base
                         sm:text-lg
-                        md:text-[20px]
+                        md:text-[18px]
                         leading-[1.4]
                         max-w-[650px]
                         tracking-wide"
@@ -459,10 +385,6 @@
                     to help businesses stay organized,
                     efficient, and focused on what matters most
                 </p>
-
-
-
-                <!-- RESUME BUTTON -->
 
                 <a
                     href="documents/Almocera_Jeffrey_Resume.pdf"
@@ -489,17 +411,9 @@
                 >
                     View Resume
                 </a>
-
             </div>
 
-
-
-            <!-- ================================================= -->
-            <!-- PROFILE IMAGE -->
-            <!-- ================================================= -->
-
             <div class="w-full">
-
                 <img
                     src="image/IT_ALMOCERA_IMG_V_8741.jpg"
                     alt="Jeff - Virtual Assistant"
@@ -508,91 +422,51 @@
                         object-cover
                         rounded-md"
                 >
-
             </div>
-
         </div>
-        <!-- ========================================================= -->
-        <!-- SOFTWARE / TOOLS - TWO LAYER MARQUEE -->
-        <!-- ========================================================= -->
+       
 
         <div class="mt-14 overflow-hidden w-full space-y-8">
-
-
-            <!-- ========================================================= -->
-            <!-- ROW 1 - LEFT TO RIGHT -->
-            <!-- ========================================================= -->
-
             <div class="overflow-hidden">
-
                 <div class="software-row software-row-left">
-
-
-                    <!-- PHOTOSHOP -->
-
                     <a href="#"
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
-
                         <img
                             src="image/photoshop.png"
                             alt="Photoshop logo"
                             class="w-8 h-8 object-contain"
                         >
-
                         <span>Photoshop</span>
-
                     </a>
-
-
-                    <!-- CAPCUT -->
-
                     <a href="#"
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
-
                         <img
                             src="image/capcut.png"
                             alt="CapCut logo"
                             class="w-8 h-8 object-contain"
                         >
-
                         <span>CapCut</span>
-
                     </a>
-
-
-                    <!-- FACEBOOK ADS -->
-
                     <a href="#"
-                    class="flex items-center gap-3 text-lg whitespace-nowrap">
 
+                    class="flex items-center gap-3 text-lg whitespace-nowrap">
                         <img
                             src="https://cdn.simpleicons.org/meta"
                             alt="Facebook Ads logo"
                             class="w-8 h-8 object-contain"
                         >
-
                         <span>Facebook Ads</span>
-
                     </a>
-
-
-                    <!-- TIKTOK ADS -->
 
                     <a href="#"
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
-
                         <img
                             src="https://cdn.simpleicons.org/tiktok"
                             alt="TikTok Ads logo"
                             class="w-8 h-8 object-contain"
                         >
-
                         <span>TikTok Ads</span>
-
                     </a>
-
-
-                    <!-- CANVA -->
 
                     <a href="#"
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
@@ -602,29 +476,18 @@
                             alt="Canva logo"
                             class="w-8 h-8 object-contain"
                         >
-
                         <span>Canva</span>
-
                     </a>
-
-
-                    <!-- SLACK -->
 
                     <a href="#"
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
-
                         <img
                             src="image/slack.png"
                             alt="Slack logo"
                             class="w-8 h-8 object-contain"
                         >
-
                         <span>Slack</span>
-
                     </a>
-
-
-                    <!-- FIGMA -->
 
                     <a href="#"
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
@@ -634,45 +497,23 @@
                             alt="Figma logo"
                             class="w-8 h-8 object-contain"
                         >
-
                         <span>Figma</span>
-
                     </a>
-
-
-                    <!-- ZOOM -->
 
                     <a href="#"
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
-
                         <img
                             src="https://cdn.simpleicons.org/zoom"
                             alt="Zoom logo"
                             class="w-8 h-8 object-contain"
                         >
-
                         <span>Zoom</span>
-
                     </a>
-
-
                 </div>
-
             </div>
 
-
-
-            <!-- ========================================================= -->
-            <!-- ROW 2 - RIGHT TO LEFT -->
-            <!-- ========================================================= -->
-
             <div class="overflow-hidden">
-
                 <div class="software-row software-row-right">
-
-
-                    <!-- GOOGLE DRIVE -->
-
                     <a href="#"
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
 
@@ -681,13 +522,8 @@
                             alt="Google Drive logo"
                             class="w-8 h-8 object-contain"
                         >
-
                         <span>Google Drive</span>
-
                     </a>
-
-
-                    <!-- ONEDRIVE -->
 
                     <a
                         href="#"
@@ -698,78 +534,50 @@
                             alt="OneDrive logo"
                             class="w-8 h-8 object-contain"
                         >
-
                         <span>
                             OneDrive
                         </span>
                     </a>
 
-
-                    <!-- DROPBOX -->
-
                     <a href="#"
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
-
                         <img
                             src="https://cdn.simpleicons.org/dropbox"
                             alt="Dropbox logo"
                             class="w-8 h-8 object-contain"
                         >
-
                         <span>Dropbox</span>
-
                     </a>
-
-
-                    <!-- FIREBASE -->
 
                     <a href="#"
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
-
                         <img
                             src="https://cdn.simpleicons.org/firebase"
                             alt="Firebase logo"
                             class="w-8 h-8 object-contain"
                         >
-
                         <span>Firebase</span>
-
                     </a>
-
-
-                    <!-- MYSQL -->
 
                     <a href="#"
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
-
                         <img
                             src="https://cdn.simpleicons.org/mysql"
                             alt="MySQL logo"
                             class="w-8 h-8 object-contain"
                         >
-
                         <span>MySQL</span>
-
                     </a>
-
-
-                    <!-- MICROSOFT EXCEL -->
 
                     <a href="#"
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
-
                         <img
                             src="image/excel.png"
                             alt="Microsoft Excel logo"
                             class="w-8 h-8 object-contain"
                         >
-
                         <span>Microsoft Excel</span>
-
                     </a>
-
-
-                    <!-- GOOGLE WORKSPACE -->
 
                     <a href="#"
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
@@ -783,16 +591,10 @@
                         <span>Google Workspace</span>
 
                     </a>
-
-
                 </div>
-
             </div>
-
-        </div>
-
-        </div>
-
+          </div>
+       </div>
     </div>
 
 </section>
@@ -1367,7 +1169,7 @@
                                 class="text-gray-600
                                     mt-1"
                             >
-                                Ongoing
+                                View available certificate below
                             </p>
 
 
@@ -4365,7 +4167,7 @@
                        border-gray-400
                        pl-6"
             >
-            
+
                 <div
                     class="grid
                            grid-cols-2
@@ -4534,6 +4336,7 @@
     <script src="js/navigation.js"></script>
     <script src="js/timezone.js"></script>
     <script src="js/certificate.js"></script>
-</script>
+
 </body>
+
 </html>
