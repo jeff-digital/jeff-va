@@ -1,71 +1,38 @@
-html 
-        section {
-            scroll-margin-top: 80px;
-        }
-        body {
-            margin: 0;
-        }
-        .serif-title {
-            font-family: Georgia, "Times New Roman", serif;
-        }
-        .placeholder {
-            background: #e5e7eb;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #9ca3af;
-        }
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
 
-        .software-row {
-            display: flex;
-            align-items: center;
-            width: max-content;
-            gap: 8rem;
-            padding-right: 1rem;
+body {
+    margin: 0;
+}
 
-        }
+section {
+    scroll-margin-top: 80px;
+}
 
-        .software-row-left {
-            animation:
-                move-left-right
-                25s
-                linear
-                infinite;
+.serif-title {
+    font-family: Georgia, "Times New Roman", serif;
+}
 
-        }
-
-        .software-row-right {
-            animation:
-                move-right-left
-                25s
-                linear
-                infinite;
-
-        }
-
-@keyframes move-left-right {
-    0% {
-        transform: translateX(-20%);
-    }
-    100% {
-        transform: translateX(0%);
-    }
+.placeholder {
+    background: #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
 }
 
 
-@keyframes move-right-left {
-    0% {
-        transform: translateX(0%);
-    }
-    100% {
-        transform: translateX(-20%);
-    }
-}
-
+/* =========================
+   SCROLL REVEAL
+========================= */
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(35px);
+    transition:
+        opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal.show {
