@@ -12,8 +12,8 @@
            justify-center
            bg-black/60
            backdrop-blur-sm
-           p-3
-           sm:p-4
+           p-4
+           sm:p-5
            md:p-6"
 >
 
@@ -24,15 +24,17 @@
     <div
         class="relative
                flex
-               w-full
+               w-[92%]
                max-w-5xl
-               max-h-[94vh]
+               max-h-[82vh]
                flex-col
                overflow-hidden
-               rounded-2xl
+               rounded-xl
                bg-white
                shadow-2xl
-               sm:max-h-[92vh]"
+               sm:w-full
+               sm:max-h-[88vh]
+               md:max-h-[92vh]"
     >
 
         <!-- ================================================= -->
@@ -43,24 +45,25 @@
             class="flex-shrink-0
                    border-b
                    border-gray-200
-                   px-5
-                   py-4
+                   px-4
+                   py-3
                    md:px-7
                    md:py-5"
         >
 
             <span
-                class="text-xs
+                class="text-[10px]
                        uppercase
                        tracking-widest
-                       text-gray-400"
+                       text-gray-400
+                       md:text-xs"
             >
                 Credentials
             </span>
 
             <h3
                 class="mt-1
-                       text-xl
+                       text-lg
                        font-bold
                        text-[#1a2340]
                        md:text-2xl"
@@ -70,8 +73,9 @@
 
             <p
                 class="mt-1
-                       text-sm
-                       text-gray-500"
+                       text-xs
+                       text-gray-500
+                       md:text-sm"
             >
                 View available certificates and credentials.
             </p>
@@ -89,8 +93,8 @@
                    flex-1
                    overflow-y-auto
                    overscroll-contain
-                   px-5
-                   py-4
+                   px-4
+                   py-3
                    md:px-7
                    md:py-6"
         >
@@ -102,9 +106,10 @@
             <div
                 class="grid
                        grid-cols-1
-                       gap-4
+                       gap-3
                        mb-5
-                       sm:grid-cols-2"
+                       sm:grid-cols-2
+                       sm:gap-4"
             >
 
                 <!-- CATEGORY -->
@@ -113,11 +118,13 @@
 
                     <label
                         for="certificateCategory"
-                        class="mb-2
+                        class="mb-1.5
                                block
-                               text-sm
+                               text-xs
                                font-semibold
-                               text-gray-700"
+                               text-gray-700
+                               md:mb-2
+                               md:text-sm"
                     >
                         Category
                     </label>
@@ -130,11 +137,13 @@
                                border-gray-300
                                bg-white
                                px-3
-                               py-2.5
-                               text-sm
+                               py-2
+                               text-xs
                                text-gray-700
                                outline-none
-                               focus:border-[#1a2340]"
+                               focus:border-[#1a2340]
+                               md:py-2.5
+                               md:text-sm"
                     >
 
                         <option value="all">
@@ -168,11 +177,13 @@
 
                     <label
                         for="certificateYear"
-                        class="mb-2
+                        class="mb-1.5
                                block
-                               text-sm
+                               text-xs
                                font-semibold
-                               text-gray-700"
+                               text-gray-700
+                               md:mb-2
+                               md:text-sm"
                     >
                         Year
                     </label>
@@ -185,11 +196,13 @@
                                border-gray-300
                                bg-white
                                px-3
-                               py-2.5
-                               text-sm
+                               py-2
+                               text-xs
                                text-gray-700
                                outline-none
-                               focus:border-[#1a2340]"
+                               focus:border-[#1a2340]
+                               md:py-2.5
+                               md:text-sm"
                     >
 
                         <option value="all">
@@ -219,8 +232,9 @@
                 id="certificateList"
                 class="grid
                        grid-cols-1
-                       gap-5
+                       gap-4
                        sm:grid-cols-2
+                       sm:gap-5
                        lg:grid-cols-3"
             >
 
@@ -270,33 +284,39 @@
                     <!-- CERTIFICATE INFO -->
 
                     <div
-                        class="p-4"
+                        class="p-3
+                               md:p-4"
                     >
 
                         <h4
-                            class="text-base
+                            class="text-sm
                                    font-bold
-                                   text-[#1a2340]"
+                                   text-[#1a2340]
+                                   md:text-base"
                         >
                             HubSpot Sales Hub Software
                         </h4>
 
 
                         <div
-                            class="mt-3
+                            class="mt-2
                                    flex
                                    flex-wrap
-                                   gap-2"
+                                   gap-1.5
+                                   md:mt-3
+                                   md:gap-2"
                         >
 
                             <span
                                 class="rounded-md
                                        bg-gray-100
-                                       px-2.5
+                                       px-2
                                        py-1
-                                       text-xs
+                                       text-[10px]
                                        font-medium
-                                       text-gray-600"
+                                       text-gray-600
+                                       md:px-2.5
+                                       md:text-xs"
                             >
                                 CRM
                             </span>
@@ -305,11 +325,13 @@
                             <span
                                 class="rounded-md
                                        bg-gray-100
-                                       px-2.5
+                                       px-2
                                        py-1
-                                       text-xs
+                                       text-[10px]
                                        font-medium
-                                       text-gray-600"
+                                       text-gray-600
+                                       md:px-2.5
+                                       md:text-xs"
                             >
                                 2026
                             </span>
@@ -318,11 +340,13 @@
                             <span
                                 class="rounded-md
                                        bg-green-50
-                                       px-2.5
+                                       px-2
                                        py-1
-                                       text-xs
+                                       text-[10px]
                                        font-medium
-                                       text-green-700"
+                                       text-green-700
+                                       md:px-2.5
+                                       md:text-xs"
                             >
                                 Completed
                             </span>
@@ -334,13 +358,15 @@
                             href="https://app-na2.hubspot.com/academy/achievements/4834zrfd/en/1/jeffrey-almocera/hubspot-sales-hub-software-certified"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="mt-4
+                            class="mt-3
                                    inline-block
-                                   text-sm
+                                   text-xs
                                    font-bold
                                    text-[#1a2340]
                                    underline
-                                   underline-offset-4"
+                                   underline-offset-4
+                                   md:mt-4
+                                   md:text-sm"
                         >
                             View Certificate
                         </a>
@@ -359,22 +385,25 @@
             <div
                 id="noCertificates"
                 class="hidden
-                       py-12
-                       text-center"
+                       py-10
+                       text-center
+                       md:py-12"
             >
 
                 <p
-                    class="text-base
+                    class="text-sm
                            font-semibold
-                           text-gray-500"
+                           text-gray-500
+                           md:text-base"
                 >
                     No certificates found.
                 </p>
 
                 <p
                     class="mt-1
-                           text-sm
-                           text-gray-400"
+                           text-xs
+                           text-gray-400
+                           md:text-sm"
                 >
                     Try selecting a different category or year.
                 </p>
@@ -396,8 +425,8 @@
                    border-t
                    border-gray-200
                    bg-white
-                   px-5
-                   py-3
+                   px-4
+                   py-2.5
                    md:px-7
                    md:py-4"
         >
@@ -407,15 +436,18 @@
                 id="closeCertificateButton"
                 class="rounded-lg
                        bg-[#1a2340]
-                       px-5
-                       py-2.5
-                       text-sm
+                       px-4
+                       py-2
+                       text-xs
                        font-bold
                        text-white
                        transition
                        duration-200
                        hover:bg-[#243052]
-                       active:scale-95"
+                       active:scale-95
+                       md:px-5
+                       md:py-2.5
+                       md:text-sm"
             >
                 Close
             </button>
