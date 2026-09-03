@@ -1,0 +1,427 @@
+<!-- ================================================= -->
+<!-- CERTIFICATE MODAL -->
+<!-- ================================================= -->
+
+<div
+    id="certificateModal"
+    class="hidden
+           fixed
+           inset-0
+           z-[9999]
+           items-center
+           justify-center
+           bg-black/60
+           backdrop-blur-sm
+           p-3
+           sm:p-4
+           md:p-6"
+>
+
+    <!-- ================================================= -->
+    <!-- MODAL -->
+    <!-- ================================================= -->
+
+    <div
+        class="relative
+               flex
+               w-full
+               max-w-5xl
+               max-h-[94vh]
+               flex-col
+               overflow-hidden
+               rounded-2xl
+               bg-white
+               shadow-2xl
+               sm:max-h-[92vh]"
+    >
+
+        <!-- ================================================= -->
+        <!-- HEADER -->
+        <!-- ================================================= -->
+
+        <div
+            class="flex-shrink-0
+                   border-b
+                   border-gray-200
+                   px-5
+                   py-4
+                   md:px-7
+                   md:py-5"
+        >
+
+            <span
+                class="text-xs
+                       uppercase
+                       tracking-widest
+                       text-gray-400"
+            >
+                Credentials
+            </span>
+
+            <h3
+                class="mt-1
+                       text-xl
+                       font-bold
+                       text-[#1a2340]
+                       md:text-2xl"
+            >
+                Certifications
+            </h3>
+
+            <p
+                class="mt-1
+                       text-sm
+                       text-gray-500"
+            >
+                View available certificates and credentials.
+            </p>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- SCROLLABLE CONTENT -->
+        <!-- ================================================= -->
+
+        <div
+            class="certificate-modal-content
+                   min-h-0
+                   flex-1
+                   overflow-y-auto
+                   overscroll-contain
+                   px-5
+                   py-4
+                   md:px-7
+                   md:py-6"
+        >
+
+            <!-- ================================================= -->
+            <!-- FILTERS -->
+            <!-- ================================================= -->
+
+            <div
+                class="grid
+                       grid-cols-1
+                       gap-4
+                       mb-5
+                       sm:grid-cols-2"
+            >
+
+                <!-- CATEGORY -->
+
+                <div>
+
+                    <label
+                        for="certificateCategory"
+                        class="mb-2
+                               block
+                               text-sm
+                               font-semibold
+                               text-gray-700"
+                    >
+                        Category
+                    </label>
+
+                    <select
+                        id="certificateCategory"
+                        class="w-full
+                               rounded-lg
+                               border
+                               border-gray-300
+                               bg-white
+                               px-3
+                               py-2.5
+                               text-sm
+                               text-gray-700
+                               outline-none
+                               focus:border-[#1a2340]"
+                    >
+
+                        <option value="all">
+                            All Categories
+                        </option>
+
+                        <option value="crm">
+                            CRM
+                        </option>
+
+                        <option value="it-support">
+                            IT Support
+                        </option>
+
+                        <option value="digital-marketing">
+                            Digital Marketing
+                        </option>
+
+                        <option value="administration">
+                            Administration
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- YEAR -->
+
+                <div>
+
+                    <label
+                        for="certificateYear"
+                        class="mb-2
+                               block
+                               text-sm
+                               font-semibold
+                               text-gray-700"
+                    >
+                        Year
+                    </label>
+
+                    <select
+                        id="certificateYear"
+                        class="w-full
+                               rounded-lg
+                               border
+                               border-gray-300
+                               bg-white
+                               px-3
+                               py-2.5
+                               text-sm
+                               text-gray-700
+                               outline-none
+                               focus:border-[#1a2340]"
+                    >
+
+                        <option value="all">
+                            All Years
+                        </option>
+
+                        <option value="2026">
+                            2026
+                        </option>
+
+                        <option value="2025">
+                            2025
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- CERTIFICATE LIST -->
+            <!-- ================================================= -->
+
+            <div
+                id="certificateList"
+                class="grid
+                       grid-cols-1
+                       gap-5
+                       sm:grid-cols-2
+                       lg:grid-cols-3"
+            >
+
+                <!-- ================================================= -->
+                <!-- CERTIFICATE -->
+                <!-- ================================================= -->
+
+                <div
+                    class="certificate-item
+                           overflow-hidden
+                           rounded-xl
+                           border
+                           border-gray-200
+                           bg-white
+                           shadow-sm
+                           transition
+                           duration-300
+                           hover:-translate-y-1
+                           hover:shadow-lg"
+                    data-category="crm"
+                    data-year="2026"
+                >
+
+                    <!-- CERTIFICATE IMAGE -->
+
+                    <div
+                        class="flex
+                               aspect-[4/3]
+                               w-full
+                               items-center
+                               justify-center
+                               overflow-hidden
+                               bg-gray-100"
+                    >
+
+                        <img
+                            src="certificate/saleshub.png"
+                            alt="HubSpot Sales Hub Software Certificate"
+                            class="h-full
+                                   w-full
+                                   object-contain"
+                        >
+
+                    </div>
+
+
+                    <!-- CERTIFICATE INFO -->
+
+                    <div
+                        class="p-4"
+                    >
+
+                        <h4
+                            class="text-base
+                                   font-bold
+                                   text-[#1a2340]"
+                        >
+                            HubSpot Sales Hub Software
+                        </h4>
+
+
+                        <div
+                            class="mt-3
+                                   flex
+                                   flex-wrap
+                                   gap-2"
+                        >
+
+                            <span
+                                class="rounded-md
+                                       bg-gray-100
+                                       px-2.5
+                                       py-1
+                                       text-xs
+                                       font-medium
+                                       text-gray-600"
+                            >
+                                CRM
+                            </span>
+
+
+                            <span
+                                class="rounded-md
+                                       bg-gray-100
+                                       px-2.5
+                                       py-1
+                                       text-xs
+                                       font-medium
+                                       text-gray-600"
+                            >
+                                2026
+                            </span>
+
+
+                            <span
+                                class="rounded-md
+                                       bg-green-50
+                                       px-2.5
+                                       py-1
+                                       text-xs
+                                       font-medium
+                                       text-green-700"
+                            >
+                                Completed
+                            </span>
+
+                        </div>
+
+
+                        <a
+                            href="https://app-na2.hubspot.com/academy/achievements/4834zrfd/en/1/jeffrey-almocera/hubspot-sales-hub-software-certified"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="mt-4
+                                   inline-block
+                                   text-sm
+                                   font-bold
+                                   text-[#1a2340]
+                                   underline
+                                   underline-offset-4"
+                        >
+                            View Certificate
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- NO CERTIFICATES -->
+            <!-- ================================================= -->
+
+            <div
+                id="noCertificates"
+                class="hidden
+                       py-12
+                       text-center"
+            >
+
+                <p
+                    class="text-base
+                           font-semibold
+                           text-gray-500"
+                >
+                    No certificates found.
+                </p>
+
+                <p
+                    class="mt-1
+                           text-sm
+                           text-gray-400"
+                >
+                    Try selecting a different category or year.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- FOOTER -->
+        <!-- ================================================= -->
+
+        <div
+            class="flex
+                   flex-shrink-0
+                   items-center
+                   justify-end
+                   border-t
+                   border-gray-200
+                   bg-white
+                   px-5
+                   py-3
+                   md:px-7
+                   md:py-4"
+        >
+
+            <button
+                type="button"
+                id="closeCertificateButton"
+                class="rounded-lg
+                       bg-[#1a2340]
+                       px-5
+                       py-2.5
+                       text-sm
+                       font-bold
+                       text-white
+                       transition
+                       duration-200
+                       hover:bg-[#243052]
+                       active:scale-95"
+            >
+                Close
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

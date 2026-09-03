@@ -1219,437 +1219,90 @@
         </div>
 
 
-        <!-- ================================================= -->
-        <!-- CERTIFICATION -->
-        <!-- ================================================= -->
+       <!-- ================================================= -->
+<!-- CERTIFICATION -->
+<!-- ================================================= -->
 
-        <div
-            class="mt-4
-                   border
-                   border-gray-200
-                   rounded-xl
-                   p-5
-                   bg-white"
+<div
+    class="mt-4
+           border
+           border-gray-200
+           rounded-xl
+           p-5
+           bg-white"
+>
+
+    <div
+        class="flex
+               items-center
+               justify-between
+               gap-4"
+    >
+
+        <div>
+
+            <span
+                class="text-xs
+                       uppercase
+                       tracking-widest
+                       text-gray-400"
+            >
+                Credentials
+            </span>
+
+            <h4
+                class="text-base
+                       md:text-lg
+                       font-bold
+                       text-navy
+                       mt-1"
+            >
+                Certifications
+            </h4>
+
+            <p
+                class="text-sm
+                       text-gray-600
+                       mt-1"
+            >
+                View available certificates and credentials.
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="viewCertificateButton"
+            class="flex
+                   flex-shrink-0
+                   items-center
+                   justify-center
+                   bg-[#1a2340]
+                   text-white
+                   px-3
+                   py-2
+                   rounded-md
+                   text-xs
+                   md:text-sm
+                   font-bold
+                   transition-all
+                   duration-200
+                   hover:bg-[#243052]"
         >
+            View Certificates
+        </button>
 
-            <div
-                class="flex
-                       items-center
-                       justify-between
-                       gap-4"
-            >
+    </div>
 
-                <div>
+</div>
 
-                    <span
-                        class="text-xs
-                               uppercase
-                               tracking-widest
-                               text-gray-400"
-                    >
-                        Credentials
-                    </span>
 
-                    <h4
-                        class="text-base
-                               md:text-lg
-                               font-bold
-                               text-navy
-                               mt-1"
-                    >
-                        Certifications
-                    </h4>
+<!-- ================================================= -->
+<!-- CERTIFICATE MODAL -->
+<!-- ================================================= -->
 
-                    <p
-                        class="text-sm
-                               text-gray-600
-                               mt-1"
-                    >
-                        View available certificates and credentials.
-                    </p>
 
-                </div>
-
-                <!-- VIEW CERTIFICATE BUTTON -->
-
-                <button
-                    type="button"
-                    id="viewCertificateButton"
-                    style="
-                        display: inline-flex !important;
-                        visibility: visible !important;
-                        opacity: 1 !important;
-                    "
-                    class="flex-shrink-0
-                           items-center
-                           justify-center
-                           bg-[#1a2340]
-                           text-white
-                           px-3
-                           py-2
-                           rounded-md
-                           text-xs
-                           md:text-sm
-                           font-bold
-                           transition-all
-                           duration-200
-                           hover:bg-[#243052]"
-                >
-                    View Certificates
-                </button>
-
-            </div>
-
-            <!-- CERTIFICATE MODAL -->
-
-            <div
-                id="certificateModal"
-                class="hidden
-                    fixed
-                    inset-0
-                    z-50
-                    items-center
-                    justify-center
-                    bg-black/70
-                    p-4"
-            >
-
-                <!-- MODAL CONTENT -->
-
-                <div
-                    class="w-full
-                        max-w-4xl
-                        max-h-[90vh]
-                        overflow-y-auto
-                        bg-white
-                        rounded-2xl
-                        p-5
-                        md:p-7"
-                >
-
-                    <!-- TITLE -->
-
-                    <h3
-                        class="text-xl
-                            md:text-2xl
-                            font-bold
-                            text-navy"
-                    >
-                        Certifications & Credentials
-                    </h3>
-
-
-                    <!-- DESCRIPTION -->
-
-                    <p
-                        class="text-gray-600
-                            mt-1
-                            mb-5"
-                    >
-                        Certifications and credentials earned or currently in progress.
-                    </p>
-
-
-                    <!-- ================================================= -->
-                    <!-- FILTERS -->
-                    <!-- ================================================= -->
-
-                    <div
-                        class="grid
-                            grid-cols-1
-                            sm:grid-cols-2
-                            gap-3
-                            mb-6"
-                    >
-
-                        <!-- CATEGORY -->
-
-                        <div>
-
-                            <label
-                                for="certificateCategory"
-                                class="block
-                                    text-sm
-                                    font-semibold
-                                    text-gray-700
-                                    mb-1"
-                            >
-                                Category
-                            </label>
-
-                            <select
-                                id="certificateCategory"
-                                class="w-full
-                                    border
-                                    border-gray-300
-                                    rounded-md
-                                    px-3
-                                    py-2
-                                    text-sm
-                                    bg-white
-                                    focus:outline-none"
-                            >
-
-                                <option value="all">
-                                    All Categories
-                                </option>
-
-                                <option value="it-support">
-                                    IT Support
-                                </option>
-
-                                <option value="crm">
-                                    CRM
-                                </option>
-
-                                <option value="digital-marketing">
-                                    Digital Marketing
-                                </option>
-
-                                <option value="administration">
-                                    Administration
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        <!-- YEAR -->
-
-                        <div>
-
-                            <label
-                                for="certificateYear"
-                                class="block
-                                    text-sm
-                                    font-semibold
-                                    text-gray-700
-                                    mb-1"
-                            >
-                                Year
-                            </label>
-
-                            <select
-                                id="certificateYear"
-                                class="w-full
-                                    border
-                                    border-gray-300
-                                    rounded-md
-                                    px-3
-                                    py-2
-                                    text-sm
-                                    bg-white
-                                    focus:outline-none"
-                            >
-
-                                <option value="all">
-                                    All Years
-                                </option>
-
-                                <option value="2026">
-                                    2026
-                                </option>
-
-                                <option value="2025">
-                                    2025
-                                </option>
-
-                            </select>
-
-                        </div>
-                    </div>
-
-
-                <div
-                    id="certificateList"
-                    class="grid
-                        grid-cols-1
-                        sm:grid-cols-2
-                        gap-4"
-                >
-
-                <div
-                    class="certificate-item
-                        border
-                        border-gray-200
-                        rounded-xl
-                        overflow-hidden
-                        bg-white"
-                    data-category="crm"
-                    data-year="2026"
-                >
-
-                   <!-- ================================================= -->
-                    <!-- CERTIFICATE PREVIEW -->
-                    <!-- ================================================= -->
-
-                    <div
-                        class="w-full
-                            aspect-video
-                            bg-gray-100
-                            flex
-                            items-center
-                            justify-center
-                            overflow-hidden"
-                    >
-
-                        <img
-                            src="certificate/saleshub.png"
-                            alt="HubSpot Sales Software Certificate"
-                            class="w-full
-                                h-full
-                                object-contain"
-                        >
-
-                    </div>
-
-
-                    <!-- ================================================= -->
-                    <!-- CERTIFICATE INFORMATION -->
-                    <!-- ================================================= -->
-
-                    <div class="p-4">
-
-                        <h4
-                            class="text-base
-                                font-bold
-                                text-navy"
-                        >
-                        HubSpot Sales Hub Software
-
-                        </h4>
-
-                        <div
-                            class="flex
-                                flex-wrap
-                                gap-2
-                                mt-3"
-                        >
-
-                            <!-- CATEGORY -->
-
-                            <span
-                                class="text-xs
-                                    bg-gray-100
-                                    text-gray-600
-                                    px-2
-                                    py-1
-                                    rounded"
-                            >
-                                CRM
-                            </span>
-
-
-                            <!-- YEAR -->
-
-                            <span
-                                class="text-xs
-                                    bg-gray-100
-                                    text-gray-600
-                                    px-2
-                                    py-1
-                                    rounded"
-                            >
-                                2026
-                            </span>
-
-
-                            <!-- STATUS -->
-
-                            <span
-                                class="text-xs
-                                    bg-gray-100
-                                    text-gray-600
-                                    px-2
-                                    py-1
-                                    rounded"
-                            >
-                                Completed
-                            </span>
-
-                        </div>
-
-
-                        <!-- VIEW CERTIFICATE -->
-
-                        <a
-                            href="https://app-na2.hubspot.com/academy/achievements/4834zrfd/en/1/jeffrey-almocera/hubspot-sales-hub-software-certified"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="inline-block
-                                mt-4
-                                text-sm
-                                font-bold
-                                text-navy
-                                underline
-                                underline-offset-2
-                                hover:text-gray-600"
-                        >
-                            View Certificate
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                        </div>
-                                <div
-                                    id="noCertificates"
-                                    class="hidden
-                                        text-center
-                                        py-12"
-                                >
-
-                                    <p
-                                        class="text-base
-                                            font-semibold
-                                            text-gray-500"
-                                    >
-                                        No certificates found.
-                                    </p>
-
-                                    <p
-                                        class="text-sm
-                                            text-gray-400
-                                            mt-1"
-                                    >
-                                        Certificates will be displayed here when available.
-                                    </p>
-
-                                </div>
-
-
-                                <div
-                                    class="flex
-                                        justify-end
-                                        mt-6"
-                                >
-
-                                    <button
-                                        type="button"
-                                        id="closeCertificateButton"
-                                        class="bg-[#1a2340]
-                                            text-white
-                                            px-4
-                                            py-2
-                                            rounded-md
-                                            text-sm
-                                            font-bold"
-                                    >
-                                        Close
-                                    </button>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
 
             </div>
 
@@ -4454,6 +4107,7 @@
 </footer>
 
 
+<div id="certificateModalContainer"></div>
 
 <!-- js directories -->
     <script src="js/lucideicon.js"></script>
