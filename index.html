@@ -10,7 +10,11 @@
     <title>Jeff | Portfolio</title>
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/software.css">
-     
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -24,8 +28,8 @@
                     },
 
                     fontFamily: {
-                        sans: ["Arial", "Helvetica", "sans-serif"],
-                        serif: ["Georgia", "Times New Roman", "serif"]
+                        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "SF Pro Display", "SF Pro Text", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
+                        serif: ["Inter", "-apple-system", "BlinkMacSystemFont", "SF Pro Display", "Segoe UI", "Roboto", "sans-serif"]
                     }
                 }
             }
@@ -35,6 +39,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        *:not([class*="fa-"]) {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+        }
+    </style>
 
 </head>
 
@@ -376,8 +386,31 @@
                             leading-tight
                             mb-3"
                     >
-                        Jeffrey Almocera | Tech & Administrative Support
+                        Jeffrey Almocera
                     </h5>
+
+                    <p
+                        class="text-base
+                            sm:text-lg
+                            md:text-xl
+                            text-white/80
+                            mb-1"
+                    >
+                        Virtual Assistant
+                    </p>
+
+                    <p
+                        class="text-sm
+                            sm:text-base
+                            text-white/60
+                            max-w-md
+                            mx-auto
+                            lg:mx-0"
+                    >
+                        I help businesses stay organized and running
+                        smoothly — with web design and technical
+                        support as an added skill set.
+                    </p>
 
                     <a
                         href="documents/Almocera_Jeffrey_Resume.pdf"
@@ -418,7 +451,7 @@
 
                     <img
                         src="image/IT_ALMOCERA_IMG_V_8741.jpg"
-                        alt="Jeff - Virtual Assistant"
+                        alt="Jeffrey Almocera - Virtual Assistant"
                         class="w-[220px]
                             sm:w-[260px]
                             md:w-[300px]
@@ -437,7 +470,7 @@
             <div class="mt-14 overflow-hidden w-full space-y-8">
             <div class="overflow-hidden">
                 <div class="software-row software-row-left">
-                    <a href="#"
+                    <a
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
                         <img
                             src="image/photoshop.png"
@@ -446,7 +479,7 @@
                         >
                         <span>Photoshop</span>
                     </a>
-                    <a href="#"
+                    <a
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
                         <img
                             src="image/capcut.png"
@@ -455,7 +488,7 @@
                         >
                         <span>CapCut</span>
                     </a>
-                    <a href="#"
+                    <a
 
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
                         <img
@@ -466,7 +499,7 @@
                         <span>Facebook Ads</span>
                     </a>
 
-                    <a href="#"
+                    <a
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
                         <img
                             src="https://cdn.simpleicons.org/tiktok"
@@ -476,7 +509,17 @@
                         <span>TikTok Ads</span>
                     </a>
 
-                    <a href="#"
+                    <a
+                    class="flex items-center gap-3 text-lg whitespace-nowrap">
+                        <img
+                            src="https://cdn.simpleicons.org/googleads"
+                            alt="Google Ads logo"
+                            class="w-8 h-8 object-contain"
+                        >
+                        <span>Google Ads</span>
+                    </a>
+
+                    <a
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
 
                         <img
@@ -487,7 +530,7 @@
                         <span>Canva</span>
                     </a>
 
-                    <a href="#"
+                    <a
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
                         <img
                             src="image/slack.png"
@@ -497,7 +540,7 @@
                         <span>Slack</span>
                     </a>
 
-                    <a href="#"
+                    <a
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
 
                         <img
@@ -508,7 +551,7 @@
                         <span>Figma</span>
                     </a>
 
-                    <a href="#"
+                    <a
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
                         <img
                             src="https://cdn.simpleicons.org/zoom"
@@ -522,7 +565,7 @@
 
             <div class="overflow-hidden">
                 <div class="software-row software-row-right">
-                    <a href="#"
+                    <a
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
 
                         <img
@@ -534,7 +577,6 @@
                     </a>
 
                     <a
-                        href="#"
                         class="flex items-center gap-3 text-lg whitespace-nowrap"
                     >
                         <img
@@ -547,7 +589,7 @@
                         </span>
                     </a>
 
-                    <a href="#"
+                    <a
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
                         <img
                             src="https://cdn.simpleicons.org/dropbox"
@@ -557,7 +599,7 @@
                         <span>Dropbox</span>
                     </a>
 
-                    <a href="#"
+                    <a
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
                         <img
                             src="https://cdn.simpleicons.org/firebase"
@@ -567,7 +609,7 @@
                         <span>Firebase</span>
                     </a>
 
-                    <a href="#"
+                    <a
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
                         <img
                             src="https://cdn.simpleicons.org/mysql"
@@ -577,7 +619,7 @@
                         <span>MySQL</span>
                     </a>
 
-                    <a href="#"
+                    <a
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
                         <img
                             src="image/excel.png"
@@ -587,16 +629,29 @@
                         <span>Microsoft Excel</span>
                     </a>
 
-                    <a href="#"
+                    <a
                     class="flex items-center gap-3 text-lg whitespace-nowrap">
 
                         <img
-                            src="https://cdn.simpleicons.org/googleworkspace"
+                            src="https://cdn.simpleicons.org/google"
                             alt="Google Workspace logo"
                             class="w-8 h-8 object-contain"
                         >
 
                         <span>Google Workspace</span>
+
+                    </a>
+
+                    <a
+                    class="flex items-center gap-3 text-lg whitespace-nowrap">
+
+                        <img
+                            src="https://cdn.simpleicons.org/hubspot"
+                            alt="HubSpot CRM logo"
+                            class="w-8 h-8 object-contain"
+                        >
+
+                        <span>HubSpot CRM</span>
 
                     </a>
                 </div>
@@ -655,12 +710,13 @@
                                mb-5"
                                style="text-align: justify;"
                     >
-                        My mission is to help you overcome
-                        challenges and keep your day-to-day
-                        operations running smoothly. One of
-                        my strengths is staying organized,
-                        identifying issues quickly, and taking
-                        action to find effective solutions.
+                        I help small businesses and busy founders
+                        stay organized and on top of their
+                        day-to-day operations — from inbox and
+                        calendar management to file organization
+                        and reliable admin support. I also bring
+                        web design and technical support skills
+                        to the table when a project calls for it.
                     </p>
 
 
@@ -670,11 +726,9 @@
                                tracking-wide"
                                style="text-align: justify;"
                     >
-                        I focus on keeping tasks on track,
-                        maintaining organization, and providing
-                        reliable support so you can focus on
-                        what matters most: growing and managing
-                        your business.
+                        My approach is simple: solve problems
+                        quickly, keep things organized, and give
+                        you one less thing to worry about.
                     </p>
 
                 </div>
@@ -722,7 +776,7 @@
                             >
 
                                 <i
-                                    class="fa-solid fa-laptop
+                                    class="fa-regular fa-clock
                                            text-lg"
                                 ></i>
 
@@ -732,7 +786,7 @@
                                 class="text-sm
                                     font-medium"
                             >
-                                Technical Proficiency
+                                Inbox &amp; Calendar Management
                             </span>
 
                         </div>
@@ -762,7 +816,7 @@
                             >
 
                                 <i
-                                    class="fa-solid fa-arrows-rotate
+                                    class="fa-solid fa-folder
                                            text-lg"
                                 ></i>
 
@@ -772,7 +826,7 @@
                                  class="text-sm
                                     font-medium"
                             >
-                                Adaptability
+                                File &amp; Data Organization
                             </span>
 
                         </div>
@@ -802,7 +856,7 @@
                             >
 
                                 <i
-                                    class="fa-regular fa-clock
+                                    class="fa-solid fa-comments
                                            text-lg"
                                 ></i>
 
@@ -812,7 +866,7 @@
                                  class="text-sm
                                     font-medium"
                             >
-                                Time Management
+                                Clear, Responsive Communication
                             </span>
 
                         </div>
@@ -842,7 +896,7 @@
                             >
 
                                 <i
-                                    class="fa-solid fa-folder
+                                    class="fa-solid fa-list-check
                                            text-lg"
                                 ></i>
 
@@ -852,7 +906,7 @@
                                 class="text-sm
                                     font-medium"
                             >
-                                Organization
+                                Social Media Content Support
                             </span>
 
                         </div>
@@ -882,7 +936,7 @@
                             >
 
                                 <i
-                                    class="fa-solid fa-list-check
+                                    class="fa-solid fa-laptop
                                         text-lg"
                                 ></i>
 
@@ -892,7 +946,7 @@
                                 class="text-sm
                                     font-medium"
                             >
-                                Detail-Oriented
+                                Website Design &amp; Maintenance
                             </span>
 
                         </div>
@@ -922,7 +976,7 @@
                             >
 
                                 <i
-                                    class="fa-solid fa-comments
+                                    class="fa-solid fa-arrows-rotate
                                         text-lg"
                                 ></i>
 
@@ -932,7 +986,7 @@
                                class="text-sm
                                     font-medium"
                             >
-                                Professional Communication
+                                IT Troubleshooting &amp; Setup
                             </span>
 
                         </div>
@@ -964,7 +1018,7 @@
                    min-h-[155px]
                    flex
                    flex-col
-                   justify-center"
+                   justify-start"
         >
 
             <span
@@ -1006,7 +1060,7 @@
                    min-h-[155px]
                    flex
                    flex-col
-                   justify-center"
+                   justify-start"
         >
 
             <span
@@ -1048,7 +1102,7 @@
                    min-h-[155px]
                    flex
                    flex-col
-                   justify-center"
+                   justify-start"
         >
 
             <span
@@ -1064,7 +1118,7 @@
                        font-bold
                        mt-2"
             >
-                Skills Experience
+                Service Areas
             </h3>
 
             <p
@@ -1073,8 +1127,9 @@
                        leading-relaxed
                        mt-2"
             >
-                Roles across virtual assistance, administration,
-                and IT support.
+                Admin support, inbox management, and social
+                media — plus web design and IT support when
+                you need it.
             </p>
 
         </div>
@@ -1312,14 +1367,14 @@
                    font-bold"
         >
 
-            The future depends on what you do today
+            I treat every project like it's my own business
 
         </h2>
 
 
         <p class="italic text-2xl mt-5">
 
-            By Mahatma Gandhi
+            Organized, on time, and built to last.
 
         </p>
 
@@ -1499,6 +1554,15 @@
                             UI / UX • Web Design • Dashboard
                         </p>
 
+                        <p
+                            class="text-sm
+                                   mt-2
+                                   opacity-70
+                                   max-w-[380px]"
+                        >
+                            A concept dashboard for tracking trades, balances, and market activity in one clean view.
+                        </p>
+
                     </div>
 
                 </div>
@@ -1565,6 +1629,15 @@
                         >
                             Homepage
                         </h4>
+
+                        <p
+                            class="text-xs
+                                   mt-1
+                                   opacity-70
+                                   leading-snug"
+                        >
+                            Concept homepage layout built for clarity and a strong first impression.
+                        </p>
 
                     </div>
 
@@ -1633,6 +1706,15 @@
                             User Dashboard
                         </h4>
 
+                        <p
+                            class="text-xs
+                                   mt-1
+                                   opacity-70
+                                   leading-snug"
+                        >
+                            Dashboard concept for tracking account activity at a glance.
+                        </p>
+
                     </div>
 
                 </div>
@@ -1700,6 +1782,15 @@
                             App Design
                         </h4>
 
+                        <p
+                            class="text-xs
+                                   mt-1
+                                   opacity-70
+                                   leading-snug"
+                        >
+                            Mobile app UI concept exploring clean, simple navigation.
+                        </p>
+
                     </div>
 
                 </div>
@@ -1765,6 +1856,15 @@
                             Mobile App UX
                         </h4>
 
+                        <p
+                            class="text-xs
+                                   mt-1
+                                   opacity-70
+                                   leading-snug"
+                        >
+                            UX exploration focused on simple, intuitive user flows.
+                        </p>
+
                     </div>
 
                 </div>
@@ -1829,6 +1929,15 @@
                         >
                             Appointment Website
                         </h4>
+
+                        <p
+                            class="text-xs
+                                   mt-1
+                                   opacity-70
+                                   leading-snug"
+                        >
+                            Concept booking site for a healthcare provider, built for easy scheduling.
+                        </p>
 
                     </div>
 
@@ -1896,6 +2005,15 @@
                         >
                             Login Page
                         </h4>
+
+                        <p
+                            class="text-xs
+                                   mt-1
+                                   opacity-70
+                                   leading-snug"
+                        >
+                            Clean login page design focused on simplicity and trust.
+                        </p>
 
                     </div>
 
@@ -3245,7 +3363,7 @@
                            font-bold"
                 >
 
-                    Schedule a Meeting
+                    Let's Talk
 
                 </h2>
 
@@ -3257,9 +3375,9 @@
                            max-w-[520px]"
                 >
 
-                    Thank you for your interest in working
-                    with me. I truly appreciate the opportunity
-                    to support your business.
+                    Ready to get started? Book a free intro
+                    call and let's talk about how I can help
+                    your business.
 
                 </p>
 
@@ -3284,8 +3402,8 @@
                            leading-relaxed"
                 >
 
-                    If calendly is not working you can use
-                    Calendar and zoom to appoint
+                    Prefer Google Meet or Zoom instead?
+                    Use the links below.
 
                 </p>
 
@@ -3308,8 +3426,31 @@
         class="text-center
                flex
                flex-col
-               items-center"
+               items-center
+               border-2
+               border-blue-400
+               rounded-xl
+               pt-4
+               pb-2
+               px-2
+               relative"
     >
+
+        <span
+            class="absolute
+                   -top-3
+                   bg-blue-500
+                   text-white
+                   text-[11px]
+                   font-bold
+                   uppercase
+                   tracking-wide
+                   px-3
+                   py-1
+                   rounded-full"
+        >
+            Recommended
+        </span>
 
         <div
             class="w-16
@@ -3389,7 +3530,13 @@
         class="text-center
                flex
                flex-col
-               items-center"
+               items-center
+               border-2
+               border-transparent
+               rounded-xl
+               pt-4
+               pb-2
+               px-2"
     >
 
         <div
@@ -3470,7 +3617,13 @@
         class="text-center
                flex
                flex-col
-               items-center"
+               items-center
+               border-2
+               border-transparent
+               rounded-xl
+               pt-4
+               pb-2
+               px-2"
     >
 
         <div
@@ -3590,11 +3743,16 @@
                            style="text-align: justify;"
                 >
 
-                    Please contact me only through the official
-                    link on the right. If you receive a message
-                    from another account using my photo or
-                    claiming to represent me, please exercise
-                    caution and verify its authenticity.
+                    Have a project in mind or a question? Reach
+                    out anytime through the links below — I'd
+                    love to hear from you.
+                    <br><br>
+                    <span class="text-sm text-gray-500">
+                        Note: I only use the accounts listed
+                        here. If you're contacted by another
+                        account using my name or photo, please
+                        verify with me directly first.
+                    </span>
 
                 </p>
 
@@ -3616,12 +3774,14 @@
                         text-lg
                         leading-relaxed"
                 >
-                    I am available
+                    I work
 
                     <strong>
                         Monday to Friday, 8:00 PM – 5:00 AM
-                        (Philippine Time, PHT / UTC+8).
+                        (Philippine Time, PHT / UTC+8)
                     </strong>
+
+                    — timed to overlap with US business hours.
                 </p>
 
 
@@ -3670,9 +3830,9 @@
                         text-lg
                         leading-relaxed"
                 >
-                    Messages received outside business hours,
-                    on weekends, will be responded to on the
-                    next business day.
+                    Messages sent outside these hours or on
+                    weekends will get a reply the next business
+                    day.
                 </p>
 
             </div>
@@ -3688,14 +3848,14 @@
             >
 
 
-                <!-- ADMIN -->
+                <!-- CONNECT -->
 
                 <h3
                     class="text-3xl
                            font-bold"
                 >
 
-                    Admin
+                    Connect
 
                 </h3>
 
@@ -3798,46 +3958,34 @@
 
                     </a>
 
+
+                    <!-- GITHUB -->
+
+                    <a
+                        href="https://github.com/jeff-digital"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="flex
+                            items-center
+                            gap-3
+                            font-bold
+                            text-lg
+                            hover:opacity-70
+                            transition"
+                    >
+
+                        <i
+                            class="fa-brands fa-github
+                                text-xl"
+                        ></i>
+
+                        <span>
+                            GitHub
+                        </span>
+
+                    </a>
+
                 </div>
-
-
-                <!-- DEVELOPER -->
-
-                <h3
-                    class="text-3xl
-                           font-bold
-                           mt-12"
-                >
-
-                    Developer
-
-                </h3>
-
-
-                <a
-                    href="https://github.com/jeff-digital"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="flex
-                        items-center
-                        gap-3
-                        font-bold
-                        text-lg
-                        mt-6
-                        hover:opacity-70
-                        transition"
-                >
-
-                    <i
-                        class="fa-brands fa-github
-                            text-2xl"
-                    ></i>
-
-                    <span>
-                        GitHub
-                    </span>
-
-                </a>
 
             </div>
 
@@ -3893,9 +4041,10 @@
                                 leading-relaxed"
                                 style="text-align: justify;"
                                >
-                    A professional portfolio showcasing my skills, projects, and experience. 
-                    This website is for presentation purposes and is
-                    not intended as a long-term management system or business application.
+                    A portfolio showcasing my work as a virtual
+                    assistant — plus the web design and technical
+                    support skills I bring to the table.
+                    Thanks for stopping by — let's work together.
                     </p>
 
                     <a
@@ -3910,13 +4059,7 @@
                                rounded-md"
                     >
 
-                        Click For Feedback
-
-                        <span class="mx-2">
-                            |
-                        </span>
-
-                        Concerns
+                        Leave Feedback
 
                     </a>
                 </div>
@@ -3946,29 +4089,12 @@
                         </h3>
 
 
-                        <a
-                            class="block
-                                   mt-2
+                        <p
+                            class="mt-2
                                    text-gray-300"
                         >
-                            PayPal
-                        </a>
-
-
-                        <a
-                            class="block
-                                   text-gray-300"
-                        >
-                            Payoneer
-                        </a>
-
-
-                        <a
-                            class="block
-                                   text-gray-300"
-                        >
-                            Wise
-                        </a>
+                            PayPal &middot; Payoneer &middot; Wise
+                        </p>
 
                     </div>
 
@@ -4021,7 +4147,7 @@
                                mt-2
                                text-gray-300"
                     >
-                        Administration
+                        Virtual Assistance &amp; Admin
                     </a>
 
 
@@ -4029,7 +4155,7 @@
                         class="block
                                text-gray-300"
                     >
-                        Graphic Design
+                        Social Media &amp; Graphic Design
                     </a>
 
 
@@ -4037,7 +4163,7 @@
                         class="block
                                text-gray-300"
                     >
-                        Digital Marketing
+                        Web Design &amp; Development
                     </a>
 
 
@@ -4045,7 +4171,7 @@
                         class="block
                                text-gray-300"
                     >
-                        Data Entry
+                        UI / UX Design
                     </a>
 
 
@@ -4053,15 +4179,7 @@
                         class="block
                                text-gray-300"
                     >
-                        Website Developer
-                    </a>
-
-
-                    <a
-                        class="block
-                               text-gray-300"
-                    >
-                        Website Design | Mobile App Design
+                        Technical / IT Support
                     </a>
 
                 </div>
@@ -4078,9 +4196,8 @@
 
             <p class="text-sm">
 
-                © 2026 .
+                © 2026 Jeffrey Almocera.
                 All rights reserved.
-                Designed by jeffrey A
 
             </p>
 
