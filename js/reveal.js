@@ -30,46 +30,4 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(element);
     });
 
-
-    /* =========================
-       SMOOTH NAVIGATION
-    ========================= */
-
-    document.querySelectorAll('a[href^="#"]').forEach((link) => {
-
-        link.addEventListener("click", (event) => {
-
-            const targetId = link.getAttribute("href");
-
-            if (!targetId || targetId === "#") {
-                return;
-            }
-
-            const target = document.querySelector(targetId);
-
-            if (!target) {
-                return;
-            }
-
-            event.preventDefault();
-
-            const headerOffset = 80;
-
-            const targetPosition =
-                target.getBoundingClientRect().top +
-                window.pageYOffset -
-                headerOffset;
-
-            window.scrollTo({
-                top: targetPosition,
-                behavior: "smooth"
-            });
-
-            /* Update URL without jumping */
-            history.pushState(null, "", targetId);
-
-        });
-
-    });
-
 });

@@ -1,67 +1,56 @@
+(() => {
     const nav = document.getElementById("mainNav");
+    const stickyClasses = [
+        "fixed", "top-0", "left-0", "right-0", "z-50", "bg-[#1a2340]",
+        "px-8", "py-3", "shadow-lg"
+    ];
 
-    window.addEventListener("scroll", function () {
-        if (window.scrollY > 100) {
-            nav.classList.add(
-                "fixed",
-                "top-0",
-                "left-0",
-                "right-0",
-                "z-50",
-                "bg-[#1a2340]",
-                "px-8",
-                "py-3",
-                "shadow-lg"
-            );
+    if (nav) {
+        window.addEventListener("scroll", () => {
+            stickyClasses.forEach((className) => {
+                nav.classList.toggle(className, window.scrollY > 100);
+            });
+        }, { passive: true });
+    }
 
-        } else {
+    document.addEventListener("click", (event) => {
+        const link = event.target.closest('a[href^="#"]');
 
-            nav.classList.remove(
-                "fixed",
-                "top-0",
-                "left-0",
-                "right-0",
-                "z-50",
-                "bg-[#1a2340]",
-                "px-8",
-                "py-3",
-                "shadow-lg"
-            );
-
+        if (
+            !link || event.defaultPrevented || event.button !== 0 || event.metaKey ||
+            event.ctrlKey || event.shiftKey || event.altKey
+        ) {
+            return;
         }
 
-    });
+        const targetId = link.getAttribute("href");
+        const target = targetId && targetId !== "#"
+            ? document.querySelector(targetId)
+            : null;
 
-    document.querySelectorAll('#mainNav a[href^="#"]').forEach(link => {
-        link.addEventListener("click", function (event) {
-            event.preventDefault();
-            
-            const targetId = this.getAttribute("href");
-            
-            const target = document.querySelector(targetId);
-            if (!target) {
-                return;
-            }
-            if (targetId === "#home") {
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-                return;
-            }
-            
-            const navHeight = nav.offsetHeight;
-            
-            const targetPosition =
-                target.getBoundingClientRect().top +
-                window.pageYOffset -
-                navHeight;
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: "smooth"
-            });
+        if (!target) {
+            return;
+        }
+
+        event.preventDefault();
+
+        const targetTop = targetId === "#home"
+            ? 0
+            : Math.max(
+                0,
+                target.getBoundingClientRect().top + window.scrollY -
+                (nav ? nav.offsetHeight : 0)
+            );
+
+        window.scrollTo({
+            top: targetTop,
+            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                ? "auto"
+                : "smooth"
         });
+
+        history.pushState(null, "", targetId);
     });
 
     lucide.createIcons();
+})();
