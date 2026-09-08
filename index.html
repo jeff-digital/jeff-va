@@ -1397,7 +1397,7 @@
         <!-- PROJECT HEADER -->
         <!-- ================================================= -->
 
-        <div class="reveal mb-12">
+        <div class="reveal mb-6">
 
             <h2
                 class="text-4xl
@@ -1419,6 +1419,104 @@
 
         </div>
 
+        <div
+            class="reveal
+                   mb-4
+                   flex
+                   flex-wrap
+                   gap-3"
+            role="tablist"
+            aria-label="Project categories"
+        >
+            <button
+                id="project-tab-website"
+                type="button"
+                class="project-filter-button
+                       rounded-full
+                       border
+                       border-[#1a2340]
+                       bg-[#1a2340]
+                       px-5
+                       py-2.5
+                       text-sm
+                       font-bold
+                       text-white
+                       transition"
+                data-project-filter="website"
+                role="tab"
+                aria-controls="project-panel-website"
+                aria-describedby="project-filter-instructions"
+                aria-selected="true"
+            >
+                Web &amp; UX Design
+            </button>
+
+            <button
+                id="project-tab-technical"
+                type="button"
+                class="project-filter-button
+                       rounded-full
+                       border
+                       border-gray-300
+                       bg-white
+                       px-5
+                       py-2.5
+                       text-sm
+                       font-bold
+                       text-[#1a2340]
+                       transition
+                       hover:border-[#1a2340]"
+                data-project-filter="technical"
+                role="tab"
+                aria-controls="project-panel-technical"
+                aria-describedby="project-filter-instructions"
+                aria-selected="false"
+                tabindex="-1"
+            >
+                Technical Support
+            </button>
+
+            <button
+                id="project-tab-administration"
+                type="button"
+                class="project-filter-button
+                       rounded-full
+                       border
+                       border-gray-300
+                       bg-white
+                       px-5
+                       py-2.5
+                       text-sm
+                       font-bold
+                       text-[#1a2340]
+                       transition
+                       hover:border-[#1a2340]"
+                data-project-filter="administration"
+                role="tab"
+                aria-controls="project-panel-administration"
+                aria-describedby="project-filter-instructions"
+                aria-selected="false"
+                tabindex="-1"
+            >
+                Administration &amp; Operations
+            </button>
+        </div>
+
+        <p
+            id="project-filter-instructions"
+            class="mb-10
+                   inline-block
+                   rounded-lg
+                   bg-[#1a2340]/10
+                   px-4
+                   py-2.5
+                   text-base
+                   font-semibold
+                   text-[#1a2340]"
+        >
+            Browse by project type: click a category below to view its work.
+        </p>
+
 
 
         <!-- ================================================= -->
@@ -1426,7 +1524,13 @@
         <!-- WEBSITE / UI / UX -->
         <!-- ================================================= -->
 
-        <div class="reveal mb-16">
+        <div
+            id="project-panel-website"
+            class="reveal mb-16"
+            data-project-panel="website"
+            role="tabpanel"
+            aria-labelledby="project-tab-website"
+        >
 
 
             <!-- SECTION TITLE -->
@@ -2030,7 +2134,13 @@
         <!-- TECHNICAL SUPPORT -->
         <!-- ================================================= -->
 
-        <div class="mb-16">
+        <div
+            id="project-panel-technical"
+            class="mb-16 hidden"
+            data-project-panel="technical"
+            role="tabpanel"
+            aria-labelledby="project-tab-technical"
+        >
 
 
             <!-- SECTION TITLE -->
@@ -2297,13 +2407,21 @@
 
             </div>
 
+        </div>
+
 
         <!-- ================================================= -->
         <!-- LAYER 3 -->
         <!-- ADMINISTRATION / VISUAL DESIGN / CONTENT -->
         <!-- ================================================= -->
 
-        <div>
+        <div
+            id="project-panel-administration"
+            class="hidden"
+            data-project-panel="administration"
+            role="tabpanel"
+            aria-labelledby="project-tab-administration"
+        >
                 <div
                     class="flex
                         items-center
@@ -4214,6 +4332,7 @@
     <script src="js/navigation.js"></script>
     <script src="js/timezone.js"></script>
     <script src="js/certificate.js"></script>
+    <script src="js/project-filter.js"></script>
     <script src="js/reveal.js"></script>
 
 </body>

@@ -1,0 +1,66 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const filterButtons = Array.from(
+        document.querySelectorAll("[data-project-filter]")
+    );
+    const projectPanels = Array.from(
+        document.querySelectorAll("[data-project-panel]")
+    );
+
+    if (!filterButtons.length || !projectPanels.length) {
+        return;
+    }
+
+    function showProjectCategory(category) {
+        projectPanels.forEach((panel) => {
+            const isSelected = panel.dataset.projectPanel === category;
+
+            panel.classList.toggle("hidden", !isSelected);
+            panel.setAttribute("aria-hidden", String(!isSelected));
+        });
+
+        filterButtons.forEach((button) => {
+            const isSelected = button.dataset.projectFilter === category;
+
+            button.setAttribute("aria-selected", String(isSelected));
+            button.tabIndex = isSelected ? 0 : -1;
+            button.classList.toggle("bg-[#1a2340]", isSelected);
+            button.classList.toggle("text-white", isSelected);
+            button.classList.toggle("border-[#1a2340]", isSelected);
+            button.classList.toggle("bg-white", !isSelected);
+            button.classList.toggle("text-[#1a2340]", !isSelected);
+            button.classList.toggle("border-gray-300", !isSelected);
+        });
+    }
+
+    filterButtons.forEach((button, index) => {
+        button.addEventListener("click", () => {
+            showProjectCategory(button.dataset.projectFilter);
+        });
+
+        button.addEventListener("keydown", (event) => {
+            if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
+                return;
+            }
+
+            event.preventDefault();
+
+            let nextIndex = index;
+
+            if (event.key === "ArrowLeft") {
+                nextIndex = (index - 1 + filterButtons.length) % filterButtons.length;
+            } else if (event.key === "ArrowRight") {
+                nextIndex = (index + 1) % filterButtons.length;
+            } else if (event.key === "Home") {
+                nextIndex = 0;
+            } else if (event.key === "End") {
+                nextIndex = filterButtons.length - 1;
+            }
+
+            const nextButton = filterButtons[nextIndex];
+            showProjectCategory(nextButton.dataset.projectFilter);
+            nextButton.focus();
+        });
+    });
+
+    showProjectCategory("website");
+});
