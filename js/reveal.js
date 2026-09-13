@@ -1,9 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =========================
-       SCROLL REVEAL
-    ========================= */
-
     const revealElements = document.querySelectorAll(".reveal");
 
     const observer = new IntersectionObserver(
@@ -14,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add("show");
 
-                    // Stop observing after it has been revealed
                     observer.unobserve(entry.target);
                 }
 

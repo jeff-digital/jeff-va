@@ -1,344 +1,108 @@
-/* =================================================
-   LOAD CERTIFICATE.HTML
-================================================= */
-
 document.addEventListener("DOMContentLoaded", () => {
 
-    const certificateContainer =
-        document.getElementById(
-            "certificateModalContainer"
-        );
+    const certificateContainer = document.getElementById("certificateModalContainer");
 
     if (!certificateContainer) {
-        console.error(
-            "certificateModalContainer not found."
-        );
-
+        console.error("certificateModalContainer not found.");
         return;
     }
-
 
     fetch("certificate.html")
         .then((response) => {
-
             if (!response.ok) {
-                throw new Error(
-                    `HTTP error: ${response.status}`
-                );
+                throw new Error(`HTTP error: ${response.status}`);
             }
 
             return response.text();
-
         })
-
         .then((html) => {
-
             certificateContainer.innerHTML = html;
-
             initializeCertificateModal();
-
         })
-
         .catch((error) => {
-
-            console.error(
-                "Failed to load certificate.html:",
-                error
-            );
-
+            console.error("Failed to load certificate.html:", error);
         });
-
 });
 
-
-/* =================================================
-   INITIALIZE CERTIFICATE MODAL
-================================================= */
-
 function initializeCertificateModal() {
-
-    const viewCertificateButton =
-        document.getElementById(
-            "viewCertificateButton"
-        );
-
-    const certificateModal =
-        document.getElementById(
-            "certificateModal"
-        );
-
-    const closeCertificateButton =
-        document.getElementById(
-            "closeCertificateButton"
-        );
-
-    const certificateCategory =
-        document.getElementById(
-            "certificateCategory"
-        );
-
-    const certificateYear =
-        document.getElementById(
-            "certificateYear"
-        );
-
-    const certificateList =
-        document.getElementById(
-            "certificateList"
-        );
-
-    const noCertificates =
-        document.getElementById(
-            "noCertificates"
-        );
-
-
-    /* =================================================
-       CHECK ELEMENTS
-    ================================================= */
+    const viewCertificateButton = document.getElementById("viewCertificateButton");
+    const certificateModal = document.getElementById("certificateModal");
+    const closeCertificateButton = document.getElementById("closeCertificateButton");
+    const certificateCategory = document.getElementById("certificateCategory");
+    const certificateYear = document.getElementById("certificateYear");
+    const certificateList = document.getElementById("certificateList");
+    const noCertificates = document.getElementById("noCertificates");
 
     if (!certificateModal) {
-
-        console.error(
-            "certificateModal not found."
-        );
-
+        console.error("certificateModal not found.");
         return;
-
     }
 
-
-    /* =================================================
-       DISPLAY CERTIFICATES
-    ================================================= */
-
     function displayCertificates() {
-
-        if (
-            !certificateList ||
-            !noCertificates
-        ) {
+        if (!certificateList || !noCertificates) {
             return;
         }
 
-
-        const selectedCategory =
-            certificateCategory
-                ? certificateCategory.value
-                : "all";
-
-
-        const selectedYear =
-            certificateYear
-                ? certificateYear.value
-                : "all";
-
-
-        const certificateItems =
-            certificateList.querySelectorAll(
-                ".certificate-item"
-            );
-
-
+        const selectedCategory = certificateCategory?.value ?? "all";
+        const selectedYear = certificateYear?.value ?? "all";
+        const certificateItems = certificateList.querySelectorAll(".certificate-item");
         let visibleCount = 0;
 
+        certificateItems.forEach((certificate) => {
+            const categoryMatches =
+                selectedCategory === "all" ||
+                certificate.dataset.category === selectedCategory;
+            const yearMatches =
+                selectedYear === "all" ||
+                certificate.dataset.year === selectedYear;
+            const isVisible = categoryMatches && yearMatches;
 
-        certificateItems.forEach(
-            (certificate) => {
+            certificate.classList.toggle("hidden", !isVisible);
+            visibleCount += isVisible ? 1 : 0;
+        });
 
-                const category =
-                    certificate.dataset.category;
-
-                const year =
-                    certificate.dataset.year;
-
-
-                const categoryMatch =
-                    selectedCategory === "all" ||
-                    category === selectedCategory;
-
-
-                const yearMatch =
-                    selectedYear === "all" ||
-                    year === selectedYear;
-
-
-                if (
-                    categoryMatch &&
-                    yearMatch
-                ) {
-
-                    certificate.classList.remove(
-                        "hidden"
-                    );
-
-                    visibleCount++;
-
-                } else {
-
-                    certificate.classList.add(
-                        "hidden"
-                    );
-
-                }
-
-            }
-        );
-
-
-        /* SHOW / HIDE EMPTY MESSAGE */
-
-        if (visibleCount === 0) {
-
-            noCertificates.classList.remove(
-                "hidden"
-            );
-
-        } else {
-
-            noCertificates.classList.add(
-                "hidden"
-            );
-
-        }
-
+        noCertificates.classList.toggle("hidden", visibleCount > 0);
     }
-
-
-    /* =================================================
-       OPEN MODAL
-    ================================================= */
 
     if (viewCertificateButton) {
-
-        viewCertificateButton.addEventListener(
-            "click",
-            () => {
-
-                certificateModal.classList.remove(
-                    "hidden"
-                );
-
-                certificateModal.classList.add(
-                    "flex"
-                );
-
-                document.body.classList.add(
-                    "overflow-hidden"
-                );
-
-                displayCertificates();
-
-            }
-        );
-
+        viewCertificateButton.addEventListener("click", () => {
+            certificateModal.classList.remove("hidden");
+            certificateModal.classList.add("flex");
+            document.body.classList.add("overflow-hidden");
+            displayCertificates();
+        });
     }
-
-
-    /* =================================================
-       CATEGORY FILTER
-    ================================================= */
 
     if (certificateCategory) {
-
-        certificateCategory.addEventListener(
-            "change",
-            displayCertificates
-        );
-
+        certificateCategory.addEventListener("change", displayCertificates);
     }
-
-
-    /* =================================================
-       YEAR FILTER
-    ================================================= */
 
     if (certificateYear) {
-
-        certificateYear.addEventListener(
-            "change",
-            displayCertificates
-        );
-
+        certificateYear.addEventListener("change", displayCertificates);
     }
-
-
-    /* =================================================
-       CLOSE MODAL
-    ================================================= */
 
     function closeCertificateModal() {
-
-        certificateModal.classList.add(
-            "hidden"
-        );
-
-        certificateModal.classList.remove(
-            "flex"
-        );
-
-        document.body.classList.remove(
-            "overflow-hidden"
-        );
-
+        certificateModal.classList.add("hidden");
+        certificateModal.classList.remove("flex");
+        document.body.classList.remove("overflow-hidden");
     }
-
-
-    /* =================================================
-       CLOSE BUTTON
-    ================================================= */
 
     if (closeCertificateButton) {
-
-        closeCertificateButton.addEventListener(
-            "click",
-            closeCertificateModal
-        );
-
+        closeCertificateButton.addEventListener("click", closeCertificateModal);
     }
 
-
-    /* =================================================
-       CLICK OUTSIDE MODAL
-    ================================================= */
-
-    certificateModal.addEventListener(
-        "click",
-        (event) => {
-
-            if (
-                event.target ===
-                certificateModal
-            ) {
-
-                closeCertificateModal();
-
-            }
-
+    certificateModal.addEventListener("click", (event) => {
+        if (event.target === certificateModal) {
+            closeCertificateModal();
         }
-    );
+    });
 
-
-    /* =================================================
-       ESC KEY
-    ================================================= */
-
-    document.addEventListener(
-        "keydown",
-        (event) => {
-
-            if (
-                event.key === "Escape" &&
-                !certificateModal.classList.contains(
-                    "hidden"
-                )
-            ) {
-
-                closeCertificateModal();
-
-            }
-
+    document.addEventListener("keydown", (event) => {
+        if (
+            event.key === "Escape" &&
+            !certificateModal.classList.contains("hidden")
+        ) {
+            closeCertificateModal();
         }
-    );
-
+    });
 }
