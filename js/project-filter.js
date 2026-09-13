@@ -2,12 +2,41 @@ document.addEventListener("DOMContentLoaded", () => {
     const filterButtons = Array.from(
         document.querySelectorAll("[data-project-filter]")
     );
-    const projectPanels = Array.from(
-        document.querySelectorAll("[data-project-panel]")
-    );
+    const projectPanels = Array.from(document.querySelectorAll("[data-project-panel]"));
+
+    const projectOrder = ["administration", "website", "technical"];
+    const projectContainer = projectPanels[0]?.parentElement;
+
+    if (projectContainer) {
+        projectOrder.forEach((category) => {
+            const panel = projectPanels.find(
+                (projectPanel) => projectPanel.dataset.projectPanel === category
+            );
+
+            if (panel) {
+                projectContainer.appendChild(panel);
+            }
+        });
+    }
 
     if (!filterButtons.length || !projectPanels.length) {
         return;
+    }
+
+    const websitePanel = document.querySelector('[data-project-panel="website"]');
+
+    if (websitePanel) {
+        const projectCards = Array.from(websitePanel.querySelectorAll(":scope > .grid > .group"));
+
+        projectCards.sort((firstCard, secondCard) => {
+            const firstIsClient = firstCard.textContent.includes("Client Project");
+            const secondIsClient = secondCard.textContent.includes("Client Project");
+
+            return Number(secondIsClient) - Number(firstIsClient);
+        });
+
+        const projectGrid = websitePanel.querySelector(":scope > .grid");
+        projectCards.forEach((card) => projectGrid.appendChild(card));
     }
 
     function showProjectCategory(category) {
@@ -62,5 +91,5 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    showProjectCategory("website");
+    showProjectCategory("administration");
 });
