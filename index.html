@@ -48,6 +48,44 @@
         *:not([class*="fa-"]) {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
         }
+
+        .tool-chip-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+        }
+
+        @media (min-width: 768px) {
+            .tool-chip-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 767px) {
+            .tool-chip {
+                white-space: normal;
+                line-height: 1.2;
+            }
+        }
+
+        .tool-chip {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.5rem;
+            min-width: 0;
+            width: 100%;
+            text-align: left;
+            white-space: nowrap;
+            font-size: 0.75rem;
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
+
+        .tool-chip img {
+            flex-shrink: 0;
+            display: block;
+        }
     </style>
 
 </head>
@@ -406,9 +444,7 @@
                             mx-auto
                             lg:mx-0"
                     >
-                        I help busy businesses stay organized and grow by handling
-                        administrative tasks, social media support, Google Search Ads,
-                        digital tools, and day-to-day operations.
+                       I help businesses with administrative operations, websites, digital marketing, social media, and technical tasks.
                     </p>
 
                     <div class="mt-5 flex items-center justify-center gap-3 lg:mt-7 lg:justify-start">
@@ -469,7 +505,8 @@
                     class="w-full
                         flex
                         justify-center
-                        lg:justify-end"
+                        lg:justify-end
+                        lg:pt-20"
                 >
 
                     <img
@@ -490,197 +527,7 @@
         </div>
        
 
-            <div class="mt-14 overflow-hidden w-full space-y-8">
-            <div class="overflow-hidden">
-                <div class="software-row software-row-left">
-                    <a
-                    class="flex items-center gap-3 text-lg whitespace-nowrap">
-                        <img
-                            src="image/photoshop.png"
-                            alt="Photoshop logo"
-                            class="w-8 h-8 object-contain"
-                        >
-                        <span>Photoshop</span>
-                    </a>
-                    <a
-                    class="flex items-center gap-3 text-lg whitespace-nowrap">
-                        <img
-                            src="image/capcut.png"
-                            alt="CapCut logo"
-                            class="w-8 h-8 object-contain"
-                        >
-                        <span>CapCut</span>
-                    </a>
-                    <a
-
-                    class="flex items-center gap-3 text-lg whitespace-nowrap">
-                        <img
-                            src="https://cdn.simpleicons.org/meta"
-                            alt="Facebook Ads logo"
-                            class="w-8 h-8 object-contain"
-                        >
-                        <span>Facebook Ads</span>
-                    </a>
-
-                    <a
-                    class="flex items-center gap-3 text-lg whitespace-nowrap">
-                        <img
-                            src="https://cdn.simpleicons.org/tiktok"
-                            alt="TikTok Ads logo"
-                            class="w-8 h-8 object-contain"
-                        >
-                        <span>TikTok Ads</span>
-                    </a>
-
-                    <a
-                    class="flex items-center gap-3 text-lg whitespace-nowrap">
-                        <img
-                            src="https://cdn.simpleicons.org/googleads"
-                            alt="Google Ads logo"
-                            class="w-8 h-8 object-contain"
-                        >
-                        <span>Google Ads</span>
-                    </a>
-
-                    <a
-                    class="flex items-center gap-3 text-lg whitespace-nowrap">
-
-                        <img
-                            src="image/canva.png"
-                            alt="Canva logo"
-                            class="w-8 h-8 object-contain"
-                        >
-                        <span>Canva</span>
-                    </a>
-
-                    <a
-                    class="flex items-center gap-3 text-lg whitespace-nowrap">
-                        <img
-                            src="image/slack.png"
-                            alt="Slack logo"
-                            class="w-8 h-8 object-contain"
-                        >
-                        <span>Slack</span>
-                    </a>
-
-                    <a
-                    class="flex items-center gap-3 text-lg whitespace-nowrap">
-
-                        <img
-                            src="https://cdn.simpleicons.org/figma"
-                            alt="Figma logo"
-                            class="w-8 h-8 object-contain"
-                        >
-                        <span>Figma</span>
-                    </a>
-
-                    <a
-                    class="flex items-center gap-3 text-lg whitespace-nowrap">
-                        <img
-                            src="https://cdn.simpleicons.org/zoom"
-                            alt="Zoom logo"
-                            class="w-8 h-8 object-contain"
-                        >
-                        <span>Zoom</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="overflow-hidden">
-                <div class="software-row software-row-right">
-                    <a
-                    class="flex items-center gap-3 text-lg whitespace-nowrap">
-
-                        <img
-                            src="https://cdn.simpleicons.org/googledrive"
-                            alt="Google Drive logo"
-                            class="w-8 h-8 object-contain"
-                        >
-                        <span>Google Drive</span>
-                    </a>
-
-                    <a
-                        class="flex items-center gap-3 text-lg whitespace-nowrap"
-                    >
-                        <img
-                            src="image/one drive.png"
-                            alt="OneDrive logo"
-                            class="w-8 h-8 object-contain"
-                        >
-                        <span>
-                            OneDrive
-                        </span>
-                    </a>
-
-                    <a
-                    class="flex items-center gap-3 text-lg whitespace-nowrap">
-                        <img
-                            src="https://cdn.simpleicons.org/dropbox"
-                            alt="Dropbox logo"
-                            class="w-8 h-8 object-contain"
-                        >
-                        <span>Dropbox</span>
-                    </a>
-
-                    <a
-                    class="flex items-center gap-3 text-lg whitespace-nowrap">
-                        <img
-                            src="https://cdn.simpleicons.org/firebase"
-                            alt="Firebase logo"
-                            class="w-8 h-8 object-contain"
-                        >
-                        <span>Firebase</span>
-                    </a>
-
-                    <a
-                    class="flex items-center gap-3 text-lg whitespace-nowrap">
-                        <img
-                            src="https://cdn.simpleicons.org/mysql"
-                            alt="MySQL logo"
-                            class="w-8 h-8 object-contain"
-                        >
-                        <span>MySQL</span>
-                    </a>
-
-                    <a
-                    class="flex items-center gap-3 text-lg whitespace-nowrap">
-                        <img
-                            src="image/excel.png"
-                            alt="Microsoft Excel logo"
-                            class="w-8 h-8 object-contain"
-                        >
-                        <span>Microsoft Excel</span>
-                    </a>
-
-                    <a
-                    class="flex items-center gap-3 text-lg whitespace-nowrap">
-
-                        <img
-                            src="https://cdn.simpleicons.org/google"
-                            alt="Google Workspace logo"
-                            class="w-8 h-8 object-contain"
-                        >
-
-                        <span>Google Workspace</span>
-
-                    </a>
-
-                    <a
-                    class="flex items-center gap-3 text-lg whitespace-nowrap">
-
-                        <img
-                            src="https://cdn.simpleicons.org/hubspot"
-                            alt="HubSpot CRM logo"
-                            class="w-8 h-8 object-contain"
-                        >
-
-                        <span>HubSpot CRM</span>
-
-                    </a>
-                </div>
-            </div>
-         </div>
-       </div>
+</div>
     </div>
 </section>
 
@@ -768,6 +615,7 @@
 
                     <div
                         class="grid
+                               grid-cols-1
                                sm:grid-cols-2
                                gap-4"
                     >
@@ -775,6 +623,7 @@
                         <div
                             class="flex
                                    items-center
+                                   justify-start
                                    gap-4
                                    h-[74px]
                                    border
@@ -805,7 +654,8 @@
 
                             <span
                                 class="text-sm
-                                    font-medium"
+                                    font-medium
+                                    text-left"
                             >
                                 Email &amp; Calendar Management
                             </span>
@@ -815,6 +665,49 @@
                         <div
                             class="flex
                                    items-center
+                                   justify-start
+                                   gap-4
+                                   h-[74px]
+                                   border
+                                   border-gray-200
+                                   rounded-lg
+                                   px-5
+                                   bg-white"
+                        >
+
+                            <div
+                                class="w-8
+                                       h-8
+                                       flex
+                                       items-center
+                                       justify-center
+                                       flex-shrink-0
+                                       rounded-md
+                                       bg-[#1a2340]/10
+                                       text-navy"
+                            >
+
+                                <i
+                                    class="fa-solid fa-briefcase
+                                           text-lg"
+                                ></i>
+
+                            </div>
+
+                            <span
+                                class="text-sm
+                                    font-medium
+                                    text-left"
+                            >
+                                Administration &amp; Operations
+                            </span>
+
+                        </div>
+
+                        <div
+                            class="flex
+                                   items-center
+                                   justify-start
                                    gap-4
                                    h-[74px]
                                    border
@@ -845,7 +738,8 @@
 
                             <span
                                  class="text-sm
-                                    font-medium"
+                                    font-medium
+                                    text-left"
                             >
                                 File &amp; Data Management
                             </span>
@@ -855,6 +749,7 @@
                         <div
                             class="flex
                                    items-center
+                                   justify-start
                                    gap-4
                                    h-[74px]
                                    border
@@ -885,7 +780,8 @@
 
                             <span
                                  class="text-sm
-                                    font-medium"
+                                    font-medium
+                                    text-left"
                             >
                                 Research &amp; Information Organization
                             </span>
@@ -895,6 +791,7 @@
                         <div
                             class="flex
                                    items-center
+                                   justify-start
                                    gap-4
                                    h-[74px]
                                    border
@@ -925,7 +822,8 @@
 
                             <span
                                 class="text-sm
-                                    font-medium"
+                                    font-medium
+                                    text-left"
                             >
                                 Social Media &amp; Google Ads Support
                             </span>
@@ -935,6 +833,7 @@
                         <div
                             class="flex
                                 items-center
+                                justify-start
                                 gap-4
                                 h-[74px]
                                 border
@@ -965,7 +864,8 @@
 
                             <span
                                 class="text-sm
-                                    font-medium"
+                                    font-medium
+                                    text-left"
                             >
                                 Website Updates &amp; Maintenance
                             </span>
@@ -975,6 +875,7 @@
                         <div
                             class="flex
                                 items-center
+                                justify-start
                                 gap-4
                                 h-[74px]
                                 border
@@ -1005,7 +906,8 @@
 
                             <span
                                class="text-sm
-                                    font-medium"
+                                    font-medium
+                                    text-left"
                             >
                                 Technical Support &amp; Setup
                             </span>
@@ -1018,136 +920,148 @@
            <div>
 
 
+    <div class="mb-3">
+        <p class="text-[10px] uppercase tracking-[0.22em] font-semibold text-gray-500">
+            Software Tools
+        </p>
+    </div>
+
     <div
-        class="grid
-               grid-cols-1
-               sm:grid-cols-3
-               gap-3
+        class="flex
+               flex-wrap
+               gap-2
                w-full"
     >
 
-
-        <div
-            class="border
+        <button
+            type="button"
+            data-tool-filter="developer"
+            class="tool-filter-button
+                   rounded-full
+                   border
                    border-gray-200
-                   rounded-xl
-                   p-4
-                   min-h-[155px]
-                   flex
-                   flex-col
-                   justify-start"
+                   bg-[#1a2340]
+                   px-3
+                   py-2
+                   text-[11px]
+                   font-semibold
+                   text-white
+                   transition-all
+                   duration-200
+                   hover:border-[#1a2340]"
         >
+            Developer
+        </button>
 
-            <span
-                class="text-3xl
-                       font-bold
-                       text-navy"
-            >
-                4
-            </span>
+        <button
+            type="button"
+            data-tool-filter="graphic-design"
+            class="tool-filter-button
+                   rounded-full
+                   border
+                   border-gray-200
+                   bg-white
+                   px-3
+                   py-2
+                   text-[11px]
+                   font-semibold
+                   text-[#1a2340]
+                   transition-all
+                   duration-200
+                   hover:border-[#1a2340]"
+        >
+            Graphic Design
+        </button>
 
-            <h3
-                class="text-base
-                       font-bold
-                       mt-2"
-            >
-                Projects Completed
-            </h3>
+        <button
+            type="button"
+            data-tool-filter="video-editing"
+            class="tool-filter-button
+                   rounded-full
+                   border
+                   border-gray-200
+                   bg-white
+                   px-3
+                   py-2
+                   text-[11px]
+                   font-semibold
+                   text-[#1a2340]
+                   transition-all
+                   duration-200
+                   hover:border-[#1a2340]"
+        >
+            Video Editing
+        </button>
 
-            <p
-                class="text-xs
-                       text-gray-600
-                       leading-relaxed
-                       mt-2"
-            >
-                Portfolio work featuring responsive websites,
-                UI designs, and digital business solutions.
-            </p>
+        <button
+            type="button"
+            data-tool-filter="essential-tools"
+            class="tool-filter-button
+                   rounded-full
+                   border
+                   border-gray-200
+                   bg-white
+                   px-3
+                   py-2
+                   text-[11px]
+                   font-semibold
+                   text-[#1a2340]
+                   transition-all
+                   duration-200
+                   hover:border-[#1a2340]"
+        >
+                    Admin Tools
+        </button>
 
+    </div>
+
+    <div class="mt-5">
+        <div data-tool-panel="developer" class="tool-panel">
+            <div class="tool-chip-grid rounded-xl border border-gray-200 bg-gray-50 p-4">
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.simpleicons.org/html5" alt="HTML" class="w-4 h-4 object-contain">HTML</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-plain.svg" alt="CSS" class="w-4 h-4 object-contain">CSS</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.simpleicons.org/javascript" alt="JavaScript" class="w-4 h-4 object-contain">JavaScript</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.simpleicons.org/wordpress" alt="WordPress" class="w-4 h-4 object-contain">WordPress</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code" class="w-4 h-4 object-contain">VS Code</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.simpleicons.org/firebase" alt="Firebase" class="w-4 h-4 object-contain">Firebase</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.simpleicons.org/mysql" alt="MySQL" class="w-4 h-4 object-contain">MySQL</span>
+            </div>
         </div>
 
-
-
-        <div
-            class="border
-                   border-gray-200
-                   rounded-xl
-                   p-4
-                   min-h-[155px]
-                   flex
-                   flex-col
-                   justify-start"
-        >
-
-            <span
-                class="text-3xl
-                       font-bold
-                       text-navy"
-            >
-                6
-            </span>
-
-            <h3
-                class="text-base
-                       font-bold
-                       mt-2"
-            >
-                Portfolio Projects
-            </h3>
-
-            <p
-                class="text-xs
-                       text-gray-600
-                       leading-relaxed
-                       mt-2"
-            >
-                Website, design, content, and administrative
-                support projects across different business needs.
-            </p>
-
+        <div data-tool-panel="graphic-design" class="tool-panel hidden">
+            <div class="tool-chip-grid rounded-xl border border-gray-200 bg-gray-50 p-4">
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="image/photoshop.png" alt="Photoshop" class="w-4 h-4 object-contain">Photoshop</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="image/canva.png" alt="Canva" class="w-4 h-4 object-contain">Canva</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.simpleicons.org/figma" alt="Figma" class="w-4 h-4 object-contain">Figma</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/illustrator/illustrator-plain.svg" alt="Illustrator" class="w-4 h-4 object-contain">Illustrator</span>
+            </div>
         </div>
 
-
-
-        <div
-            class="border
-                   border-gray-200
-                   rounded-xl
-                   p-4
-                   min-h-[155px]
-                   flex
-                   flex-col
-                   justify-start"
-        >
-
-            <span
-                class="text-3xl
-                       font-bold
-                       text-navy"
-            >
-                5
-            </span>
-
-            <h3
-                class="text-base
-                       font-bold
-                       mt-2"
-            >
-                Core Support Areas
-            </h3>
-
-            <p
-                class="text-xs
-                       text-gray-600
-                       leading-relaxed
-                       mt-2"
-            >
-                Administrative, digital, and technical support
-                for organized and efficient day-to-day operations.
-            </p>
-
+        <div data-tool-panel="video-editing" class="tool-panel hidden">
+            <div class="tool-chip-grid rounded-xl border border-gray-200 bg-gray-50 p-4">
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="image/capcut.png" alt="CapCut" class="w-4 h-4 object-contain">CapCut</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/premierepro/premierepro-original.svg" alt="Premiere Pro" class="w-4 h-4 object-contain">Premiere Pro</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/aftereffects/aftereffects-original.svg" alt="After Effects" class="w-4 h-4 object-contain">After Effects</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.simpleicons.org/davinciresolve" alt="DaVinci Resolve" class="w-4 h-4 object-contain">DaVinci Resolve</span>
+            </div>
         </div>
 
+        <div data-tool-panel="essential-tools" class="tool-panel hidden">
+            <div class="tool-chip-grid rounded-xl border border-gray-200 bg-gray-50 p-4">
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.simpleicons.org/meta" alt="Facebook Ads" class="w-4 h-4 object-contain">Facebook Ads</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.simpleicons.org/tiktok" alt="TikTok Ads" class="w-4 h-4 object-contain">TikTok Ads</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.simpleicons.org/googleads" alt="Google Ads" class="w-4 h-4 object-contain">Google Ads</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.simpleicons.org/googledrive" alt="Google Drive" class="w-4 h-4 object-contain">Google Drive</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="image/one drive.png" alt="OneDrive" class="w-4 h-4 object-contain">OneDrive</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.simpleicons.org/dropbox" alt="Dropbox" class="w-4 h-4 object-contain">Dropbox</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="image/slack.png" alt="Slack" class="w-4 h-4 object-contain">Slack</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.simpleicons.org/zoom" alt="Zoom" class="w-4 h-4 object-contain">Zoom</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.simpleicons.org/google" alt="Google Workspace" class="w-4 h-4 object-contain">Google Workspace</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="image/excel.png" alt="Microsoft Excel" class="w-4 h-4 object-contain">Microsoft Excel</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.simpleicons.org/hubspot" alt="HubSpot CRM" class="w-4 h-4 object-contain">HubSpot CRM</span>
+                <span class="tool-chip rounded-full bg-white px-3 py-2 text-sm text-gray-700 border border-gray-200"><img src="https://cdn.simpleicons.org/meta" alt="Meta Ads" class="w-4 h-4 object-contain">Meta Ads</span>
+            </div>
+        </div>
     </div>
 
 
@@ -1195,7 +1109,7 @@
                            tracking-widest
                            text-gray-400"
                 >
-                    Education
+                    Credentials
                 </span>
 
                 <h3
@@ -1205,66 +1119,8 @@
                            text-navy
                            leading-tight"
                 >
-                    Educational Background
+                    Credentials
                 </h3>
-
-            </div>
-
-        </div>
-
-
-
-        <div
-            class="border
-                   border-gray-200
-                   rounded-xl
-                   p-5
-                   bg-white"
-
-                           >
-
-            <div
-                class="flex
-                       items-start
-                       justify-between
-                       gap-4"
-            >
-
-                <div>
-
-                    <h4
-                        class="text-base
-                               md:text-lg
-                               font-bold
-                               text-navy"
-                    >
-                        BS Information Technology
-                    </h4>
-
-                    <p
-                        class="text-sm
-                               text-gray-600
-                               mt-1"
-                    >
-                        City College of Calamba
-                    </p>
-
-                </div>
-
-                <span
-                    class="flex-shrink-0
-                           text-xs
-                           font-semibold
-                           text-gray-500
-                           bg-white
-                           border
-                           border-gray-200
-                           px-2.5
-                           py-1
-                           rounded-md"
-                >
-                    2025
-                </span>
 
             </div>
 
@@ -1506,13 +1362,13 @@
         <p
             id="project-filter-instructions"
              class="reveal
-                 mb-10
+                 mb-4
                    inline-block
                    rounded-lg
                    bg-[#1a2340]/10
-                   px-4
-                   py-2.5
-                   text-base
+                   px-3
+                   py-2
+                   text-sm
                    font-semibold
                    text-[#1a2340]"
         >
@@ -2367,7 +2223,7 @@ A digital platform designed to help families identify suitable senior care facil
                         items-center
                         gap-4
                         mb-6
-                        mt-12"
+                        mt-0"
                 >
 
                     <span
@@ -2385,7 +2241,7 @@ A digital platform designed to help families identify suitable senior care facil
                             font-bold
                             text-navy"
                     >
-                        Administrative Support
+                        Administrative Role
                     </h3>
 
 
@@ -2396,8 +2252,6 @@ A digital platform designed to help families identify suitable senior care facil
                     ></div>
 
                 </div>
-
-
             <div
                 class="grid
                        md:grid-cols-3
@@ -2489,8 +2343,8 @@ A digital platform designed to help families identify suitable senior care facil
                                 class="absolute
                                        inset-0
                                        bg-gradient-to-t
-                                       from-black/70
-                                       via-black/10
+                                       from-black/85
+                                       via-black/35
                                        to-transparent"
                             ></div>
 
@@ -2509,6 +2363,10 @@ A digital platform designed to help families identify suitable senior care facil
                                 >
                                     Google Workspace
                                 </span>
+
+                                <p class="mt-1 text-[10px] leading-tight text-white/95 drop-shadow-sm">
+                                    Shared files, documents, and team workflows.
+                                </p>
 
                             </div>
 
@@ -2544,8 +2402,8 @@ A digital platform designed to help families identify suitable senior care facil
                                 class="absolute
                                        inset-0
                                        bg-gradient-to-t
-                                       from-black/70
-                                       via-black/10
+                                       from-black/85
+                                       via-black/35
                                        to-transparent"
                             ></div>
 
@@ -2564,6 +2422,10 @@ A digital platform designed to help families identify suitable senior care facil
                                 >
                                     Email Management
                                 </span>
+
+                                <p class="mt-1 text-[10px] leading-tight text-white/95 drop-shadow-sm">
+                                    Inbox organization, message filtering, and client replies.
+                                </p>
 
                             </div>
 
@@ -2599,8 +2461,8 @@ A digital platform designed to help families identify suitable senior care facil
                                 class="absolute
                                        inset-0
                                        bg-gradient-to-t
-                                       from-black/70
-                                       via-black/10
+                                       from-black/85
+                                       via-black/35
                                        to-transparent"
                             ></div>
 
@@ -2619,6 +2481,10 @@ A digital platform designed to help families identify suitable senior care facil
                                 >
                                     File Organization
                                 </span>
+
+                                <p class="mt-1 text-[10px] leading-tight text-white/95 drop-shadow-sm">
+                                    Organized files and cloud folders for easy retrieval.
+                                </p>
 
                             </div>
 
@@ -2654,8 +2520,8 @@ A digital platform designed to help families identify suitable senior care facil
                                 class="absolute
                                        inset-0
                                        bg-gradient-to-t
-                                       from-black/70
-                                       via-black/10
+                                       from-black/85
+                                       via-black/35
                                        to-transparent"
                             ></div>
 
@@ -2675,6 +2541,10 @@ A digital platform designed to help families identify suitable senior care facil
                                     Calendar Management
                                 </span>
 
+                                <p class="mt-1 text-[10px] leading-tight text-white/95 drop-shadow-sm">
+                                    Appointments, meetings, and daily agenda management.
+                                </p>
+
                             </div>
 
                         </div>
@@ -2688,8 +2558,7 @@ A digital platform designed to help families identify suitable senior care facil
                                    aspect-square
                                    rounded-xl
                                    overflow-hidden
-                                   bg-gray-200
-                                   col-span-2"
+                                   bg-gray-200"
                         >
 
                             <img
@@ -2710,8 +2579,8 @@ A digital platform designed to help families identify suitable senior care facil
                                 class="absolute
                                        inset-0
                                        bg-gradient-to-t
-                                       from-black/70
-                                       via-black/10
+                                       from-black/85
+                                       via-black/35
                                        to-transparent"
                             ></div>
 
@@ -2730,6 +2599,132 @@ A digital platform designed to help families identify suitable senior care facil
                                 >
                                     Data Management
                                 </span>
+
+                                <p class="mt-1 text-[10px] leading-tight text-white/95 drop-shadow-sm">
+                                    Accurate databases, spreadsheets, and data entry.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div
+                            class="group
+                                   relative
+                                   aspect-square
+                                   rounded-xl
+                                   overflow-hidden
+                                   bg-[#1a2340]"
+                        >
+
+                            <div
+                                class="absolute
+                                       inset-0
+                                       flex
+                                       items-center
+                                       justify-center
+                                       bg-[#1a2340]"
+                            >
+
+                                <img
+                                    src="https://cdn.simpleicons.org/googleads/ffffff"
+                                    alt="Google Ads"
+                                    class="h-16
+                                           w-16
+                                           object-contain"
+                                >
+
+                            </div>
+
+                            <div
+                                class="absolute
+                                       inset-0
+                                       bg-gradient-to-t
+                                       from-black/85
+                                       via-black/35
+                                       to-transparent"
+                            ></div>
+
+                            <div
+                                class="absolute
+                                       bottom-0
+                                       left-0
+                                       right-0
+                                       p-3
+                                       text-white"
+                            >
+
+                                <span class="text-xs font-medium">
+                                    Google Ads
+                                </span>
+
+                                <p class="mt-1 text-[10px] leading-tight text-white/95 drop-shadow-sm">
+                                    Search ad setup, optimization, and performance tracking.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div
+                            class="group
+                                   relative
+                                   aspect-square
+                                   rounded-xl
+                                   overflow-hidden
+                                   bg-[#1a2340]"
+                        >
+
+                            <div
+                                class="absolute
+                                       inset-0
+                                       flex
+                                       items-center
+                                       justify-center
+                                       bg-[#1a2340]"
+                            >
+
+                                <img
+                                    src="https://cdn.simpleicons.org/hubspot/ffffff"
+                                    alt="CRM"
+                                    class="h-16
+                                           w-16
+                                           object-contain"
+                                >
+
+                            </div>
+
+                            <div
+                                class="absolute
+                                       inset-0
+                                       bg-gradient-to-t
+                                       from-black/85
+                                       via-black/35
+                                       to-transparent"
+                            ></div>
+
+                            <div
+                                class="absolute
+                                       bottom-0
+                                       left-0
+                                       right-0
+                                       p-3
+                                       text-white"
+                            >
+
+                                <span class="text-xs font-medium">
+                                    CRM
+                                </span>
+
+                                <p class="mt-1 text-[10px] leading-tight text-white/95 drop-shadow-sm">
+                                    Customer databases, pipeline updates, and sales follow-ups.
+                                </p>
 
                             </div>
 
@@ -3758,7 +3753,7 @@ A digital platform designed to help families identify suitable senior care facil
                            font-bold"
                 >
 
-                    Let’s Connect
+                    Reach Out Directly
 
                 </h2>
 
@@ -3771,13 +3766,8 @@ A digital platform designed to help families identify suitable senior care facil
                            style="text-align: justify;"
                 >
 
-                    Have a question or interested in working together?
-                    Choose your preferred way to connect below.
-                    <br><br>
-                    <span class="text-sm text-gray-500">
-                        For your security, please use only the official
-                        accounts listed here when contacting me.
-                    </span>
+                    Prefer not to book a meeting? Feel free to send a direct
+                    message or pick another way to connect below.
 
                 </p>
 
@@ -3875,7 +3865,7 @@ A digital platform designed to help families identify suitable senior care facil
                            font-bold"
                 >
 
-                    Connect
+                   List to connect with me 
 
                 </h3>
 

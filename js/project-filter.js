@@ -3,6 +3,35 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll("[data-project-filter]")
     );
     const projectPanels = Array.from(document.querySelectorAll("[data-project-panel]"));
+    const toolButtons = Array.from(document.querySelectorAll("[data-tool-filter]"));
+    const toolPanels = Array.from(document.querySelectorAll("[data-tool-panel]"));
+
+    function showToolCategory(category) {
+        toolPanels.forEach((panel) => {
+            const isSelected = panel.dataset.toolPanel === category;
+            panel.classList.toggle("hidden", !isSelected);
+        });
+
+        toolButtons.forEach((button) => {
+            const isSelected = button.dataset.toolFilter === category;
+            button.classList.toggle("bg-[#1a2340]", isSelected);
+            button.classList.toggle("text-white", isSelected);
+            button.classList.toggle("border-[#1a2340]", isSelected);
+            button.classList.toggle("bg-white", !isSelected);
+            button.classList.toggle("text-[#1a2340]", !isSelected);
+            button.classList.toggle("border-gray-200", !isSelected);
+        });
+    }
+
+    if (toolButtons.length && toolPanels.length) {
+        toolButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                showToolCategory(button.dataset.toolFilter);
+            });
+        });
+
+        showToolCategory("developer");
+    }
 
     const projectOrder = ["administration", "website", "technical"];
     const projectContainer = projectPanels[0]?.parentElement;
