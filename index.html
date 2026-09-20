@@ -53,18 +53,16 @@
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 0.75rem;
+            min-width: 0;
+        }
+
+        .tool-panel {
+            min-width: 0;
         }
 
         @media (min-width: 768px) {
             .tool-chip-grid {
                 grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 767px) {
-            .tool-chip {
-                white-space: normal;
-                line-height: 1.2;
             }
         }
 
@@ -76,15 +74,51 @@
             min-width: 0;
             width: 100%;
             text-align: left;
-            white-space: nowrap;
+            white-space: normal;
+            line-height: 1.25;
+            overflow-wrap: anywhere;
+            word-break: break-word;
             font-size: 0.75rem;
             padding-left: 0.75rem;
             padding-right: 0.75rem;
         }
 
+        @media (max-width: 767px) {
+            .tool-chip {
+                font-size: 0.68rem;
+                padding-left: 0.625rem;
+                padding-right: 0.625rem;
+            }
+        }
+
         .tool-chip img {
             flex-shrink: 0;
             display: block;
+        }
+
+        #project-panel-website {
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        #project-panel-website .grid {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        #project-panel-website .group {
+            aspect-ratio: 16 / 10;
+            width: 100%;
+            max-width: 100%;
+            min-height: 240px;
+            height: auto;
+        }
+
+        @media (min-width: 768px) {
+            #project-panel-website .group {
+                min-height: 280px;
+            }
         }
     </style>
 
@@ -947,7 +981,7 @@
             class="tool-filter-button
                    rounded-full
                    border
-                   border-gray-200
+                   border-[#1a2340]
                    bg-[#1a2340]
                    px-3
                    py-2
@@ -1087,7 +1121,7 @@
             </div>
         </div>
 
-        <div data-tool-panel="essential-tools" class="tool-panel hidden">
+        <div data-tool-panel="essential-tools" class="tool-panel">
             <div class="rounded-xl border border-gray-200 bg-gray-50 p-4">
                 <div class="space-y-5">
                     <div>
@@ -1501,7 +1535,6 @@
                        grid-cols-1
                        md:grid-cols-2
                        lg:grid-cols-2
-                       auto-rows-[300px]
                        gap-5"
             >
 

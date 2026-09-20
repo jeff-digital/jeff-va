@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        showToolCategory("developer");
+        showToolCategory("essential-tools");
     }
 
     const projectOrder = ["administration", "website", "technical"];
