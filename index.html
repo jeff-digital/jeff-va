@@ -114,6 +114,45 @@
             height: auto;
             min-height: 0;
         }
+
+        @keyframes project-slide-from-right {
+            from {
+                opacity: 0;
+                transform: translateX(4rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes project-slide-from-left {
+            from {
+                opacity: 0;
+                transform: translateX(-4rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .project-panel-slide-from-right {
+            animation: project-slide-from-right 500ms ease-out both;
+            will-change: transform, opacity;
+        }
+
+        .project-panel-slide-from-left {
+            animation: project-slide-from-left 500ms ease-out both;
+            will-change: transform, opacity;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .project-panel-slide-from-right,
+            .project-panel-slide-from-left {
+                animation: none;
+            }
+        }
     </style>
 
 </head>
@@ -3829,7 +3868,7 @@ A digital platform designed to help families identify suitable senior care facil
                 >
 
                     Prefer not to book a meeting? Feel free to send a direct
-                    message or pick another way to connect below.
+                    message or pick another way to connect with me.
 
                 </p>
 
@@ -3917,7 +3956,8 @@ A digital platform designed to help families identify suitable senior care facil
             <div
                 class="border-l
                        border-gray-400
-                       pl-12"
+                       pl-4
+                       md:pl-12"
             >
 
 
@@ -3934,29 +3974,39 @@ A digital platform designed to help families identify suitable senior care facil
 
                 <div
                     class="grid
-                        sm:grid-cols-2
+                        grid-cols-4
                         mt-6
-                        gap-y-5"
+                        gap-x-0
+                        gap-y-3"
                 >
 
 
                     <a
                         target="_blank"
                         href="https://wa.me/639756834839?text=Hi%20I%20found%20your%20website"
+                        aria-label="WhatsApp"
+                        title="WhatsApp"
                         class="flex
+                            h-[56px]
+                            w-[56px]
+                            sm:h-[60px]
+                            sm:w-[60px]
+                            md:h-[68px]
+                            md:w-[68px]
                             items-center
-                            gap-3
-                            font-bold
-                            text-lg
-                            hover:opacity-70
+                            justify-center
+                            rounded-lg
+                            border
+                            border-gray-200
+                            bg-white
+                            text-3xl
+                            text-[#1a2340]
+                            shadow-sm
+                            hover:bg-gray-100
                             transition"
                     >
 
-                        <i class="fa-brands fa-whatsapp text-xl"></i>
-
-                        <span>
-                            WhatsApp
-                        </span>
+                        <i class="fa-brands fa-whatsapp"></i>
 
                     </a>
 
@@ -3965,20 +4015,29 @@ A digital platform designed to help families identify suitable senior care facil
                     <a
                         target="_blank"
                         href="https://www.instagram.com/jeffrey_s.a/"
+                        aria-label="Instagram"
+                        title="Instagram"
                         class="flex
+                            h-[56px]
+                            w-[56px]
+                            sm:h-[60px]
+                            sm:w-[60px]
+                            md:h-[68px]
+                            md:w-[68px]
                             items-center
-                            gap-3
-                            font-bold
-                            text-lg
-                            hover:opacity-70
+                            justify-center
+                            rounded-lg
+                            border
+                            border-gray-200
+                            bg-white
+                            text-3xl
+                            text-[#1a2340]
+                            shadow-sm
+                            hover:bg-gray-100
                             transition"
                     >
 
-                        <i class="fa-brands fa-instagram text-xl"></i>
-
-                        <span>
-                            Instagram
-                        </span>
+                        <i class="fa-brands fa-instagram"></i>
 
                     </a>
 
@@ -3987,20 +4046,29 @@ A digital platform designed to help families identify suitable senior care facil
                     <a
                         target="_blank"
                         href="http://www.linkedin.com/in/jeffrey-almocera-1b6165243"
+                        aria-label="LinkedIn"
+                        title="LinkedIn"
                         class="flex
+                            h-[56px]
+                            w-[56px]
+                            sm:h-[60px]
+                            sm:w-[60px]
+                            md:h-[68px]
+                            md:w-[68px]
                             items-center
-                            gap-3
-                            font-bold
-                            text-lg
-                            hover:opacity-70
+                            justify-center
+                            rounded-lg
+                            border
+                            border-gray-200
+                            bg-white
+                            text-3xl
+                            text-[#1a2340]
+                            shadow-sm
+                            hover:bg-gray-100
                             transition"
                     >
 
-                        <i class="fa-brands fa-linkedin text-xl"></i>
-
-                        <span>
-                            LinkedIn
-                        </span>
+                        <i class="fa-brands fa-linkedin"></i>
 
                     </a>
 
@@ -4009,20 +4077,29 @@ A digital platform designed to help families identify suitable senior care facil
                     <a
                         target="_blank"
                         href="https://mail.google.com/mail/?view=cm&to=almocerajeffreys@gmail.com&su=Inquiry%20from%20Portfolio"
+                        aria-label="Gmail"
+                        title="Gmail"
                         class="flex
+                            h-[56px]
+                            w-[56px]
+                            sm:h-[60px]
+                            sm:w-[60px]
+                            md:h-[68px]
+                            md:w-[68px]
                             items-center
-                            gap-3
-                            font-bold
-                            text-lg
-                            hover:opacity-70
+                            justify-center
+                            rounded-lg
+                            border
+                            border-gray-200
+                            bg-white
+                            text-3xl
+                            text-[#1a2340]
+                            shadow-sm
+                            hover:bg-gray-100
                             transition"
                     >
 
-                        <i class="fa-solid fa-envelope text-xl"></i>
-
-                        <span>
-                            Gmail
-                        </span>
+                        <i class="fa-solid fa-envelope"></i>
 
                     </a>
 
@@ -4032,23 +4109,29 @@ A digital platform designed to help families identify suitable senior care facil
                         href="https://github.com/jeff-digital"
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="GitHub"
+                        title="GitHub"
                         class="flex
+                            h-[56px]
+                            w-[56px]
+                            sm:h-[60px]
+                            sm:w-[60px]
+                            md:h-[68px]
+                            md:w-[68px]
                             items-center
-                            gap-3
-                            font-bold
-                            text-lg
-                            hover:opacity-70
+                            justify-center
+                            rounded-lg
+                            border
+                            border-gray-200
+                            bg-white
+                            text-3xl
+                            text-[#1a2340]
+                            shadow-sm
+                            hover:bg-gray-100
                             transition"
                     >
 
-                        <i
-                            class="fa-brands fa-github
-                                text-xl"
-                        ></i>
-
-                        <span>
-                            GitHub
-                        </span>
+                        <i class="fa-brands fa-github"></i>
 
                     </a>
 

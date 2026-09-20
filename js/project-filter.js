@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const projectOrder = ["administration", "website", "technical"];
     const projectContainer = projectPanels[0]?.parentElement;
+    let activeProjectCategory = "administration";
 
     if (projectContainer) {
         projectOrder.forEach((category) => {
@@ -68,12 +69,27 @@ document.addEventListener("DOMContentLoaded", () => {
         projectCards.forEach((card) => projectGrid.appendChild(card));
     }
 
-    function showProjectCategory(category) {
+    function showProjectCategory(category, shouldAnimate = true) {
+        const currentIndex = projectOrder.indexOf(activeProjectCategory);
+        const nextIndex = projectOrder.indexOf(category);
+        const slideClass = nextIndex > currentIndex
+            ? "project-panel-slide-from-right"
+            : "project-panel-slide-from-left";
+
         projectPanels.forEach((panel) => {
             const isSelected = panel.dataset.projectPanel === category;
 
             panel.classList.toggle("hidden", !isSelected);
             panel.setAttribute("aria-hidden", String(!isSelected));
+
+            if (isSelected && shouldAnimate && category !== activeProjectCategory) {
+                panel.classList.remove(
+                    "project-panel-slide-from-right",
+                    "project-panel-slide-from-left"
+                );
+                void panel.offsetWidth;
+                panel.classList.add(slideClass);
+            }
         });
 
         filterButtons.forEach((button) => {
@@ -88,6 +104,8 @@ document.addEventListener("DOMContentLoaded", () => {
             button.classList.toggle("text-[#1a2340]", !isSelected);
             button.classList.toggle("border-gray-300", !isSelected);
         });
+
+        activeProjectCategory = category;
     }
 
     filterButtons.forEach((button, index) => {
@@ -120,5 +138,5 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    showProjectCategory("administration");
+    showProjectCategory("administration", false);
 });
