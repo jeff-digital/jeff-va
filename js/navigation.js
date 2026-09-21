@@ -82,6 +82,4 @@
 
         history.pushState(null, "", targetId);
     });
-
-    lucide.createIcons();
 })();
