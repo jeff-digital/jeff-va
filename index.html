@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script>
+        if (window.location.hostname === "portfolio.jeffdigi.workers.dev") {
+            window.location.replace(`https://jeffdigi.com/${window.location.hash}`);
+        }
+    </script>
+
     <link rel="icon" type="image/png" href="image/tab.png">
     <link rel="canonical" href="https://jeffdigi.com/">
 
