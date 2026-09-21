@@ -67,6 +67,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const projectGrid = websitePanel.querySelector(":scope > .grid");
         projectCards.forEach((card) => projectGrid.appendChild(card));
+
+        if (
+            window.matchMedia("(hover: none), (pointer: coarse)").matches &&
+            "IntersectionObserver" in window
+        ) {
+            const updateFocusedCard = () => {
+                const viewportCenter = window.innerHeight / 2;
+                const visibleCards = projectCards.filter((card) => {
+                    const bounds = card.getBoundingClientRect();
+                    return bounds.bottom > 0 && bounds.top < window.innerHeight;
+                });
+
+                if (!visibleCards.length) {
+                    return;
+                }
+
+                const focusedCard = visibleCards.reduce((closestCard, card) => {
+                    const cardCenter = card.getBoundingClientRect().top +
+                        card.getBoundingClientRect().height / 2;
+                    const closestCenter = closestCard.getBoundingClientRect().top +
+                        closestCard.getBoundingClientRect().height / 2;
+
+                    return Math.abs(cardCenter - viewportCenter) <
+                        Math.abs(closestCenter - viewportCenter)
+                        ? card
+                        : closestCard;
+                });
+
+                projectCards.forEach((card) => {
+                    card.classList.toggle("is-focused", card === focusedCard);
+                });
+            };
+
+            const projectObserver = new IntersectionObserver(updateFocusedCard, {
+                threshold: [0, 0.25, 0.5, 0.75, 1]
+            });
+
+            projectCards.forEach((card) => projectObserver.observe(card));
+            window.addEventListener("resize", updateFocusedCard, { passive: true });
+            requestAnimationFrame(updateFocusedCard);
+        }
     }
 
     function showProjectCategory(category, shouldAnimate = true) {
