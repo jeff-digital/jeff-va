@@ -42,6 +42,53 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const resumeModal = document.getElementById("resumeModal");
+            const resumeModalTriggers = document.querySelectorAll(".resume-modal-trigger");
+            const closeResumeModalButtons = document.querySelectorAll(".resume-modal-close");
+
+            const openResumeModal = () => {
+                if (!resumeModal) return;
+                resumeModal.classList.remove("hidden");
+                resumeModal.classList.add("flex");
+                document.body.classList.add("overflow-hidden");
+            };
+
+            const closeResumeModal = () => {
+                if (!resumeModal) return;
+                resumeModal.classList.add("hidden");
+                resumeModal.classList.remove("flex");
+                document.body.classList.remove("overflow-hidden");
+            };
+
+            resumeModalTriggers.forEach((trigger) => {
+                trigger.addEventListener("click", (event) => {
+                    event.preventDefault();
+                    openResumeModal();
+                });
+            });
+
+            closeResumeModalButtons.forEach((button) => {
+                button.addEventListener("click", closeResumeModal);
+            });
+
+            if (resumeModal) {
+                resumeModal.addEventListener("click", (event) => {
+                    if (event.target === resumeModal) {
+                        closeResumeModal();
+                    }
+                });
+            }
+
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "Escape") {
+                    closeResumeModal();
+                }
+            });
+        });
+    </script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <style>
@@ -153,6 +200,14 @@
                 animation: none;
             }
         }
+
+        .resume-modal-backdrop {
+            backdrop-filter: blur(4px);
+        }
+
+        .resume-modal-card {
+            box-shadow: 0 30px 80px rgba(15, 23, 42, 0.35);
+        }
     </style>
 
 </head>
@@ -246,19 +301,13 @@
                 </a>
 
 
-                <a
-                    href="documents/Almocera_Jeffrey_Resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-white
-                        text-base
-                        font-medium
-                        hover:text-blue-400
-                        transition-colors
-                        duration-200"
+                <button
+                    type="button"
+                    class="resume-modal-trigger flex items-center gap-2 text-white text-base font-medium hover:text-blue-400 transition-colors duration-200 focus:outline-none cursor-pointer"
+                    aria-label="Choose resume download"
                 >
                     Resume
-                </a>
+                </button>
 
             </div>
             <div
@@ -426,11 +475,9 @@
                     Connect
                 </a>
 
-                <a
-                    href="documents/Almocera_Jeffrey_Resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="mobile-nav-link
+                <button
+                    type="button"
+                    class="resume-modal-trigger mobile-nav-link
                         text-white
                         text-base
                         font-medium
@@ -439,10 +486,11 @@
                         rounded-xl
                         hover:bg-white/10
                         hover:text-blue-400
-                        transition"
+                        transition
+                        text-left"
                 >
                     Resume
-                </a>
+                </button>
 
             </div>
 
@@ -4431,6 +4479,61 @@ A digital platform designed to help families identify suitable senior care facil
             aboutRightColumn.insertBefore(servicesBlock, credentialsBlock);
         }
     </script>
+    <div
+        id="resumeModal"
+        class="resume-modal-backdrop hidden fixed inset-0 z-[100] items-center justify-center bg-[#0f172a]/70 p-4"
+        aria-hidden="true"
+    >
+        <div
+            class="resume-modal-card w-full max-w-md rounded-2xl border border-white/10 bg-white p-5 text-left text-slate-800 shadow-2xl"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="resumeModalTitle"
+        >
+            <div class="flex items-start justify-between gap-3">
+                <div>
+                    <p class="text-[10px] font-bold uppercase tracking-[0.22em] text-blue-600">Download Resume</p>
+                    <h3 id="resumeModalTitle" class="mt-2 text-xl font-bold text-slate-900">Choose your version</h3>
+                </div>
+                <button
+                    type="button"
+                    class="resume-modal-close flex h-9 w-9 items-center justify-center rounded-full text-slate-500 transition hover:bg-slate-100 hover:text-slate-800"
+                    aria-label="Close resume chooser"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="mt-5 space-y-3">
+                <a
+                    href="documents/Almocera_Jeffrey_Resume_VA.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-left transition hover:border-blue-300 hover:bg-blue-50"
+                >
+                    <span>
+                        <span class="block text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Resume</span>
+                        <span class="mt-1 block text-base font-semibold text-slate-900">VA</span>
+                    </span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-slate-500"></i>
+                </a>
+
+                <a
+                    href="documents/Almocera_Jeffrey_Resume_Dev.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-left transition hover:border-blue-300 hover:bg-blue-50"
+                >
+                    <span>
+                        <span class="block text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Resume</span>
+                        <span class="mt-1 block text-base font-semibold text-slate-900">Dev</span>
+                    </span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-slate-500"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <script src="js/project-filter.js"></script>
     <script src="js/reveal.js"></script>
 
