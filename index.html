@@ -4804,23 +4804,28 @@ A digital platform designed to help families identify suitable senior care facil
         </p>
 
         <div class="mt-7 flex justify-center">
-            <a
-                href="https://wa.me/639756834839?text=Hi%20I%20found%20your%20website"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-block rounded-2xl border-4 border-black bg-white p-3 shadow-sm transition hover:scale-[1.02]"
-                aria-label="Open WhatsApp"
-            >
+            <div class="rounded-2xl border-4 border-black bg-white p-3 shadow-sm">
                 <img
                     id="whatsappQrCode"
-                    src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https%3A%2F%2Fwa.me%2F639756834839%3Ftext%3DHi%2520I%2520found%2520your%2520website"
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https%3A%2F%2Fwa.me%2F639756834839"
                     alt="WhatsApp QR code"
                     class="h-[235px] w-[235px] object-contain"
                 >
-            </a>
+            </div>
         </div>
 
-        <p class="mt-5 text-sm text-slate-500">
+        <a
+            id="downloadWhatsAppQr"
+            href="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https%3A%2F%2Fwa.me%2F639756834839"
+            download="jeffrey-whatsapp-qr-code.png"
+            data-qr-url="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https%3A%2F%2Fwa.me%2F639756834839"
+            class="mt-5 inline-flex items-center justify-center rounded-full bg-[#1a2340] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#111a2d]"
+            aria-label="Download WhatsApp QR code"
+        >
+            Download QR code
+        </a>
+
+        <p class="mt-4 text-sm text-slate-500">
             Scan to chat on WhatsApp
         </p>
     </div>
@@ -4933,6 +4938,7 @@ A digital platform designed to help families identify suitable senior care facil
             const whatsappModal = document.getElementById("whatsappQrModal");
             const whatsappTriggers = document.querySelectorAll(".whatsapp-qr-trigger");
             const closeWhatsAppButtons = document.querySelectorAll(".whatsapp-qr-close");
+            const whatsappQrDownloadButton = document.getElementById("downloadWhatsAppQr");
 
             if (whatsappModal) {
                 const closeWhatsAppModal = () => {
@@ -4967,6 +4973,33 @@ A digital platform designed to help families identify suitable senior care facil
                 document.addEventListener("keydown", (event) => {
                     if (event.key === "Escape" && !whatsappModal.classList.contains("hidden")) {
                         closeWhatsAppModal();
+                    }
+                });
+            }
+
+            if (whatsappQrDownloadButton) {
+                whatsappQrDownloadButton.addEventListener("click", async (event) => {
+                    event.preventDefault();
+
+                    const qrUrl = whatsappQrDownloadButton.dataset.qrUrl;
+                    if (!qrUrl) {
+                        window.location.href = whatsappQrDownloadButton.href;
+                        return;
+                    }
+
+                    try {
+                        const response = await fetch(qrUrl);
+                        const blob = await response.blob();
+                        const objectUrl = URL.createObjectURL(blob);
+                        const link = document.createElement("a");
+                        link.href = objectUrl;
+                        link.download = "jeffrey-whatsapp-qr-code.png";
+                        document.body.appendChild(link);
+                        link.click();
+                        link.remove();
+                        URL.revokeObjectURL(objectUrl);
+                    } catch (error) {
+                        window.location.href = qrUrl;
                     }
                 });
             }
