@@ -15,7 +15,7 @@
     
     <link rel="icon" type="image/x-icon" href="image/tab.png">
     
-    <title>Jeffrey S. Almocera | Portfolio</title>
+    <title>Jeffrey S. Almocera | VA & Web Developer</title>
 
     <meta name="description" content="Jeffrey Almocera also known as jeff digi is a virtual assistant in Philippines providing administrative, graphic design, digital marketing, social media marketing, and technical support for business owners.">
     <meta name="author" content="Jeffrey Almocera">
@@ -86,6 +86,14 @@
             font-size: 0.75rem;
             padding-left: 0.75rem;
             padding-right: 0.75rem;
+        }
+
+        #about .mt-9 .grid .flex span {
+            font-size: 0.72rem;
+        }
+
+        #about .mt-9 .grid .flex i {
+            font-size: 0.95rem;
         }
 
         @media (max-width: 767px) {
@@ -4318,53 +4326,27 @@ A digital platform designed to help families identify suitable senior care facil
                         text-lg
                         leading-relaxed"
                 >
-                    I’m available
-
-                    <strong>
-                        Monday to Friday, 8:00 PM – 5:00 AM
-                        (Philippine Time, PHT / UTC+8)
-                    </strong>
-
-                    This schedule overlaps with US business hours and supports international clients.
+                    Online <strong>Mon–Fri, 8:00 PM – 5:00 AM PHT (UTC+8)</strong> — overlaps with US business hours.
                 </p>
-
-
 
                 <div
                     class="mt-5
                         p-5
-                        rounded-lg
-                        bg-gray-100"
+                        rounded-xl
+                        border
+                        border-blue-200
+                        bg-[#edf6ff]
+                        text-[#1a2340]
+                        shadow-sm"
                 >
-
-                    <p
-                        class="text-lg
-                            leading-relaxed"
-                    >
-                        <strong>
-                            Availability in your time zone:
-                        </strong>
-
-                        <span id="clientAvailability">
-                            Detecting...
-                        </span>
+                    <p class="text-lg leading-relaxed">
+                        Your local time: <strong><span id="clientAvailability">Detecting...</span></strong>
+                        <span class="text-gray-700">(<span id="clientTimezone">Detecting...</span>)</span>
                     </p>
 
-
-                    <p
-                        class="mt-2
-                            text-lg
-                            leading-relaxed"
-                    >
-                        <strong>
-                            Detected time zone:
-                        </strong>
-
-                        <span id="clientTimezone">
-                            Detecting...
-                        </span>
+                    <p id="availabilityStatus" class="mt-2 text-sm font-medium text-[#1a2340]/80">
+                        Checking availability...
                     </p>
-
                 </div>
 
                 <p
@@ -4373,8 +4355,7 @@ A digital platform designed to help families identify suitable senior care facil
                         text-lg
                         leading-relaxed"
                 >
-                    Messages sent outside these hours or on weekends
-                    will receive a reply on the next business day.
+                    Outside these hours, I’ll reply the next business day.
                 </p>
 
             </div>
@@ -4411,11 +4392,10 @@ A digital platform designed to help families identify suitable senior care facil
 
 
                     <a
-                        target="_blank"
-                        href="https://wa.me/639756834839?text=Hi%20I%20found%20your%20website"
+                        href="#"
                         aria-label="WhatsApp"
                         title="WhatsApp"
-                        class="flex
+                        class="whatsapp-qr-trigger flex
                             h-[56px]
                             w-[56px]
                             sm:h-[60px]
@@ -4586,15 +4566,15 @@ A digital platform designed to help families identify suitable senior care facil
     >
         <div
             class="grid
-                   md:grid-cols-2
+                   md:grid-cols-[30%_70%]
                    gap-16"
         >
 
-            <div>
+            <div class="flex flex-col justify-between">
                 <h2
                     class="serif-title
-                           text-4xl
-                           md:text-5xl
+                           text-3xl
+                           md:text-4xl
                            leading-tight"
                 >
                     Ready to Make Your Workload
@@ -4602,42 +4582,18 @@ A digital platform designed to help families identify suitable senior care facil
                     Easier
                 </h2>
 
-                <div
-                    class="mt-28
-                           max-w-[500px]"
-                >
-                    <h3 class="text-lg">
-
-                        Tech-Savvy Virtual Assistant
-
-                    </h3>
-
-                    <p
-                                class="text-sm
-                                text-gray-300
-                                mt-2
-                                leading-relaxed"
-                                style="text-align: justify;"
-                               >
-                    Administrative support backed by an Information
-                    Technology background, with digital and creative
-                    skills to support the way your business works.
-                    </p>
-
+                <div class="mt-10">
                     <a
                         target="_blank"
                         href="https://forms.gle/u855H7n4yvi33zdq5"
                         class="inline-block
-                               mt-5
                                bg-white
                                text-black
                                px-3
                                py-2
                                rounded-md"
                     >
-
                         Leave Feedback
-
                     </a>
                 </div>
             </div>
@@ -4645,13 +4601,14 @@ A digital platform designed to help families identify suitable senior care facil
             <div
                 class="border-l
                        border-gray-400
-                       pl-6"
+                       pl-8
+                       md:pl-10"
             >
 
                 <div
                     class="grid
                            grid-cols-2
-                           gap-10"
+                           gap-14"
                 >
 
                     <div>
@@ -4707,7 +4664,7 @@ A digital platform designed to help families identify suitable senior care facil
 
                 </div>
 
-                <div class="mt-28">
+                <div class="mt-20 md:mt-24">
 
                     <h3
                         class="text-lg
@@ -4721,7 +4678,7 @@ A digital platform designed to help families identify suitable senior care facil
 
                     <a
                         class="block
-                               mt-2
+                               mt-3
                                text-gray-300"
                     >
                         Administrative Support
@@ -4730,6 +4687,7 @@ A digital platform designed to help families identify suitable senior care facil
 
                     <a
                         class="block
+                               mt-3
                                text-gray-300"
                     >
                         Digital &amp; Creative Support
@@ -4738,6 +4696,7 @@ A digital platform designed to help families identify suitable senior care facil
 
                     <a
                         class="block
+                               mt-3
                                text-gray-300"
                     >
                         Website Support
@@ -4746,6 +4705,7 @@ A digital platform designed to help families identify suitable senior care facil
 
                     <a
                         class="block
+                               mt-3
                                text-gray-300"
                     >
                         UI/UX Design
@@ -4754,12 +4714,14 @@ A digital platform designed to help families identify suitable senior care facil
 
                     <a
                         class="block
+                               mt-3
                                text-gray-300"
                     >
                         Technical Support
                     </a>
 
                 </div>
+
             </div>
         </div>
 
@@ -4784,6 +4746,86 @@ A digital platform designed to help families identify suitable senior care facil
 
 
 <div id="certificateModalContainer"></div>
+
+<div
+    id="whatsappQrModal"
+    class="hidden
+           fixed
+           inset-0
+           z-[120]
+           items-center
+           justify-center
+           bg-[#0f172a]/70
+           p-4
+           backdrop-blur-sm"
+    aria-hidden="true"
+>
+
+    <div
+        class="w-full
+               max-w-[440px]
+               rounded-[28px]
+               border
+               border-white/10
+               bg-[#f3f3f1]
+               p-6
+               text-center
+               text-slate-800
+               shadow-2xl"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="whatsappQrTitle"
+    >
+        <div class="flex items-center justify-end">
+            <button
+                type="button"
+                class="whatsapp-qr-close flex h-9 w-9 items-center justify-center rounded-full text-slate-500 transition hover:bg-slate-200 hover:text-slate-800"
+                aria-label="Close WhatsApp QR"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="flex justify-center">
+            <div class="h-20 w-20 overflow-hidden rounded-full border-4 border-white shadow-md">
+                <img
+                    src="image/whatsappprofile.jpg"
+                    alt="Jeffrey Almocera"
+                    class="h-full w-full object-cover"
+                >
+            </div>
+        </div>
+
+        <h3 id="whatsappQrTitle" class="mt-4 text-[2.1rem] font-medium tracking-[-0.04em] text-slate-800">
+            Jeffrey Almocera
+        </h3>
+        <p class="mt-1 text-lg font-medium text-slate-500">
+            WhatsApp contact
+        </p>
+
+        <div class="mt-7 flex justify-center">
+            <a
+                href="https://wa.me/639756834839?text=Hi%20I%20found%20your%20website"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block rounded-2xl border-4 border-black bg-white p-3 shadow-sm transition hover:scale-[1.02]"
+                aria-label="Open WhatsApp"
+            >
+                <img
+                    id="whatsappQrCode"
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https%3A%2F%2Fwa.me%2F639756834839%3Ftext%3DHi%2520I%2520found%2520your%2520website"
+                    alt="WhatsApp QR code"
+                    class="h-[235px] w-[235px] object-contain"
+                >
+            </a>
+        </div>
+
+        <p class="mt-5 text-sm text-slate-500">
+            Scan to chat on WhatsApp
+        </p>
+    </div>
+
+</div>
 
 <div
     id="resumeModal"
@@ -4888,6 +4930,47 @@ A digital platform designed to help families identify suitable senior care facil
     <script src="js/certificate.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            const whatsappModal = document.getElementById("whatsappQrModal");
+            const whatsappTriggers = document.querySelectorAll(".whatsapp-qr-trigger");
+            const closeWhatsAppButtons = document.querySelectorAll(".whatsapp-qr-close");
+
+            if (whatsappModal) {
+                const closeWhatsAppModal = () => {
+                    whatsappModal.classList.add("hidden");
+                    whatsappModal.classList.remove("flex");
+                    whatsappModal.setAttribute("aria-hidden", "true");
+                    document.body.classList.remove("overflow-hidden");
+                };
+
+                const openWhatsAppModal = (event) => {
+                    event.preventDefault();
+                    whatsappModal.classList.remove("hidden");
+                    whatsappModal.classList.add("flex");
+                    whatsappModal.setAttribute("aria-hidden", "false");
+                    document.body.classList.add("overflow-hidden");
+                };
+
+                whatsappTriggers.forEach((trigger) => {
+                    trigger.addEventListener("click", openWhatsAppModal);
+                });
+
+                closeWhatsAppButtons.forEach((button) => {
+                    button.addEventListener("click", closeWhatsAppModal);
+                });
+
+                whatsappModal.addEventListener("click", (event) => {
+                    if (event.target === whatsappModal) {
+                        closeWhatsAppModal();
+                    }
+                });
+
+                document.addEventListener("keydown", (event) => {
+                    if (event.key === "Escape" && !whatsappModal.classList.contains("hidden")) {
+                        closeWhatsAppModal();
+                    }
+                });
+            }
+
             const resumeModal = document.getElementById("resumeModal");
             const resumeTriggers = document.querySelectorAll(".resume-modal-trigger");
             const closeResumeButtons = document.querySelectorAll(".resume-modal-close");
