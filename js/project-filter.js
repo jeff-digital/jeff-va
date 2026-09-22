@@ -80,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const isSelected = panel.dataset.projectPanel === category;
 
             panel.classList.toggle("hidden", !isSelected);
+            panel.classList.toggle("show", isSelected);
             panel.setAttribute("aria-hidden", String(!isSelected));
 
             if (isSelected && shouldAnimate && category !== activeProjectCategory) {
