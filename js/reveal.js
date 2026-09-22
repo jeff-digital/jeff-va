@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const revealTargets = document.querySelectorAll(
-        "section:not(#home):not(#projects), section#about, section#meeting, section#contact"
-    );
+    const revealTargets = document.querySelectorAll("section:not(#home)");
 
     const observer = new IntersectionObserver(
         (entries) => {
@@ -24,5 +22,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         observer.observe(element);
     });
+
+    if (window.location.hash === "#projects") {
+        const projectsSection = document.getElementById("projects");
+        if (projectsSection) {
+            projectsSection.classList.add("show");
+        }
+    }
 
 });
