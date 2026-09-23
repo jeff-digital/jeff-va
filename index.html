@@ -421,6 +421,15 @@
             }
         }
 
+        @keyframes marquee-scroll {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
         .project-panel-slide-from-right {
             animation: project-slide-from-right 500ms ease-out both;
             will-change: transform, opacity;
@@ -429,6 +438,145 @@
         .project-panel-slide-from-left {
             animation: project-slide-from-left 500ms ease-out both;
             will-change: transform, opacity;
+        }
+
+        .project-marquee {
+            position: relative;
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+        }
+
+        .project-marquee-track {
+            display: flex;
+            width: max-content;
+            will-change: transform;
+        }
+
+        .project-marquee[data-scroll="true"] .project-marquee-track {
+            animation: marquee-scroll 60s linear infinite;
+        }
+
+        .project-marquee-card {
+            width: min(24vw, 280px);
+            min-width: 220px;
+            margin-right: 1rem;
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.04);
+            box-shadow: 0 14px 32px rgba(0,0,0,0.18);
+        }
+
+        .project-marquee-card.portrait .project-marquee-visual {
+            aspect-ratio: 3 / 4;
+        }
+
+        .project-marquee-card.landscape .project-marquee-visual {
+            aspect-ratio: 16 / 10;
+        }
+
+        .video-carousel {
+            position: relative;
+        }
+
+        .video-carousel-controls {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .video-carousel-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.18);
+            background: rgba(255,255,255,0.06);
+            color: white;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .video-carousel-button:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateY(-1px);
+        }
+
+        .video-carousel-viewport {
+            overflow: hidden;
+            cursor: grab;
+            user-select: none;
+            touch-action: pan-y;
+        }
+
+        .video-carousel-viewport.dragging {
+            cursor: grabbing;
+        }
+
+        .video-carousel-track {
+            display: flex;
+            gap: 1rem;
+            width: max-content;
+            will-change: transform;
+            transition: transform 220ms ease;
+        }
+
+        .video-carousel-card {
+            width: min(32vw, 360px);
+            min-width: 260px;
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.04);
+            box-shadow: 0 12px 26px rgba(0,0,0,0.18);
+        }
+
+        .video-carousel-card .project-marquee-visual {
+            aspect-ratio: 16 / 10;
+        }
+
+        .project-marquee-visual {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(33,150,243,0.2), rgba(26,35,64,0.8));
+        }
+
+        .project-marquee-visual::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.18), transparent 40%, rgba(0,0,0,0.3));
+        }
+
+        .project-marquee-copy {
+            padding: 0.9rem 1rem 1rem;
+            background: rgba(11, 19, 35, 0.82);
+        }
+
+        .project-marquee-copy .eyebrow {
+            color: #9ec5ff;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .project-marquee-copy h4 {
+            margin-top: 0.45rem;
+            font-size: 1.05rem;
+            line-height: 1.2;
+            font-weight: 700;
+            color: white;
+        }
+
+        .project-marquee-copy p {
+            margin-top: 0.45rem;
+            font-size: 0.74rem;
+            line-height: 1.45;
+            color: rgba(226, 232, 240, 0.9);
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -507,19 +655,6 @@
                         duration-200"
                 >
                     About
-                </a>
-
-
-                <a
-                    href="#meeting"
-                    class="text-white
-                        text-base
-                        font-medium
-                        hover:text-blue-400
-                        transition-colors
-                        duration-200"
-                >
-                    Meeting
                 </a>
 
 
@@ -684,22 +819,6 @@
                         transition"
                 >
                     About
-                </a>
-
-                <a
-                    href="#meeting"
-                    class="mobile-nav-link
-                        text-white
-                        text-base
-                        font-medium
-                        px-4
-                        py-3
-                        rounded-xl
-                        hover:bg-white/10
-                        hover:text-blue-400
-                        transition"
-                >
-                    Meeting
                 </a>
 
                 <a
@@ -3908,374 +4027,11 @@ A digital platform designed to help families identify suitable senior care facil
     class="reveal bg-[#1a2340]
            text-white"
 >
-
-    <div
-        class="max-w-[1250px]
-               mx-auto
-               px-8
-               py-20"
-    >
-
-        <div
-            class="grid
-                   lg:grid-cols-2
-                   gap-16
-                   items-center"
-        >
-
-
-
-            <div>
-
-                <h2
-                    class="text-4xl
-                           md:text-5xl
-                           font-bold"
-                >
-
-                    Let's Talk
-
-                </h2>
-
-
-                <p
-                    class="mt-7
-                           text-lg
-                           leading-relaxed
-                           max-w-[520px]"
-                >
-
-                    Interested in working together? Schedule a quick
-                    consultation and let’s discuss how I can support
-                    your business.
-
-                </p>
-
-            </div>
-
-
-
-
-            <div>
-
-                <h3 class="text-2xl font-bold">
-
-                    Schedule a Meeting
-
-                </h3>
-
-
-                <p
-                    class="mt-2
-                           text-lg
-                           leading-relaxed"
-                >
-
-                    Calendly is the recommended option. If it isn’t
-                    convenient, you can also use Google Calendar or Zoom.
-
-                </p>
-
-
-
-                <div
-    class="grid
-           grid-cols-1
-           sm:grid-cols-3
-                           gap-3
-                           sm:gap-4
-                           md:gap-5
-           mt-12"
->
-
-
-
-    <div
-        class="text-center
-               flex
-               flex-col
-               items-center
-               border-2
-               border-blue-400
-               rounded-xl
-               pt-4
-               pb-2
-               px-2
-               relative
-               h-full"
-    >
-
-        <span
-            class="absolute
-                   -top-3
-                   bg-blue-500
-                   text-white
-                   text-[11px]
-                   font-bold
-                   uppercase
-                   tracking-wide
-                   px-3
-                   py-1
-                   rounded-full"
-        >
-            Recommended
-        </span>
-
-        <div
-            class="w-16
-                   h-16
-                   rounded-full
-                   bg-white
-                   flex
-                   items-center
-                   justify-center
-                   overflow-hidden"
-        >
-
-            <img
-                src="image/calendly.png"
-                alt="Calendly logo"
-                class="w-10
-                       h-10
-                       object-contain"
-            >
-
-        </div>
-
-
-        <h4
-            class="font-bold
-                   text-lg
-                   mt-5"
-        >
-            Calendly
-        </h4>
-
-
-        <p
-            class="text-sm
-                   mt-1"
-        >
-            Book with Calendly
-        </p>
-
-
-        <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://calendly.com/almocerajeffreys/meeting"
-            class="inline-flex
-                items-center
-                justify-center
-                gap-2
-                w-full
-                max-w-[240px]
-                sm:max-w-[220px]
-                h-11
-                mt-auto
-                bg-blue-500
-                px-5
-                sm:px-6
-                rounded
-                text-sm
-                text-white
-                whitespace-nowrap
-                hover:bg-blue-600
-                transition"
-        >
-            <i class="fa-regular fa-calendar-check"></i>
-
-            <span>
-                Book on Calendly
-            </span>
-        </a>
-
+    <div class="max-w-[1250px] mx-auto px-8 py-20 text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.28em] text-blue-300">Coming Soon</p>
+        <h2 class="mt-4 text-3xl font-bold sm:text-4xl">AI Prompt &amp; Video Editing</h2>
+        <p class="mt-4 text-base text-slate-200">Release soon.</p>
     </div>
-
-
-
-
-    <div
-        class="text-center
-               flex
-               flex-col
-               items-center
-               border-2
-               border-transparent
-               rounded-xl
-               pt-4
-               pb-2
-               px-2
-               h-full"
-    >
-
-        <div
-            class="w-16
-                   h-16
-                   rounded-full
-                   bg-white
-                   flex
-                   items-center
-                   justify-center
-                   overflow-hidden"
-        >
-
-            <img
-                src="image/google meet.png"
-                alt="Google Calendar logo"
-                class="w-10
-                       h-10
-                       object-contain"
-            >
-
-        </div>
-
-
-        <h4
-            class="font-bold
-                   text-lg
-                   mt-5"
-        >
-            Calendar
-        </h4>
-
-
-        <p
-            class="text-sm
-                   mt-1"
-        >
-            Schedule with Google Calendar
-        </p>
-
-
-        <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://calendar.app.google/q2kLEAwDTheon1js9"
-        class="inline-flex
-            items-center
-            justify-center
-            gap-2
-            w-full
-            max-w-[240px]
-            sm:max-w-[220px]
-            h-11
-            mt-auto
-            bg-blue-500
-            px-5
-            sm:px-6
-            rounded
-            text-sm
-            text-white
-            whitespace-nowrap
-            hover:bg-blue-600
-            transition"
-    >
-        <i class="fa-regular fa-calendar-check"></i>
-
-        <span>
-            Book on Calendar
-        </span>
-    </a>
-
-    </div>
-
-
-
-
-    <div
-        class="text-center
-               flex
-               flex-col
-               items-center
-               border-2
-               border-transparent
-               rounded-xl
-               pt-4
-               pb-2
-               px-2
-               h-full"
-    >
-
-        <div
-            class="w-16
-                   h-16
-                   rounded-full
-                   bg-white
-                   flex
-                   items-center
-                   justify-center
-                   overflow-hidden"
-        >
-
-            <img
-                src="image/zoom.png"
-                alt="Zoom logo"
-                class="w-10
-                       h-10
-                       object-contain"
-            >
-
-        </div>
-
-
-        <h4
-            class="font-bold
-                   text-lg
-                   mt-5"
-        >
-            Zoom
-        </h4>
-
-
-        <p
-            class="text-sm
-                   mt-1"
-        >
-            Schedule a Zoom Meeting
-        </p>
-
-
-        <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://scheduler.zoom.us/jeff-x22szy/-va-consultation"
-            class="inline-flex
-                items-center
-                justify-center
-                gap-2
-                w-full
-                max-w-[240px]
-                sm:max-w-[220px]
-                h-11
-                mt-auto
-                bg-blue-500
-                px-5
-                sm:px-6
-                rounded
-                text-sm
-                text-white
-                whitespace-nowrap
-                hover:bg-blue-600
-                transition"
-        >
-            <i class="fa-regular fa-calendar-check"></i>
-
-            <span>
-                Book on Zoom
-            </span>
-        </a>
-
-    </div>
-
-
-</div>
-            </div>
-
-        </div>
-
-    </div>
-
 </section>
 
 <section id="contact" class="reveal bg-white">
@@ -4309,14 +4065,13 @@ A digital platform designed to help families identify suitable senior care facil
 
                 <p
                     class="mt-5
-                           text-lg
+                           text-sm
                            leading-relaxed
                            max-w-[560px]"
                            style="text-align: justify;"
                 >
 
-                    Prefer not to book a meeting? Feel free to send a direct
-                    message or pick another way to connect with me.
+                    Feel free to reach out directly with any concerns or questions — I respond immediately.
 
                 </p>
 
@@ -4332,12 +4087,8 @@ A digital platform designed to help families identify suitable senior care facil
                 </h2>
 
 
-                <p
-                    class="mt-5
-                        text-lg
-                        leading-relaxed"
-                >
-                    Online <strong>Mon–Fri, 8:00 PM – 5:00 AM PHT (UTC+8)</strong> — overlaps with US business hours.
+                <p class="mt-5 text-sm leading-relaxed max-w-[560px]" style="text-align: justify;">
+                    Please note I'm off on weekends. Response times outside business hours may be longer, with replies sent the next business day.
                 </p>
 
                 <div
@@ -4360,15 +4111,6 @@ A digital platform designed to help families identify suitable senior care facil
                     </p>
                 </div>
 
-                <p
-                        style="text-align: justify;"
-                        class="mt-7
-                        text-lg
-                        leading-relaxed"
-                >
-                    Outside these hours, I’ll reply the next business day.
-                </p>
-
             </div>
 
 
@@ -4384,7 +4126,7 @@ A digital platform designed to help families identify suitable senior care facil
 
 
                 <h3
-                    class="text-3xl
+                    class="text-xl
                            font-bold"
                 >
 
@@ -4407,19 +4149,15 @@ A digital platform designed to help families identify suitable senior care facil
                         aria-label="WhatsApp"
                         title="WhatsApp"
                         class="whatsapp-qr-trigger flex
-                            h-[56px]
-                            w-[56px]
-                            sm:h-[60px]
-                            sm:w-[60px]
-                            md:h-[68px]
-                            md:w-[68px]
+                            h-10
+                            w-10
                             items-center
                             justify-center
                             rounded-lg
                             border
                             border-gray-200
                             bg-white
-                            text-3xl
+                            text-xl
                             text-[#1a2340]
                             shadow-sm
                             hover:bg-gray-100
@@ -4438,19 +4176,15 @@ A digital platform designed to help families identify suitable senior care facil
                         aria-label="Instagram"
                         title="Instagram"
                         class="flex
-                            h-[56px]
-                            w-[56px]
-                            sm:h-[60px]
-                            sm:w-[60px]
-                            md:h-[68px]
-                            md:w-[68px]
+                            h-10
+                            w-10
                             items-center
                             justify-center
                             rounded-lg
                             border
                             border-gray-200
                             bg-white
-                            text-3xl
+                            text-xl
                             text-[#1a2340]
                             shadow-sm
                             hover:bg-gray-100
@@ -4469,19 +4203,15 @@ A digital platform designed to help families identify suitable senior care facil
                         aria-label="LinkedIn"
                         title="LinkedIn"
                         class="flex
-                            h-[56px]
-                            w-[56px]
-                            sm:h-[60px]
-                            sm:w-[60px]
-                            md:h-[68px]
-                            md:w-[68px]
+                            h-10
+                            w-10
                             items-center
                             justify-center
                             rounded-lg
                             border
                             border-gray-200
                             bg-white
-                            text-3xl
+                            text-xl
                             text-[#1a2340]
                             shadow-sm
                             hover:bg-gray-100
@@ -4500,19 +4230,15 @@ A digital platform designed to help families identify suitable senior care facil
                         aria-label="Gmail"
                         title="Gmail"
                         class="flex
-                            h-[56px]
-                            w-[56px]
-                            sm:h-[60px]
-                            sm:w-[60px]
-                            md:h-[68px]
-                            md:w-[68px]
+                            h-10
+                            w-10
                             items-center
                             justify-center
                             rounded-lg
                             border
                             border-gray-200
                             bg-white
-                            text-3xl
+                            text-xl
                             text-[#1a2340]
                             shadow-sm
                             hover:bg-gray-100
@@ -4532,19 +4258,15 @@ A digital platform designed to help families identify suitable senior care facil
                         aria-label="GitHub"
                         title="GitHub"
                         class="flex
-                            h-[56px]
-                            w-[56px]
-                            sm:h-[60px]
-                            sm:w-[60px]
-                            md:h-[68px]
-                            md:w-[68px]
+                            h-10
+                            w-10
                             items-center
                             justify-center
                             rounded-lg
                             border
                             border-gray-200
                             bg-white
-                            text-3xl
+                            text-xl
                             text-[#1a2340]
                             shadow-sm
                             hover:bg-gray-100
@@ -4555,6 +4277,54 @@ A digital platform designed to help families identify suitable senior care facil
 
                     </a>
 
+                </div>
+
+                <div class="mt-6 rounded-xl border border-gray-200 bg-[#f9fbff] p-3.5 shadow-sm">
+                    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#1a2340]">Schedule a Meeting</p>
+                    <p class="mt-1.5 text-sm leading-relaxed text-slate-700">
+                        Prefer to talk live? Choose one of the options below.
+                    </p>
+
+                    <div class="mt-3 space-y-2">
+                        <a
+                            href="https://calendly.com/almocerajeffreys/meeting"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="flex items-center justify-between gap-3 rounded-lg border border-blue-200 bg-white px-3 py-2.5 text-xs font-medium text-[#1a2340] transition hover:border-blue-400 hover:bg-blue-50"
+                        >
+                            <span class="flex items-center gap-2">
+                                <img src="image/calendly.png" alt="Calendly" class="h-6 w-6 rounded-full bg-white object-contain p-1">
+                                Calendly
+                            </span>
+                            <i class="fa-regular fa-calendar-check text-blue-500"></i>
+                        </a>
+
+                        <a
+                            href="https://calendar.app.google/q2kLEAwDTheon1js9"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="flex items-center justify-between gap-3 rounded-lg border border-blue-200 bg-white px-3 py-2.5 text-xs font-medium text-[#1a2340] transition hover:border-blue-400 hover:bg-blue-50"
+                        >
+                            <span class="flex items-center gap-2">
+                                <img src="image/google meet.png" alt="Google Calendar" class="h-6 w-6 rounded-full bg-white object-contain p-1">
+                                Google Calendar
+                            </span>
+                            <i class="fa-regular fa-calendar-check text-blue-500"></i>
+                        </a>
+
+                        <a
+                            href="https://scheduler.zoom.us/jeff-x22szy/-va-consultation"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="flex items-center justify-between gap-3 rounded-lg border border-blue-200 bg-white px-3 py-2.5 text-xs font-medium text-[#1a2340] transition hover:border-blue-400 hover:bg-blue-50"
+                        >
+                            <span class="flex items-center gap-2">
+                                <img src="image/zoom.png" alt="Zoom" class="h-6 w-6 rounded-full bg-white object-contain p-1">
+                                Zoom
+                            </span>
+                            <i class="fa-regular fa-calendar-check text-blue-500"></i>
+                        </a>
+                    </div>
                 </div>
 
             </div>
@@ -5075,6 +4845,82 @@ A digital platform designed to help families identify suitable senior care facil
     </script>
     <script src="js/project-filter.js"></script>
     <script src="js/reveal.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const videoCarousels = document.querySelectorAll("[data-carousel]");
+
+            videoCarousels.forEach((carousel) => {
+                const viewport = carousel.querySelector(".video-carousel-viewport");
+                const track = carousel.querySelector(".video-carousel-track");
+                const prevBtn = carousel.parentElement.querySelector("[data-direction='prev']");
+                const nextBtn = carousel.parentElement.querySelector("[data-direction='next']");
+
+                if (!viewport || !track || !prevBtn || !nextBtn) return;
+
+                let currentIndex = 0;
+                let startX = 0;
+                let startScroll = 0;
+                let isDragging = false;
+
+                const getCardWidth = () => {
+                    const firstCard = track.querySelector(".video-carousel-card");
+                    return firstCard ? firstCard.getBoundingClientRect().width + 16 : 320;
+                };
+
+                const clampIndex = (value) => {
+                    const maxIndex = Math.max(track.children.length - 1, 0);
+                    return Math.min(Math.max(value, 0), maxIndex);
+                };
+
+                const updatePosition = (index) => {
+                    const cardWidth = getCardWidth();
+                    currentIndex = clampIndex(index);
+                    const move = currentIndex * cardWidth;
+                    track.style.transform = `translateX(-${move}px)`;
+                };
+
+                prevBtn.addEventListener("click", () => updatePosition(currentIndex - 1));
+                nextBtn.addEventListener("click", () => updatePosition(currentIndex + 1));
+
+                viewport.addEventListener("pointerdown", (event) => {
+                    isDragging = true;
+                    startX = event.clientX;
+                    startScroll = currentIndex * getCardWidth();
+                    viewport.classList.add("dragging");
+                    viewport.setPointerCapture(event.pointerId);
+                });
+
+                viewport.addEventListener("pointermove", (event) => {
+                    if (!isDragging) return;
+                    const delta = event.clientX - startX;
+                    const cardWidth = getCardWidth();
+                    const pull = Math.min(Math.max(delta * 0.9, -cardWidth * 1.4), cardWidth * 1.4);
+                    const targetMove = startScroll - pull;
+                    track.style.transform = `translateX(-${targetMove}px)`;
+                });
+
+                const finishDrag = () => {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    viewport.classList.remove("dragging");
+                    const delta = startX - (window.event ? window.event.clientX : startX);
+                    const cardWidth = getCardWidth();
+                    const threshold = cardWidth * 0.2;
+                    const direction = (delta > threshold) ? 1 : (delta < -threshold) ? -1 : 0;
+                    if (direction !== 0) {
+                        updatePosition(currentIndex + direction);
+                    } else {
+                        updatePosition(currentIndex);
+                    }
+                };
+
+                viewport.addEventListener("pointerup", finishDrag);
+                viewport.addEventListener("pointerleave", finishDrag);
+                viewport.addEventListener("pointercancel", finishDrag);
+                updatePosition(0);
+            });
+        });
+    </script>
 
 </body>
 
