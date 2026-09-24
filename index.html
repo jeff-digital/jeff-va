@@ -22,6 +22,7 @@
     <meta name="robots" content="index, follow">
     
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/page-overrides.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,549 +50,6 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            width: 100%;
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-
-        *:not([class*="fa-"]) {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
-        }
-
-        .tool-chip-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 0.75rem;
-            min-width: 0;
-        }
-
-        .tool-panel {
-            min-width: 0;
-        }
-
-        @media (min-width: 768px) {
-            .tool-chip-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-        }
-
-        .tool-chip {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 0.5rem;
-            min-width: 0;
-            width: 100%;
-            text-align: left;
-            white-space: normal;
-            line-height: 1.25;
-            overflow-wrap: anywhere;
-            word-break: break-word;
-            font-size: 0.75rem;
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-        }
-
-        #about .mt-9 .grid .flex span {
-            font-size: 0.72rem;
-        }
-
-        #about .mt-9 .grid .flex i {
-            font-size: 0.95rem;
-        }
-
-        @media (max-width: 767px) {
-            .tool-chip {
-                font-size: 0.68rem;
-                padding-left: 0.625rem;
-                padding-right: 0.625rem;
-            }
-        }
-
-        .tool-chip img {
-            flex-shrink: 0;
-            display: block;
-        }
-
-        #project-panel-website {
-            width: 100%;
-            max-width: 100%;
-            overflow: hidden;
-        }
-
-        #project-panel-website .grid {
-            width: 100%;
-            max-width: 100%;
-        }
-
-        #project-panel-website .group {
-            aspect-ratio: 16 / 10;
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            min-height: 0;
-        }
-
-        #project-panel-website .group > div:last-child {
-            opacity: 1;
-            transform: none;
-            padding: 0.875rem;
-        }
-
-        #project-panel-website .group > div:last-child span {
-            font-size: 0.6rem;
-            line-height: 1.2;
-        }
-
-        #project-panel-website .group > div:last-child h4 {
-            margin-top: 0.25rem;
-            font-size: 1rem;
-            line-height: 1.25;
-        }
-
-        #project-panel-website .group > div:last-child p {
-            margin-top: 0.35rem;
-            font-size: 0.7rem;
-            line-height: 1.35;
-        }
-
-        /* Administration projects use compact editorial cards instead of image overlays. */
-        #project-panel-administration > .grid {
-            gap: 2.5rem;
-        }
-
-        #project-panel-administration > .grid > div {
-            position: relative;
-            padding: 0;
-            background: transparent;
-            border: 0;
-            border-radius: 0;
-        }
-
-        #project-panel-administration > .grid > div > span {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #2196f3;
-            font-size: 0.65rem;
-            font-weight: 800;
-            letter-spacing: 0.14em;
-        }
-
-        #project-panel-administration > .grid > div > span::before {
-            content: "";
-            width: 1.75rem;
-            height: 1.75rem;
-            border-radius: 0.5rem;
-            background: #e8f4ff;
-            box-shadow: inset 0 0 0 1px #cfe8fc;
-        }
-
-        #project-panel-administration > .grid > div > span::after {
-            display: none;
-        }
-
-        #project-panel-administration > .grid > div > h4 {
-            min-height: 0;
-            margin-top: 0.35rem;
-            font-size: 1.45rem;
-            line-height: 1.2;
-        }
-
-        #project-panel-administration > .grid > div > h4::after {
-            display: block;
-            margin-top: 0.25rem;
-            color: #667085;
-            font-size: 0.7rem;
-            font-weight: 500;
-            line-height: 1.35;
-        }
-
-        #project-panel-administration > .grid > div:nth-child(1) > h4::after {
-            content: "Helping businesses stay organized and productive.";
-        }
-
-        #project-panel-administration > .grid > div:nth-child(2) > h4::after {
-            content: "Creating clean, professional, on-brand visuals.";
-        }
-
-        #project-panel-administration > .grid > div:nth-child(3) > h4::after {
-            content: "Helping brands grow through clear, engaging content.";
-        }
-
-        #project-panel-administration > .grid > div > .grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 1rem;
-            margin-top: 0.85rem;
-        }
-
-        #project-panel-administration .group {
-            display: flex;
-            flex-direction: column;
-            aspect-ratio: auto;
-            min-height: 0;
-            overflow: hidden;
-            border: 1px solid #e6ebf1;
-            border-radius: 0.8rem;
-            background: #fff;
-            box-shadow: 0 5px 18px rgba(26, 35, 64, 0.06);
-            transition: transform 180ms ease, box-shadow 180ms ease;
-        }
-
-        #project-panel-administration .group:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 26px rgba(26, 35, 64, 0.12);
-        }
-
-        #project-panel-administration .group > div:first-child {
-            position: relative;
-            inset: auto;
-            display: block;
-            height: 14rem;
-            flex: 0 0 auto;
-            overflow: hidden;
-            background: #f5f8fb;
-        }
-
-        /* Graphic Design and Social Media cards place their image directly in the card. */
-        #project-panel-administration .group > img:first-child {
-            position: relative !important;
-            inset: auto !important;
-            display: block !important;
-            width: 100%;
-            height: 14rem !important;
-            flex: 0 0 auto;
-            object-fit: cover;
-        }
-
-        #project-panel-administration .group:has(> img:first-child) {
-            height: auto !important;
-            aspect-ratio: auto !important;
-            overflow: visible;
-        }
-
-        #project-panel-administration .group > img:first-child + div + div {
-            position: relative !important;
-            inset: auto !important;
-            display: block !important;
-            min-height: 9.3rem !important;
-        }
-
-        #project-panel-administration .group img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 300ms ease;
-        }
-
-        #project-panel-administration .group:hover img {
-            transform: scale(1.035);
-        }
-
-        #project-panel-administration .group > div:nth-child(2) {
-            display: none;
-        }
-
-        #project-panel-administration .group > div:last-child {
-            position: static;
-            inset: auto;
-            display: block;
-            min-height: 9.3rem;
-            padding: 0.75rem 0.85rem 0.85rem;
-            color: #1a2340;
-        }
-
-        #project-panel-administration .group > div:last-child span {
-            display: block;
-            color: #1a2340;
-            font-size: 0.78rem;
-            font-weight: 800;
-            line-height: 1.25;
-            white-space: normal;
-        }
-
-        #project-panel-administration .group > div:last-child p {
-            display: -webkit-box;
-            overflow: hidden;
-            margin-top: 0.35rem;
-            color: #667085;
-            font-size: 0.67rem;
-            line-height: 1.35;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
-            line-clamp: 2;
-        }
-
-        #project-panel-administration .project-card-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.3rem;
-            margin-top: 0.55rem;
-        }
-
-        #project-panel-administration .group > div:last-child .project-card-tags span {
-            display: inline-flex;
-            width: auto;
-            padding: 0.18rem 0.4rem;
-            border-radius: 999px;
-            background: #edf6ff;
-            color: #2176b8;
-            font-size: 0.55rem;
-            font-weight: 700;
-            line-height: 1.15;
-        }
-
-        #project-panel-administration .group > div:last-child .project-card-action {
-            display: none;
-            margin-top: 0.55rem;
-            color: #1f70ac;
-            font-size: 0.64rem;
-            font-weight: 800;
-            line-height: 1;
-        }
-
-        @media (max-width: 639px) {
-            #project-panel-administration > .grid > div > .grid {
-                gap: 0.75rem;
-            }
-
-            #project-panel-administration .group > div:first-child,
-            #project-panel-administration .group > img:first-child {
-                height: 7rem !important;
-            }
-
-            #project-panel-administration .group > div:last-child {
-                min-height: 8.1rem;
-                padding: 0.65rem;
-            }
-
-            #project-panel-administration .group > div:last-child p {
-                font-size: 0.62rem;
-            }
-
-            #project-panel-administration .project-card-tags {
-                gap: 0.25rem;
-                margin-top: 0.45rem;
-            }
-
-            #project-panel-administration > .grid > div > span::after {
-                display: none;
-            }
-        }
-
-        @media (min-width: 640px) {
-            #project-panel-administration > .grid > div > .grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (min-width: 1024px) {
-            #project-panel-administration > .grid > div > .grid {
-                grid-template-columns: repeat(5, minmax(0, 1fr));
-            }
-        }
-
-        @keyframes project-slide-from-right {
-            from {
-                opacity: 0;
-                transform: translateX(4rem);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes project-slide-from-left {
-            from {
-                opacity: 0;
-                transform: translateX(-4rem);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes marquee-scroll {
-            from {
-                transform: translateX(0);
-            }
-            to {
-                transform: translateX(-50%);
-            }
-        }
-
-        .project-panel-slide-from-right {
-            animation: project-slide-from-right 500ms ease-out both;
-            will-change: transform, opacity;
-        }
-
-        .project-panel-slide-from-left {
-            animation: project-slide-from-left 500ms ease-out both;
-            will-change: transform, opacity;
-        }
-
-        .project-marquee {
-            position: relative;
-            overflow: hidden;
-            mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-        }
-
-        .project-marquee-track {
-            display: flex;
-            width: max-content;
-            will-change: transform;
-        }
-
-        .project-marquee[data-scroll="true"] .project-marquee-track {
-            animation: marquee-scroll 60s linear infinite;
-        }
-
-        .project-marquee-card {
-            width: min(24vw, 280px);
-            min-width: 220px;
-            margin-right: 1rem;
-            border-radius: 1rem;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.12);
-            background: rgba(255,255,255,0.04);
-            box-shadow: 0 14px 32px rgba(0,0,0,0.18);
-        }
-
-        .project-marquee-card.portrait .project-marquee-visual {
-            aspect-ratio: 3 / 4;
-        }
-
-        .project-marquee-card.landscape .project-marquee-visual {
-            aspect-ratio: 16 / 10;
-        }
-
-        .video-carousel {
-            position: relative;
-        }
-
-        .video-carousel-controls {
-            display: flex;
-            justify-content: flex-end;
-            gap: 0.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .video-carousel-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 2.25rem;
-            height: 2.25rem;
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.18);
-            background: rgba(255,255,255,0.06);
-            color: white;
-            transition: background 0.2s ease, transform 0.2s ease;
-        }
-
-        .video-carousel-button:hover {
-            background: rgba(255,255,255,0.12);
-            transform: translateY(-1px);
-        }
-
-        .video-carousel-viewport {
-            overflow: hidden;
-            cursor: grab;
-            user-select: none;
-            touch-action: pan-y;
-        }
-
-        .video-carousel-viewport.dragging {
-            cursor: grabbing;
-        }
-
-        .video-carousel-track {
-            display: flex;
-            gap: 1rem;
-            width: max-content;
-            will-change: transform;
-            transition: transform 220ms ease;
-        }
-
-        .video-carousel-card {
-            width: min(32vw, 360px);
-            min-width: 260px;
-            border-radius: 1rem;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.12);
-            background: rgba(255,255,255,0.04);
-            box-shadow: 0 12px 26px rgba(0,0,0,0.18);
-        }
-
-        .video-carousel-card .project-marquee-visual {
-            aspect-ratio: 16 / 10;
-        }
-
-        .project-marquee-visual {
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, rgba(33,150,243,0.2), rgba(26,35,64,0.8));
-        }
-
-        .project-marquee-visual::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(255,255,255,0.18), transparent 40%, rgba(0,0,0,0.3));
-        }
-
-        .project-marquee-copy {
-            padding: 0.9rem 1rem 1rem;
-            background: rgba(11, 19, 35, 0.82);
-        }
-
-        .project-marquee-copy .eyebrow {
-            color: #9ec5ff;
-            font-size: 0.62rem;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-        }
-
-        .project-marquee-copy h4 {
-            margin-top: 0.45rem;
-            font-size: 1.05rem;
-            line-height: 1.2;
-            font-weight: 700;
-            color: white;
-        }
-
-        .project-marquee-copy p {
-            margin-top: 0.45rem;
-            font-size: 0.74rem;
-            line-height: 1.45;
-            color: rgba(226, 232, 240, 0.9);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .project-panel-slide-from-right,
-            .project-panel-slide-from-left {
-                animation: none;
-            }
-
-            #project-panel-administration .group > div:last-child {
-                transition: none;
-                transform: none;
-            }
-
-        }
-    </style>
 
 </head>
 
@@ -4027,11 +3485,171 @@ A digital platform designed to help families identify suitable senior care facil
     class="reveal bg-[#1a2340]
            text-white"
 >
-    <div class="max-w-[1250px] mx-auto px-8 py-20 text-center">
-        <p class="text-xs font-semibold uppercase tracking-[0.28em] text-blue-300">Coming Soon</p>
-        <h2 class="mt-4 text-3xl font-bold sm:text-4xl">AI Prompt &amp; Video Editing</h2>
-        <p class="mt-4 text-base text-slate-200">Release soon.</p>
+
+    <div
+        class="max-w-[1250px]
+               mx-auto
+               px-8
+               py-16"
+    >
+
+        <div class="space-y-10">
+
+            <div>
+                <div class="mb-4">
+                    <p class="text-xs font-semibold uppercase tracking-[0.22em] text-blue-300">
+                        AI Prompt
+                    </p>
+                    <p class="mt-2 text-sm text-slate-300">Project List</p>
+                </div>
+
+                <div class="project-marquee" data-scroll="false">
+                    <div class="project-marquee-track">
+
+                        <div class="project-marquee-card portrait">
+                            <div class="project-marquee-visual aspect-[3/4]">
+                                <video autoplay muted loop playsinline preload="metadata">
+                                    <source src="project/aiprompt/marketing.mp4" type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="project-marquee-copy">
+                                <span class="eyebrow">Prompt</span>
+                                <h4>Marketing Copy</h4>
+                                <p>High-converting copy prompts for captions, ads, and landing pages.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-marquee-card portrait">
+                            <div class="project-marquee-visual aspect-[3/4] bg-gradient-to-br from-[#1f2937] via-[#374151] to-[#a5b4fc]"></div>
+                            <div class="project-marquee-copy">
+                                <span class="eyebrow">Prompt</span>
+                                <h4>Content System</h4>
+                                <p>Reusable AI prompts for managing marketing content at scale.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-marquee-card portrait">
+                            <div class="project-marquee-visual aspect-[3/4]">
+                                <video autoplay muted loop playsinline preload="metadata">
+                                    <source src="project/aiprompt/campaign.mp4" type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="project-marquee-copy">
+                                <span class="eyebrow">Prompt</span>
+                                <h4>Brand Campaign</h4>
+                                <p>Creative prompts for stories, posts, and short-form content.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-marquee-card portrait">
+                            <div class="project-marquee-visual aspect-[3/4] bg-gradient-to-br from-[#0f172a] via-[#1d4ed8] to-[#93c5fd]"></div>
+                            <div class="project-marquee-copy">
+                                <span class="eyebrow">Prompt</span>
+                                <h4>Social Growth</h4>
+                                <p>Hook ideas and content planning designed to boost engagement.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-marquee-card portrait">
+                            <div class="project-marquee-visual aspect-[3/4]">
+                                <video autoplay muted loop playsinline preload="metadata">
+                                    <source src="project/aiprompt/productlaunch.mp4" type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="project-marquee-copy">
+                                <span class="eyebrow">Prompt</span>
+                                <h4>Product Launch</h4>
+                                <p>Launch-ready prompts for campaigns, demos, and product teasers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="mb-4 flex items-center justify-between gap-3">
+                    <div>
+                        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-blue-300">
+                            Video Editing
+                        </p>
+                        <p class="mt-2 text-sm text-slate-300">Project List</p>
+                    </div>
+
+                    <div class="video-carousel-controls">
+                        <button type="button" class="video-carousel-button" data-direction="prev" aria-label="View previous video edits">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <button type="button" class="video-carousel-button" data-direction="next" aria-label="View next video edits">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="video-carousel" data-carousel>
+                    <div class="video-carousel-viewport">
+                        <div class="video-carousel-track">
+                            <div class="video-carousel-card">
+                                <div class="project-marquee-visual aspect-[16/10] bg-gradient-to-br from-[#1a2340] via-[#3b82f6] to-[#7dd3fc]"></div>
+                                <div class="project-marquee-copy">
+                                    <span class="eyebrow">Video</span>
+                                    <h4>Reel Edit</h4>
+                                    <p>Short-form edits built for attention, clarity and engagement.</p>
+                                </div>
+                            </div>
+
+                            <div class="video-carousel-card">
+                                <div class="project-marquee-visual aspect-[16/10] bg-gradient-to-br from-[#172554] via-[#312e81] to-[#a78bfa]"></div>
+                                <div class="project-marquee-copy">
+                                    <span class="eyebrow">Video</span>
+                                    <h4>Podcast Cut</h4>
+                                    <p>Clean, polished edits for interviews and branded storytelling.</p>
+                                </div>
+                            </div>
+
+                            <div class="video-carousel-card">
+                                <div class="project-marquee-visual aspect-[16/10] bg-gradient-to-br from-[#0f172a] via-[#0ea5e9] to-[#dbeafe]"></div>
+                                <div class="project-marquee-copy">
+                                    <span class="eyebrow">Video</span>
+                                    <h4>Ad Campaign</h4>
+                                    <p>Dynamic promotional edits designed to convert attention into action.</p>
+                                </div>
+                            </div>
+
+                            <div class="video-carousel-card">
+                                <div class="project-marquee-visual aspect-[16/10] bg-gradient-to-br from-[#164e63] via-[#0f766e] to-[#99f6e4]"></div>
+                                <div class="project-marquee-copy">
+                                    <span class="eyebrow">Video</span>
+                                    <h4>Social Promo</h4>
+                                    <p>Fast, scroll-stopping edits optimized for content platforms.</p>
+                                </div>
+                            </div>
+
+                            <div class="video-carousel-card">
+                                <div class="project-marquee-visual aspect-[16/10] bg-gradient-to-br from-[#1f2937] via-[#475569] to-[#bfdbfe]"></div>
+                                <div class="project-marquee-copy">
+                                    <span class="eyebrow">Video</span>
+                                    <h4>Brand Reel</h4>
+                                    <p>Branded motion edits that keep your message consistent and clear.</p>
+                                </div>
+                            </div>
+
+                            <div class="video-carousel-card">
+                                <div class="project-marquee-visual aspect-[16/10] bg-gradient-to-br from-[#1a2340] via-[#3b82f6] to-[#7dd3fc]"></div>
+                                <div class="project-marquee-copy">
+                                    <span class="eyebrow">Video</span>
+                                    <h4>Reel Edit</h4>
+                                    <p>Short-form edits built for attention, clarity and engagement.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
+
 </section>
 
 <section id="contact" class="reveal bg-white">
@@ -4126,7 +3744,7 @@ A digital platform designed to help families identify suitable senior care facil
 
 
                 <h3
-                    class="text-xl
+                    class="text-2xl
                            font-bold"
                 >
 
@@ -4280,9 +3898,9 @@ A digital platform designed to help families identify suitable senior care facil
                 </div>
 
                 <div class="mt-6 rounded-xl border border-gray-200 bg-[#f9fbff] p-3.5 shadow-sm">
-                    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#1a2340]">Schedule a Meeting</p>
-                    <p class="mt-1.5 text-sm leading-relaxed text-slate-700">
-                        Prefer to talk live? Choose one of the options below.
+                    <p class="text-sm font-semibold uppercase tracking-[0.18em] text-[#1a2340]">Schedule a Meeting</p>
+                    <p class="mt-1.5 text-base leading-relaxed text-slate-700">
+                        Select your preferred option below to schedule a meeting.
                     </p>
 
                     <div class="mt-3 space-y-2">
