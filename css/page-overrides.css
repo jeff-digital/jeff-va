@@ -390,7 +390,16 @@ body {
 
 .project-marquee {
     position: relative;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+}
+
+.project-marquee::-webkit-scrollbar {
+    display: none;
 }
 
 .project-marquee-track {
@@ -399,32 +408,16 @@ body {
     will-change: transform;
 }
 
-@media (max-width: 767px) {
-    .project-marquee {
-        overflow-x: auto;
-        overflow-y: hidden;
-        scrollbar-width: none;
-        -webkit-overflow-scrolling: touch;
-        touch-action: pan-x;
-    }
-
-    .project-marquee::-webkit-scrollbar {
-        display: none;
-    }
-
-    .project-marquee-card {
-        flex: 0 0 auto;
-    }
-}
-
 .project-marquee[data-scroll="true"] .project-marquee-track {
     animation: marquee-scroll 60s linear infinite;
 }
 
 .project-marquee-card {
-    width: min(15vw, 190px);
-    min-width: 145px;
+    flex: 0 0 auto;
+    width: min(20vw, 240px);
+    min-width: 180px;
     margin-right: 1rem;
+    scroll-snap-align: start;
     border-radius: 1rem;
     overflow: hidden;
     border: 1px solid rgba(255,255,255,0.12);

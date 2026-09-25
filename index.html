@@ -363,7 +363,7 @@
                             leading-tight
                             mb-3"
                     >
-                        Jeffrey Almoceraa
+                        Jeffrey Almocera
                     </h5>
 
                     <p
@@ -3471,36 +3471,37 @@ A digital platform designed to help families identify suitable senior care facil
 
         <div class="space-y-10">
 
-            <div>
-                <div class="mb-4">
-                    <p class="text-xs font-semibold uppercase tracking-[0.22em] text-blue-300">
-                        AI Prompt
-                    </p>
-                    <p class="mt-2 text-sm text-slate-300">Project List</p>
+            <div data-project-marquee-carousel>
+                <div class="mb-4 flex items-center justify-between gap-3">
+                    <div>
+                        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-blue-300">
+                            AI Prompt
+                        </p>
+                        <p class="mt-2 text-sm text-slate-300">Project List</p>
+                    </div>
+                    <div class="video-carousel-controls">
+                        <button type="button" class="video-carousel-button" data-marquee-direction="prev" aria-label="View previous AI Prompt projects">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <button type="button" class="video-carousel-button" data-marquee-direction="next" aria-label="View next AI Prompt projects">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
                 </div>
 
-                <div class="project-marquee" data-scroll="false">
+                <div class="project-marquee" data-scroll="false" data-project-marquee>
                     <div class="project-marquee-track">
 
                         <div class="project-marquee-card portrait">
                             <div class="project-marquee-visual aspect-[3/4]">
                                 <video autoplay muted loop playsinline preload="metadata">
-                                    <source src="project/aiprompt/marketing.mp4" type="video/mp4" />
+                                    <source src="project/aiprompt/productlaunch.mp4" type="video/mp4" />
                                 </video>
                             </div>
                             <div class="project-marquee-copy">
                                 <span class="eyebrow">Prompt</span>
-                                <h4>Marketing Copy</h4>
-                                <p>High-converting copy prompts for captions, ads, and landing pages.</p>
-                            </div>
-                        </div>
-
-                        <div class="project-marquee-card portrait">
-                            <div class="project-marquee-visual aspect-[3/4] bg-gradient-to-br from-[#1f2937] via-[#374151] to-[#a5b4fc]"></div>
-                            <div class="project-marquee-copy">
-                                <span class="eyebrow">Prompt</span>
-                                <h4>Content System</h4>
-                                <p>Reusable AI prompts for managing marketing content at scale.</p>
+                                <h4>Product Launch</h4>
+                                <p>Launch-ready prompts for campaigns, demos, and product teasers.</p>
                             </div>
                         </div>
 
@@ -3533,13 +3534,35 @@ A digital platform designed to help families identify suitable senior care facil
                         <div class="project-marquee-card portrait">
                             <div class="project-marquee-visual aspect-[3/4]">
                                 <video autoplay muted loop playsinline preload="metadata">
-                                    <source src="project/aiprompt/productlaunch.mp4" type="video/mp4" />
+                                    <source src="project/aiprompt/marketing.mp4" type="video/mp4" />
                                 </video>
                             </div>
                             <div class="project-marquee-copy">
                                 <span class="eyebrow">Prompt</span>
-                                <h4>Product Launch</h4>
-                                <p>Launch-ready prompts for campaigns, demos, and product teasers.</p>
+                                <h4>Marketing Copy</h4>
+                                <p>High-converting copy prompts for captions, ads, and landing pages.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-marquee-card portrait">
+                            <div class="project-marquee-visual aspect-[3/4] bg-gradient-to-br from-[#1f2937] via-[#374151] to-[#a5b4fc]"></div>
+                            <div class="project-marquee-copy">
+                                <span class="eyebrow">Prompt</span>
+                                <h4>Content System</h4>
+                                <p>Reusable AI prompts for managing marketing content at scale.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-marquee-card portrait">
+                            <div class="project-marquee-visual aspect-[3/4]">
+                                <video autoplay muted loop playsinline preload="metadata">
+                                    <source src="project/aiprompt/ads.mp4" type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="project-marquee-copy">
+                                <span class="eyebrow">Prompt</span>
+                                <h4>Ad Creative</h4>
+                                <p>AI prompts for scroll-stopping ad concepts and campaign creatives.</p>
                             </div>
                         </div>
                     </div>
@@ -3629,7 +3652,7 @@ A digital platform designed to help families identify suitable senior care facil
                             <div class="video-carousel-card">
                                 <div class="project-marquee-visual aspect-[16/10]">
                                     <video autoplay muted loop playsinline preload="metadata">
-                                        <source src="project/videoedit/community.mp4" type="video/mp4" />
+                                        <source src="https://media.jeffdigi.com/community.mp4" type="video/mp4" />
                                     </video>
                                 </div>
                                 <div class="project-marquee-copy">
@@ -4533,6 +4556,24 @@ A digital platform designed to help families identify suitable senior care facil
                 viewport.addEventListener("pointerleave", finishDrag);
                 viewport.addEventListener("pointercancel", finishDrag);
                 updatePosition(0);
+            });
+
+            document.querySelectorAll("[data-project-marquee-carousel]").forEach((carousel) => {
+                const viewport = carousel.querySelector("[data-project-marquee]");
+                const previousButton = carousel.querySelector("[data-marquee-direction='prev']");
+                const nextButton = carousel.querySelector("[data-marquee-direction='next']");
+                const firstCard = viewport?.querySelector(".project-marquee-card");
+
+                if (!viewport || !previousButton || !nextButton || !firstCard) return;
+
+                const getStep = () => firstCard.getBoundingClientRect().width + 16;
+
+                previousButton.addEventListener("click", () => {
+                    viewport.scrollBy({ left: -getStep(), behavior: "smooth" });
+                });
+                nextButton.addEventListener("click", () => {
+                    viewport.scrollBy({ left: getStep(), behavior: "smooth" });
+                });
             });
         });
     </script>
