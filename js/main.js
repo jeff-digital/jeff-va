@@ -180,10 +180,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (video) {
                     if (isActive) {
                         video.muted = false;
-                        video.volume = 0;
-                        video.play().catch(() => {});
-                        fadeVolume(video, 1);
+                        video.volume = 1;
+                        video.currentTime = Math.min(video.currentTime, video.duration || video.currentTime || 0);
+                        const playPromise = video.play();
+                        if (playPromise && typeof playPromise.catch === "function") {
+                            playPromise.catch(() => {});
+                        }
                     } else {
+                        video.pause();
                         video.muted = true;
                         video.volume = 0;
                     }
@@ -201,12 +205,25 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         };
 
+        const activateCurrentCardAudio = () => {
+            const activeVideo = track.querySelectorAll(".video-carousel-card")[currentIndex]?.querySelector("video");
+            if (!activeVideo) return;
+
+            activeVideo.muted = false;
+            activeVideo.volume = 1;
+            const playPromise = activeVideo.play();
+            if (playPromise && typeof playPromise.catch === "function") {
+                playPromise.catch(() => {});
+            }
+        };
+
         const updatePosition = (index) => {
             const cardWidth = getCardWidth();
             currentIndex = clampIndex(index);
             const move = currentIndex * cardWidth;
             track.style.transform = `translateX(-${move}px)`;
             syncVideoAudio();
+            requestAnimationFrame(() => activateCurrentCardAudio());
         };
 
         Array.from(track.querySelectorAll(".video-carousel-card")).forEach((card) => {
@@ -232,8 +249,14 @@ document.addEventListener("DOMContentLoaded", () => {
             video.playsInline = true;
         });
 
-        prevBtn.addEventListener("click", () => updatePosition(currentIndex - 1));
-        nextBtn.addEventListener("click", () => updatePosition(currentIndex + 1));
+        prevBtn.addEventListener("click", () => {
+            updatePosition(currentIndex - 1);
+            activateCurrentCardAudio();
+        });
+        nextBtn.addEventListener("click", () => {
+            updatePosition(currentIndex + 1);
+            activateCurrentCardAudio();
+        });
 
         viewport.addEventListener("pointerdown", (event) => {
             isDragging = true;
@@ -242,6 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
             startScroll = currentIndex * getCardWidth();
             viewport.classList.add("dragging");
             viewport.setPointerCapture(event.pointerId);
+            activateCurrentCardAudio();
         });
 
         viewport.addEventListener("pointermove", (event) => {
@@ -267,7 +291,31 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 updatePosition(currentIndex);
             }
+            requestAnimationFrame(() => activateCurrentCardAudio());
         };
+
+        const visibilityObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                const videos = Array.from(track.querySelectorAll("video"));
+
+                videos.forEach((video) => {
+                    if (entry.isIntersecting) {
+                        video.play().catch(() => {});
+                    } else {
+                        video.pause();
+                    }
+                });
+
+                if (entry.isIntersecting) {
+                    syncVideoAudio();
+                }
+            });
+        }, {
+            threshold: 0.25,
+            rootMargin: "0px 0px -10% 0px"
+        });
+
+        visibilityObserver.observe(viewport);
 
         viewport.addEventListener("pointerup", finishDrag);
         viewport.addEventListener("pointerleave", finishDrag);
@@ -284,6 +332,31 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!viewport || !previousButton || !nextButton || !firstCard) return;
 
         const getStep = () => firstCard.getBoundingClientRect().width + 16;
+
+        const pauseHiddenVideos = () => {
+            const videos = Array.from(viewport.querySelectorAll("video"));
+            videos.forEach((video) => {
+                video.pause();
+            });
+        };
+
+        const visibilityObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const videos = Array.from(viewport.querySelectorAll("video"));
+                    videos.forEach((video) => {
+                        video.play().catch(() => {});
+                    });
+                } else {
+                    pauseHiddenVideos();
+                }
+            });
+        }, {
+            threshold: 0.25,
+            rootMargin: "0px 0px -10% 0px"
+        });
+
+        visibilityObserver.observe(viewport);
 
         previousButton.addEventListener("click", () => {
             viewport.scrollBy({ left: -getStep(), behavior: "smooth" });
