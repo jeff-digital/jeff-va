@@ -1,18 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
-
     const revealTargets = document.querySelectorAll("section:not(#home)");
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const revealSection = (element) => {
+        element.classList.add("show");
+        observer.unobserve(element);
+    };
 
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add("show");
-                    observer.unobserve(entry.target);
+                    revealSection(entry.target);
                 }
             });
         },
         {
-            threshold: 0.15
+            threshold: 0.12,
+            rootMargin: "0px 0px -8% 0px"
         }
     );
 
@@ -20,14 +26,21 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!element.classList.contains("reveal")) {
             element.classList.add("reveal");
         }
+
+        if (prefersReducedMotion) {
+            element.classList.add("show");
+            return;
+        }
+
         observer.observe(element);
     });
 
     if (window.location.hash === "#projects") {
         const projectsSection = document.getElementById("projects");
         if (projectsSection) {
-            projectsSection.classList.add("show");
+            requestAnimationFrame(() => {
+                projectsSection.classList.add("show");
+            });
         }
     }
-
 });

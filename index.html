@@ -55,9 +55,8 @@
 
 <body class="font-sans text-black bg-white">
 
-<section id="home" class="bg-[#1a2340] text-white min-h-[750px]">
-    <div class="max-w-[1250px] mx-auto px-8 py-6">
-
+<header class="site-header">
+    <div class="max-w-[1250px] mx-auto px-8 py-3">
         <nav
             id="mainNav"
             class="flex
@@ -159,6 +158,7 @@
                 <span
                     class="text-xs
                         font-bold
+                        text-white
                         mr-2"
                 >
                     Active
@@ -207,6 +207,11 @@
             </button>
 
         </nav>
+    </div>
+</header>
+
+<section id="home" class="bg-[#1a2340] text-white min-h-[750px]">
+    <div class="max-w-[1250px] mx-auto px-8 py-6">
 
         <div
             id="mobileMenu"
@@ -217,7 +222,7 @@
                 h-full
                 w-72
                 max-w-[85%]
-                bg-[#18213f]
+                bg-[#1a2340]
                 shadow-2xl
                 transform
                 translate-x-full
@@ -338,13 +343,13 @@
                     gap-8
                     lg:gap-16
                     items-center
-                    mt-10
-                    lg:mt-8"
+                    mt-0
+                    lg:mt-0"
             >
 
                 <div
-                    class="pt-8
-                        lg:pt-20
+                    class="pt-0
+                        lg:pt-0
                         ml-4
                         lg:ml-8
                         min-w-0
@@ -357,33 +362,37 @@
                             text-2xl
                             sm:text-3xl
                             md:text-4xl
-                            lg:text-6xl
+                            lg:text-[5.2rem]
                             font-semibold
-                            tracking-tight
-                            leading-tight
+                            tracking-[-0.07em]
+                            leading-[0.9]
                             mb-3"
                     >
-                        Jeffrey Almocera
+                        <span class="hero-name">Jeffrey Almocera</span>
                     </h5>
 
                     <p
-                        class="text-base
-                            sm:text-lg
-                            md:text-xl
+                        class="hero-tagline
+                            text-sm
+                            sm:text-base
+                            md:text-lg
                             text-white/80
-                            mb-2"
+                            mb-5
+                            lg:mb-8"
                     >
                         Tech-Savvy Virtual Assistant &amp; Administrative Support
                     </p>
 
                     <p
-                        class="text-sm
+                        class="hero-description
+                            text-sm
                             sm:text-base
                             text-white/60
                             max-w-md
                             mx-auto
                             mb-6
-                            lg:mx-0"
+                            lg:mx-0
+                            lg:mt-6"
                     >
                         I provide reliable admin, tech, and marketing support, giving you more time to focus on growing your business.
                     </p>
@@ -414,7 +423,16 @@
 
                     </div>
 
-                    <p class="mt-2 text-[9px] sm:text-[10px] font-medium uppercase tracking-[0.14em] text-white/70 text-center lg:text-left">
+                    <div class="home-socials" aria-label="Social links">
+                        <a href="https://www.instagram.com/jeffrey_s.a/" target="_blank" rel="noreferrer" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="http://www.linkedin.com/in/jeffrey-almocera-1b6165243" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                    </div>
+
+                    <p class="home-badges mt-2 text-[15px] sm:text-[15px] md:text-[15px] font-medium uppercase tracking-[0.12em] text-white/70 text-center lg:text-left" style="font-size: 15px; line-height: 1.5; letter-spacing: 0.08em; max-width: 40rem; width: 100%;">
                         Administrative Support · Digital Operations · Marketing Support · Technical Assistance
                     </p>
 
@@ -422,7 +440,8 @@
 
 
                 <div
-                    class="w-full
+                    class="home-portrait-wrap
+                        w-full
                         flex
                         justify-center
                         lg:justify-end
@@ -438,7 +457,7 @@
                             lg:w-[320px]
                             aspect-[3/4]
                             object-cover
-                            rounded-md"
+                            rounded-[28px]"
                     >
 
                 </div>
@@ -1756,7 +1775,7 @@
                 >
 
                     <img
-                        src="project/website/nursing.jpg"
+                        src="project/website/nursing.png"
                         alt="Appointment Website"
                         class="absolute
                                inset-0
@@ -1814,6 +1833,75 @@ A digital platform designed to help families identify suitable senior care facil
                 </div>
 
 
+
+
+                <div
+                    class="group
+                           relative
+                           overflow-hidden
+                           rounded-2xl
+                           bg-gray-100
+                           cursor-pointer"
+                >
+
+                    <img
+                        src="project/website/signup.png"
+                        alt="Website UX UI Design"
+                        class="absolute
+                               inset-0
+                               w-full
+                               h-full
+                               object-cover
+                               duration-700"
+                    >
+
+
+                    <div
+                        class="absolute
+                               inset-0
+                               bg-gradient-to-t
+                               from-black/70
+                               to-transparent"
+                    ></div>
+
+
+                    <div
+                        class="absolute
+                               bottom-0
+                               left-0
+                               p-5
+                               text-white"
+                    >
+
+                        <span
+                            class="text-xs
+                                   uppercase
+                                   tracking-widest"
+                        >
+                            Client Project
+                        </span>
+
+
+                        <h4
+                            class="text-xl
+                                   font-bold
+                                   mt-1"
+                        >
+                            Mobile Sign Up
+                        </h4>
+
+                        <p
+                            class="text-xs
+                                   mt-1
+                                   opacity-70
+                                   leading-snug"
+                        >
+                            A modern mobile signup concept with a streamlined form, clear visual hierarchy, and a frictionless onboarding experience.
+                        </p>
+
+                    </div>
+
+                </div>
 
 
                 <div
@@ -4352,231 +4440,9 @@ A digital platform designed to help families identify suitable senior care facil
     <script src="js/navigation.js"></script>
     <script src="js/timezone.js"></script>
     <script src="js/certificate.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const whatsappModal = document.getElementById("whatsappQrModal");
-            const whatsappTriggers = document.querySelectorAll(".whatsapp-qr-trigger");
-            const closeWhatsAppButtons = document.querySelectorAll(".whatsapp-qr-close");
-            const whatsappQrDownloadButton = document.getElementById("downloadWhatsAppQr");
-
-            if (whatsappModal) {
-                const closeWhatsAppModal = () => {
-                    whatsappModal.classList.add("hidden");
-                    whatsappModal.classList.remove("flex");
-                    whatsappModal.setAttribute("aria-hidden", "true");
-                    document.body.classList.remove("overflow-hidden");
-                };
-
-                const openWhatsAppModal = (event) => {
-                    event.preventDefault();
-                    whatsappModal.classList.remove("hidden");
-                    whatsappModal.classList.add("flex");
-                    whatsappModal.setAttribute("aria-hidden", "false");
-                    document.body.classList.add("overflow-hidden");
-                };
-
-                whatsappTriggers.forEach((trigger) => {
-                    trigger.addEventListener("click", openWhatsAppModal);
-                });
-
-                closeWhatsAppButtons.forEach((button) => {
-                    button.addEventListener("click", closeWhatsAppModal);
-                });
-
-                whatsappModal.addEventListener("click", (event) => {
-                    if (event.target === whatsappModal) {
-                        closeWhatsAppModal();
-                    }
-                });
-
-                document.addEventListener("keydown", (event) => {
-                    if (event.key === "Escape" && !whatsappModal.classList.contains("hidden")) {
-                        closeWhatsAppModal();
-                    }
-                });
-            }
-
-            if (whatsappQrDownloadButton) {
-                whatsappQrDownloadButton.addEventListener("click", async (event) => {
-                    event.preventDefault();
-
-                    const qrUrl = whatsappQrDownloadButton.dataset.qrUrl;
-                    if (!qrUrl) {
-                        window.location.href = whatsappQrDownloadButton.href;
-                        return;
-                    }
-
-                    try {
-                        const response = await fetch(qrUrl);
-                        const blob = await response.blob();
-                        const objectUrl = URL.createObjectURL(blob);
-                        const link = document.createElement("a");
-                        link.href = objectUrl;
-                        link.download = "jeffrey-whatsapp-qr-code.png";
-                        document.body.appendChild(link);
-                        link.click();
-                        link.remove();
-                        URL.revokeObjectURL(objectUrl);
-                    } catch (error) {
-                        window.location.href = qrUrl;
-                    }
-                });
-            }
-
-            const resumeModal = document.getElementById("resumeModal");
-            const resumeTriggers = document.querySelectorAll(".resume-modal-trigger");
-            const closeResumeButtons = document.querySelectorAll(".resume-modal-close");
-
-            if (!resumeModal) {
-                return;
-            }
-
-            const closeResumeModal = () => {
-                resumeModal.classList.add("hidden");
-                resumeModal.classList.remove("flex");
-                resumeModal.setAttribute("aria-hidden", "true");
-                document.body.classList.remove("overflow-hidden");
-            };
-
-            const openResumeModal = () => {
-                resumeModal.classList.remove("hidden");
-                resumeModal.classList.add("flex");
-                resumeModal.setAttribute("aria-hidden", "false");
-                document.body.classList.add("overflow-hidden");
-            };
-
-            resumeTriggers.forEach((trigger) => {
-                trigger.addEventListener("click", openResumeModal);
-            });
-
-            closeResumeButtons.forEach((button) => {
-                button.addEventListener("click", closeResumeModal);
-            });
-
-            resumeModal.addEventListener("click", (event) => {
-                if (event.target === resumeModal) {
-                    closeResumeModal();
-                }
-            });
-
-            document.addEventListener("keydown", (event) => {
-                if (event.key === "Escape" && !resumeModal.classList.contains("hidden")) {
-                    closeResumeModal();
-                }
-            });
-        });
-    </script>
-    <script>
-        const aboutGrid = document.querySelector('#about > div > div.grid');
-        const aboutLeftColumn = aboutGrid?.children[0];
-        const aboutRightColumn = aboutGrid?.children[1];
-        const servicesBlock = aboutLeftColumn?.querySelector('.mt-9');
-        const credentialsBlock = aboutRightColumn?.querySelector('.mt-8');
-
-        if (aboutLeftColumn && aboutRightColumn && servicesBlock && credentialsBlock) {
-            const softwareBlocks = Array.from(aboutRightColumn.children)
-                .filter((child) => child !== credentialsBlock);
-
-            softwareBlocks.forEach((block) => aboutLeftColumn.insertBefore(block, servicesBlock));
-            aboutRightColumn.insertBefore(servicesBlock, credentialsBlock);
-        }
-    </script>
+    <script src="js/main.js"></script>
     <script src="js/project-filter.js"></script>
     <script src="js/reveal.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const videoCarousels = document.querySelectorAll("[data-carousel]");
-
-            videoCarousels.forEach((carousel) => {
-                const viewport = carousel.querySelector(".video-carousel-viewport");
-                const track = carousel.querySelector(".video-carousel-track");
-                const prevBtn = carousel.parentElement.querySelector("[data-direction='prev']");
-                const nextBtn = carousel.parentElement.querySelector("[data-direction='next']");
-
-                if (!viewport || !track || !prevBtn || !nextBtn) return;
-
-                let currentIndex = 0;
-                let startX = 0;
-                let startScroll = 0;
-                let isDragging = false;
-
-                const getCardWidth = () => {
-                    const firstCard = track.querySelector(".video-carousel-card");
-                    return firstCard ? firstCard.getBoundingClientRect().width + 16 : 320;
-                };
-
-                const clampIndex = (value) => {
-                    const maxIndex = Math.max(track.children.length - 1, 0);
-                    return Math.min(Math.max(value, 0), maxIndex);
-                };
-
-                const updatePosition = (index) => {
-                    const cardWidth = getCardWidth();
-                    currentIndex = clampIndex(index);
-                    const move = currentIndex * cardWidth;
-                    track.style.transform = `translateX(-${move}px)`;
-                };
-
-                prevBtn.addEventListener("click", () => updatePosition(currentIndex - 1));
-                nextBtn.addEventListener("click", () => updatePosition(currentIndex + 1));
-
-                viewport.addEventListener("pointerdown", (event) => {
-                    isDragging = true;
-                    startX = event.clientX;
-                    startScroll = currentIndex * getCardWidth();
-                    viewport.classList.add("dragging");
-                    viewport.setPointerCapture(event.pointerId);
-                });
-
-                viewport.addEventListener("pointermove", (event) => {
-                    if (!isDragging) return;
-                    const delta = event.clientX - startX;
-                    const cardWidth = getCardWidth();
-                    const pull = Math.min(Math.max(delta * 0.9, -cardWidth * 1.4), cardWidth * 1.4);
-                    const targetMove = startScroll - pull;
-                    track.style.transform = `translateX(-${targetMove}px)`;
-                });
-
-                const finishDrag = () => {
-                    if (!isDragging) return;
-                    isDragging = false;
-                    viewport.classList.remove("dragging");
-                    const delta = startX - (window.event ? window.event.clientX : startX);
-                    const cardWidth = getCardWidth();
-                    const threshold = cardWidth * 0.2;
-                    const direction = (delta > threshold) ? 1 : (delta < -threshold) ? -1 : 0;
-                    if (direction !== 0) {
-                        updatePosition(currentIndex + direction);
-                    } else {
-                        updatePosition(currentIndex);
-                    }
-                };
-
-                viewport.addEventListener("pointerup", finishDrag);
-                viewport.addEventListener("pointerleave", finishDrag);
-                viewport.addEventListener("pointercancel", finishDrag);
-                updatePosition(0);
-            });
-
-            document.querySelectorAll("[data-project-marquee-carousel]").forEach((carousel) => {
-                const viewport = carousel.querySelector("[data-project-marquee]");
-                const previousButton = carousel.querySelector("[data-marquee-direction='prev']");
-                const nextButton = carousel.querySelector("[data-marquee-direction='next']");
-                const firstCard = viewport?.querySelector(".project-marquee-card");
-
-                if (!viewport || !previousButton || !nextButton || !firstCard) return;
-
-                const getStep = () => firstCard.getBoundingClientRect().width + 16;
-
-                previousButton.addEventListener("click", () => {
-                    viewport.scrollBy({ left: -getStep(), behavior: "smooth" });
-                });
-                nextButton.addEventListener("click", () => {
-                    viewport.scrollBy({ left: getStep(), behavior: "smooth" });
-                });
-            });
-        });
-    </script>
 
 </body>
 

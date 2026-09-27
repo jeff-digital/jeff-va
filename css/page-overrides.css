@@ -394,6 +394,7 @@ body {
     overflow-y: hidden;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
 }
@@ -406,6 +407,7 @@ body {
     display: flex;
     width: max-content;
     will-change: transform;
+    transform: translateZ(0);
 }
 
 .project-marquee[data-scroll="true"] .project-marquee-track {
@@ -478,6 +480,7 @@ body {
     gap: 1rem;
     width: max-content;
     will-change: transform;
+    transform: translateZ(0);
     transition: transform 220ms ease;
 }
 
@@ -519,6 +522,8 @@ body {
     height: 100%;
     object-fit: cover;
     background: #0f172a;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .project-marquee-copy {
