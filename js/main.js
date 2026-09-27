@@ -267,6 +267,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 updatePosition(cardIndex);
             });
 
+            card.addEventListener("click", () => {
+                const cardIndex = Array.from(track.children).indexOf(card);
+                updatePosition(cardIndex);
+                activateCurrentCardAudio();
+            });
+
             visual.appendChild(toggleButton);
             video.preload = "auto";
             video.setAttribute("preload", "auto");
@@ -372,40 +378,48 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!viewport || !previousButton || !nextButton || !firstCard) return;
 
         const getStep = () => firstCard.getBoundingClientRect().width + 16;
+        let activeAiIndex = 0;
 
-        const activateAiPromptVideos = () => {
-            const videos = Array.from(carousel.querySelectorAll("video"));
-            videos.forEach((video, index) => {
-                video.preload = "auto";
-                video.setAttribute("preload", "auto");
-                video.playsInline = true;
-                video.loop = true;
-                video.muted = true;
-                video.volume = 0;
+        const activateAiPromptCard = (index) => {
+            const cards = Array.from(carousel.querySelectorAll(".project-marquee-card"));
+            const nextIndex = Math.min(Math.max(index, 0), Math.max(cards.length - 1, 0));
+            activeAiIndex = nextIndex;
 
-                if (video.readyState < 2) {
-                    video.load();
-                }
+            cards.forEach((card, cardIndex) => {
+                const video = card.querySelector("video");
+                if (!video) return;
 
-                const tryPlay = () => {
+                if (cardIndex === activeAiIndex) {
+                    video.preload = "auto";
+                    video.setAttribute("preload", "auto");
+                    video.playsInline = true;
+                    video.loop = true;
+                    video.muted = true;
+                    video.volume = 0;
+
+                    if (video.readyState < 2) {
+                        video.load();
+                    }
+
                     if (video.paused) {
                         const playPromise = video.play();
                         if (playPromise && typeof playPromise.catch === "function") {
-                            playPromise.catch(() => {
-                                window.setTimeout(() => {
-                                    if (document.contains(video) && video.paused) {
-                                        video.muted = true;
-                                        video.volume = 0;
-                                        tryPlay();
-                                    }
-                                }, 250 + index * 100);
-                            });
+                            playPromise.catch(() => {});
                         }
                     }
-                };
+                    return;
+                }
 
-                tryPlay();
+                if (!video.paused) {
+                    video.pause();
+                }
+                video.muted = true;
+                video.volume = 0;
             });
+        };
+
+        const activateAiPromptVideos = () => {
+            activateAiPromptCard(activeAiIndex);
         };
 
         const pauseHiddenVideos = () => {
@@ -425,6 +439,25 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         const syncAiPromptState = () => {
+            const hasActiveVideoEditing = Array.from(document.querySelectorAll("[data-carousel]")).some((videoCarousel) => {
+                const viewport = videoCarousel.querySelector(".video-carousel-viewport");
+                if (!viewport) return false;
+
+                const rect = viewport.getBoundingClientRect();
+                return rect.top < window.innerHeight * 0.9 && rect.bottom > window.innerHeight * 0.1;
+            });
+
+            if (hasActiveVideoEditing) {
+                Array.from(carousel.querySelectorAll("video")).forEach((video) => {
+                    if (!video.paused) {
+                        video.pause();
+                    }
+                    video.muted = true;
+                    video.volume = 0;
+                });
+                return;
+            }
+
             const shouldPlay = isCarouselVisible();
 
             document.querySelectorAll("video").forEach((video) => {
@@ -470,6 +503,15 @@ document.addEventListener("DOMContentLoaded", () => {
             rootMargin: "0px 0px -10% 0px"
         });
 
+        Array.from(carousel.querySelectorAll(".project-marquee-card")).forEach((card, index) => {
+            const video = card.querySelector("video");
+            if (video) {
+                card.addEventListener("click", () => {
+                    activateAiPromptCard(index);
+                });
+            }
+        });
+
         visibilityObserver.observe(viewport);
         syncAiPromptState();
         requestAnimationFrame(activateAiPromptVideos);
@@ -479,10 +521,13 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("pageshow", () => requestAnimationFrame(activateAiPromptVideos), { once: true });
 
         previousButton.addEventListener("click", () => {
+            activeAiIndex = Math.max(activeAiIndex - 1, 0);
             viewport.scrollBy({ left: -getStep(), behavior: "smooth" });
             activateAiPromptVideos();
         });
         nextButton.addEventListener("click", () => {
+            const maxIndex = Math.max(Array.from(carousel.querySelectorAll(".project-marquee-card")).length - 1, 0);
+            activeAiIndex = Math.min(activeAiIndex + 1, maxIndex);
             viewport.scrollBy({ left: getStep(), behavior: "smooth" });
             activateAiPromptVideos();
         });
