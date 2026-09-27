@@ -1,48 +1,49 @@
 function updateClientAvailability() {
-    const clientTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const ownerTimezone = "Asia/Manila";
+    const now = new Date();
+    const isWeekend = now.getDay() === 0 || now.getDay() === 6;
 
-    const startUTC = new Date();
-    startUTC.setUTCHours(12, 0, 0, 0);
-
-    const endUTC = new Date();
-    endUTC.setUTCHours(21, 0, 0, 0);
-
-    const clientStart = new Intl.DateTimeFormat("en-US", {
-        timeZone: clientTimezone,
-        hour: "numeric",
+    const phTimeFormatter = new Intl.DateTimeFormat("en-US", {
+        timeZone: ownerTimezone,
+        hour: "2-digit",
         minute: "2-digit",
-        hour12: true
-    }).format(startUTC);
+        hour12: false
+    });
 
-    const clientEnd = new Intl.DateTimeFormat("en-US", {
-        timeZone: clientTimezone,
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true
-    }).format(endUTC);
+    const phTimeParts = phTimeFormatter.formatToParts(now);
+    const phHour = Number(phTimeParts.find(part => part.type === "hour")?.value || 0);
+    const phMinute = Number(phTimeParts.find(part => part.type === "minute")?.value || 0);
+    const phTotalMinutes = phHour * 60 + phMinute;
+    const isOwnerAvailable = phTotalMinutes >= 20 * 60 || phTotalMinutes < 6 * 60;
 
     const clientAvailability = document.getElementById("clientAvailability");
     const clientTimezoneEl = document.getElementById("clientTimezone");
     const availabilityStatusEl = document.getElementById("availabilityStatus");
 
     if (clientAvailability) {
-        clientAvailability.textContent = `${clientStart} – ${clientEnd}`;
+        clientAvailability.textContent = "8:00 PM – 6:00 AM (Philippines Time)";
     }
 
     if (clientTimezoneEl) {
-        clientTimezoneEl.textContent = clientTimezone;
+        clientTimezoneEl.textContent = ownerTimezone;
     }
 
     if (availabilityStatusEl) {
         const isOnline = typeof navigator !== "undefined" ? navigator.onLine : true;
 
-        if (!isOnline) {
-            availabilityStatusEl.textContent = "I'm currently unavailable. I'll respond promptly once I'm back online.";
+        if (!isOnline || isWeekend || !isOwnerAvailable) {
+            const offlineMessage = isWeekend
+                ? "I'm currently offline because it's the weekend. I'll respond when I'm back online."
+                : !isOwnerAvailable
+                    ? "I'm currently offline outside my available hours in the Philippines. I'll respond when I'm back online."
+                    : "I'm currently unavailable. I'll respond as soon as I'm online again.";
+
+            availabilityStatusEl.textContent = offlineMessage;
             availabilityStatusEl.className = "mt-2 text-sm font-medium text-red-600";
             return;
         }
 
-        availabilityStatusEl.textContent = "I am currently online and will respond to your message shortly.";
+        availabilityStatusEl.textContent = "I'm currently online and available for messages in the Philippines time zone.";
         availabilityStatusEl.className = "mt-2 text-sm font-medium text-green-700";
     }
 }
