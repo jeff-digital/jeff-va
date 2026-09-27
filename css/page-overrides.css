@@ -415,6 +415,8 @@ body {
 }
 
 .project-marquee-card {
+    display: flex;
+    flex-direction: column;
     flex: 0 0 auto;
     width: min(20vw, 240px);
     min-width: 180px;
@@ -425,6 +427,7 @@ body {
     border: 1px solid rgba(255,255,255,0.12);
     background: rgba(255,255,255,0.04);
     box-shadow: 0 14px 32px rgba(0,0,0,0.18);
+    height: auto;
 }
 
 .project-marquee-card.portrait .project-marquee-visual {
@@ -485,6 +488,8 @@ body {
 }
 
 .video-carousel-card {
+    display: flex;
+    flex-direction: column;
     width: min(32vw, 360px);
     min-width: 260px;
     border-radius: 1rem;
@@ -492,6 +497,7 @@ body {
     border: 1px solid rgba(255,255,255,0.12);
     background: rgba(255,255,255,0.04);
     box-shadow: 0 12px 26px rgba(0,0,0,0.18);
+    height: auto;
 }
 
 .video-carousel-card .project-marquee-visual {
@@ -527,8 +533,13 @@ body {
 }
 
 .project-marquee-copy {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-content: flex-start;
     padding: 0.9rem 1rem 1rem;
     background: rgba(11, 19, 35, 0.82);
+    min-height: 7.5rem;
 }
 
 .project-marquee-copy .eyebrow {
@@ -552,6 +563,23 @@ body {
     font-size: 0.74rem;
     line-height: 1.45;
     color: rgba(226, 232, 240, 0.9);
+}
+
+@media (max-width: 640px) {
+    .project-marquee-card {
+        width: min(72vw, 240px);
+        min-width: 170px;
+    }
+
+    .video-carousel-card {
+        width: min(80vw, 340px);
+        min-width: 220px;
+    }
+
+    .project-marquee-copy {
+        min-height: 8.25rem;
+        padding: 0.8rem 0.9rem 0.95rem;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -87,7 +87,7 @@ section {
     width: 100%;
 }
 
-#home .grid > div:first-child {
+#home .home-copy {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -95,7 +95,7 @@ section {
     padding-top: 0;
 }
 
-#home .grid > div:first-child h5 {
+#home .home-copy h5 {
     color: #f5f5f5;
     font-size: clamp(4rem, 6vw, 8rem);
     line-height: 0.9;
@@ -110,7 +110,7 @@ section {
     text-shadow: 0 8px 24px rgba(0, 0, 0, 0.26);
 }
 
-#home .grid > div:first-child p {
+#home .home-copy p {
     color: rgba(255, 255, 255, 0.8);
     margin: 0;
     max-width: 760px;
@@ -118,40 +118,50 @@ section {
     line-height: 1.35;
 }
 
-#home .grid > div:first-child .hero-tagline {
+#home .home-copy .hero-tagline {
     font-size: clamp(0.9rem, 1.5vw, 1.35rem);
     text-align: justify;
-    margin-bottom: 1.3rem;
+    margin-bottom: 0.35rem;
 }
 
-#home .grid > div:first-child .hero-description {
+#home .home-copy .hero-description {
     font-size: clamp(0.88rem, 1.2vw, 1.15rem);
     text-align: justify;
-    margin-top: 0.35rem;
+    margin-top: 0;
     max-width: 35rem;
     width: 100%;
 }
 
-#home .grid > div:first-child > p:first-child,
-#home .grid > div:first-child > p:nth-of-type(2) {
+#home .home-copy > p:first-child,
+#home .home-copy > p:nth-of-type(2) {
     text-align: justify;
 }
 
-#home .grid > div:first-child .home-badges {
+#home .home-copy .home-badges {
     width: 100%;
     max-width: 40rem;
     display: block;
+    margin-top: 1.2rem;
 }
 
-#home .grid > div:first-child .home-socials {
+#home .hero-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.8rem;
+    margin-top: 1.2rem;
+    flex-wrap: wrap;
+}
+
+#home .home-copy .home-socials {
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    margin-top: 1.8rem;
-    margin-bottom: 0.8rem;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
-#home .grid > div:first-child .home-socials a {
+#home .home-copy .home-socials a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -164,12 +174,12 @@ section {
     transition: transform 0.2s ease, background 0.2s ease;
 }
 
-#home .grid > div:first-child .home-socials a:hover {
+#home .home-copy .home-socials a:hover {
     transform: translateY(-2px);
     background: rgba(255, 255, 255, 0.12);
 }
 
-#home .grid > div:first-child .home-socials i {
+#home .home-copy .home-socials i {
     font-size: 1.15rem;
 }
 
@@ -178,33 +188,26 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 420px;
+    max-width: 360px;
     margin-left: auto;
     margin-right: auto;
     padding-top: 2.2rem;
 }
 
 #home .home-portrait-wrap::before {
-    content: "";
-    position: absolute;
-    inset: 20px 12px -12px 12px;
-    background: rgba(255, 255, 255, 0.06);
-    border-radius: 32px;
-    box-shadow: 0 26px 60px rgba(0, 0, 0, 0.25);
-    z-index: 0;
-    transform: translateZ(0);
+    display: none;
 }
 
 #home .home-portrait-wrap img {
     position: relative;
     z-index: 1;
     display: block;
-    width: min(100%, 420px);
+    width: min(100%, 360px);
     aspect-ratio: 3 / 4;
     object-fit: cover;
-    border-radius: 30px;
-    border: 10px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 20px 44px rgba(0, 0, 0, 0.35);
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: none;
 }
 
 #home .grid > div:first-child .mt-14 {
@@ -248,63 +251,100 @@ section {
 @media (max-width: 767px) {
     #home {
         min-height: auto;
-        padding-top: 5.5rem;
-        padding-bottom: 3rem;
+        padding-top: 5.2rem;
+        padding-bottom: 2.75rem;
+    }
+
+    #home > .max-w-\[1250px\] {
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 
     #home .grid {
-        gap: 1.4rem;
+        gap: 1rem;
     }
 
-    #home .grid > div:first-child {
+    #home .home-copy {
         min-height: auto;
         padding-top: 0;
         margin-left: 0;
-        text-align: center;
+        text-align: left;
+        align-items: flex-start;
     }
 
-    #home .grid > div:first-child h5 {
-        font-size: clamp(2.2rem, 12vw, 3.4rem);
-        margin-bottom: 0.9rem;
-    }
-
-    #home .grid > div:first-child p {
+    #home .home-copy h5 {
+        font-size: clamp(2.2rem, 10vw, 3.1rem);
+        margin-bottom: 0.7rem;
+        line-height: 0.96;
+        letter-spacing: -0.05em;
         max-width: 100%;
-        font-size: clamp(0.9rem, 3.8vw, 1.1rem);
     }
 
-    #home .grid > div:first-child .hero-tagline {
-        font-size: 0.95rem;
-        margin-bottom: 1.1rem;
+    #home .home-copy p {
+        max-width: 100%;
+        font-size: clamp(0.88rem, 3.6vw, 1rem);
+        text-align: left;
     }
 
-    #home .grid > div:first-child .hero-description {
+    #home .home-copy .hero-tagline {
         font-size: 0.9rem;
-        margin-top: 0.2rem;
+        margin-bottom: 0.8rem;
+        line-height: 1.45;
+        max-width: 100%;
     }
 
-    #home .grid > div:first-child .home-badges {
-        font-size: 15px !important;
-        line-height: 1.5 !important;
+    #home .home-copy .hero-description {
+        font-size: 0.88rem;
+        margin-top: 0.15rem;
+        line-height: 1.5;
+        max-width: 100%;
+    }
+
+    #home .hero-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.7rem;
+        margin-top: 0.9rem;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    #home .home-copy .home-socials {
+        justify-content: flex-start;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    #home .home-copy .home-badges {
+        font-size: 0.68rem !important;
+        line-height: 1.6 !important;
         letter-spacing: 0.08em !important;
         max-width: 100% !important;
+        text-align: left !important;
     }
 
-    #home .grid > div:first-child .mt-14 {
-        margin-top: 1.5rem;
-        justify-content: center;
+    #home .home-copy .mt-14 {
+        margin-top: 0.9rem;
+        justify-content: flex-start;
     }
 
     #home .home-portrait-wrap {
-        max-width: 270px;
-        margin-top: 0.4rem;
+        max-width: 220px;
+        margin: 0 auto 0.5rem;
         padding-top: 0;
+        align-self: center;
+    }
+
+    #home .home-portrait-wrap::before {
+        display: none;
     }
 
     #home .home-portrait-wrap img {
-        width: min(100%, 220px);
-        border-width: 6px;
-        border-radius: 20px;
+        width: min(100%, 200px);
+        border-width: 1px;
+        border-radius: 18px;
+        box-shadow: none;
     }
 }
 

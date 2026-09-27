@@ -210,131 +210,129 @@
     </div>
 </header>
 
+<div
+    id="mobileMenu"
+    class="fixed
+        top-0
+        right-0
+        z-40
+        h-full
+        w-72
+        max-w-[85%]
+        bg-[#1a2340]
+        shadow-2xl
+        transform
+        translate-x-full
+        transition-transform
+        duration-300
+        ease-in-out
+        md:hidden"
+>
+
+    <div
+        class="flex
+            items-center
+            justify-between
+            p-6
+            border-b
+            border-white/10"
+    >
+
+    </div>
+
+    <div
+        class="flex
+            flex-col
+            gap-2
+            p-6"
+    >
+
+        <a
+            href="#home"
+            class="mobile-nav-link
+                text-white
+                text-base
+                font-medium
+                px-4
+                py-3
+                rounded-xl
+                hover:bg-white/10
+                hover:text-blue-400
+                transition"
+        >
+            Home
+        </a>
+
+        <a
+            href="#about"
+            class="mobile-nav-link
+                text-white
+                text-base
+                font-medium
+                px-4
+                py-3
+                rounded-xl
+                hover:bg-white/10
+                hover:text-blue-400
+                transition"
+        >
+            About
+        </a>
+
+        <a
+            href="#contact"
+            class="mobile-nav-link
+                text-white
+                text-base
+                font-medium
+                px-4
+                py-3
+                rounded-xl
+                hover:bg-white/10
+                hover:text-blue-400
+                transition"
+        >
+            Connect
+        </a>
+
+        <button
+            type="button"
+            class="mobile-nav-link
+                resume-modal-trigger
+                text-white
+                text-base
+                font-medium
+                px-4
+                py-3
+                rounded-xl
+                hover:bg-white/10
+                hover:text-blue-400
+                transition
+                text-left"
+        >
+            Resume
+        </button>
+
+    </div>
+
+</div>
+
+<div
+    id="mobileMenuOverlay"
+    class="fixed
+        inset-0
+        z-30
+        bg-black/50
+        opacity-0
+        pointer-events-none
+        transition-opacity
+        duration-300
+        md:hidden"
+>
+</div>
+
 <section id="home" class="bg-[#1a2340] text-white min-h-[750px]">
     <div class="max-w-[1250px] mx-auto px-8 py-6">
-
-        <div
-            id="mobileMenu"
-            class="fixed
-                top-0
-                right-0
-                z-40
-                h-full
-                w-72
-                max-w-[85%]
-                bg-[#1a2340]
-                shadow-2xl
-                transform
-                translate-x-full
-                transition-transform
-                duration-300
-                ease-in-out
-                md:hidden"
-        >
-
-            <div
-                class="flex
-                    items-center
-                    justify-between
-                    p-6
-                    border-b
-                    border-white/10"
-            >
-
-                
-            </div>
-
-            <div
-                class="flex
-                    flex-col
-                    gap-2
-                    p-6"
-            >
-
-
-                <a
-                    href="#home"
-                    class="mobile-nav-link
-                        text-white
-                        text-base
-                        font-medium
-                        px-4
-                        py-3
-                        rounded-xl
-                        hover:bg-white/10
-                        hover:text-blue-400
-                        transition"
-                >
-                    Home
-                </a>
-
-                <a
-                    href="#about"
-                    class="mobile-nav-link
-                        text-white
-                        text-base
-                        font-medium
-                        px-4
-                        py-3
-                        rounded-xl
-                        hover:bg-white/10
-                        hover:text-blue-400
-                        transition"
-                >
-                    About
-                </a>
-
-                <a
-                    href="#contact"
-                    class="mobile-nav-link
-                        text-white
-                        text-base
-                        font-medium
-                        px-4
-                        py-3
-                        rounded-xl
-                        hover:bg-white/10
-                        hover:text-blue-400
-                        transition"
-                >
-                    Connect
-                </a>
-
-                <button
-                    type="button"
-                    class="mobile-nav-link
-                        resume-modal-trigger
-                        text-white
-                        text-base
-                        font-medium
-                        px-4
-                        py-3
-                        rounded-xl
-                        hover:bg-white/10
-                        hover:text-blue-400
-                        transition
-                        text-left"
-                >
-                    Resume
-                    </button>
-
-            </div>
-
-        </div>
-
-        <div
-            id="mobileMenuOverlay"
-            class="fixed
-                inset-0
-                z-30
-                bg-black/50
-                opacity-0
-                pointer-events-none
-                transition-opacity
-                duration-300
-                md:hidden"
-        >
-        </div>
 
         <div
                 class="grid
@@ -348,8 +346,35 @@
             >
 
                 <div
-                    class="pt-0
-                        lg:pt-0
+                    class="home-portrait-wrap
+                        order-1
+                        w-full
+                        flex
+                        justify-center
+                        lg:order-2
+                        lg:justify-end
+                        lg:pt-20"
+                >
+
+                    <img
+                        src="image/IT_ALMOCERA_IMG_V_8741.jpg"
+                        alt="Jeffrey Almocera - Virtual Assistant"
+                        class="w-[220px]
+                            sm:w-[260px]
+                            md:w-[300px]
+                            lg:w-[320px]
+                            aspect-[3/4]
+                            object-cover
+                            rounded-[28px]"
+                    >
+
+                </div>
+
+                <div
+                    class="home-copy
+                        pt-0
+                        order-2
+                        lg:order-1
                         ml-4
                         lg:ml-8
                         min-w-0
@@ -397,7 +422,7 @@
                         I provide reliable admin, tech, and marketing support, giving you more time to focus on growing your business.
                     </p>
 
-                    <div class="mt-14 flex items-center justify-center gap-3 lg:mt-14 lg:justify-start">
+                    <div class="hero-actions">
                         <a
                             href="#projects"
                             class="inline-block
@@ -421,44 +446,19 @@
                             View my Projects
                         </a>
 
-                    </div>
-
-                    <div class="home-socials" aria-label="Social links">
-                        <a href="https://www.instagram.com/jeffrey_s.a/" target="_blank" rel="noreferrer" aria-label="Instagram">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                        <a href="http://www.linkedin.com/in/jeffrey-almocera-1b6165243" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-                            <i class="fa-brands fa-linkedin"></i>
-                        </a>
+                        <div class="home-socials" aria-label="Social links">
+                            <a href="https://www.instagram.com/jeffrey_s.a/" target="_blank" rel="noreferrer" aria-label="Instagram">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a href="http://www.linkedin.com/in/jeffrey-almocera-1b6165243" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                        </div>
                     </div>
 
                     <p class="home-badges mt-2 text-[15px] sm:text-[15px] md:text-[15px] font-medium uppercase tracking-[0.12em] text-white/70 text-center lg:text-left" style="font-size: 15px; line-height: 1.5; letter-spacing: 0.08em; max-width: 40rem; width: 100%;">
                         Administrative Support · Digital Operations · Marketing Support · Technical Assistance
                     </p>
-
-                </div>
-
-
-                <div
-                    class="home-portrait-wrap
-                        w-full
-                        flex
-                        justify-center
-                        lg:justify-end
-                        lg:pt-20"
-                >
-
-                    <img
-                        src="image/IT_ALMOCERA_IMG_V_8741.jpg"
-                        alt="Jeffrey Almocera - Virtual Assistant"
-                        class="w-[220px]
-                            sm:w-[260px]
-                            md:w-[300px]
-                            lg:w-[320px]
-                            aspect-[3/4]
-                            object-cover
-                            rounded-[28px]"
-                    >
 
                 </div>
 
