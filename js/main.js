@@ -150,6 +150,8 @@ document.addEventListener("DOMContentLoaded", () => {
             return Math.min(Math.max(value, 0), maxIndex);
         };
 
+        const getMaxTranslate = () => Math.max(track.scrollWidth - viewport.clientWidth, 0);
+
         const fadeVolume = (video, toVolume, duration = 180) => {
             if (!video) return;
 
@@ -218,9 +220,11 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         const updatePosition = (index) => {
-            const cardWidth = getCardWidth();
             currentIndex = clampIndex(index);
-            const move = currentIndex * cardWidth;
+            const activeCard = track.querySelectorAll(".video-carousel-card")[currentIndex];
+            const cardOffset = activeCard ? activeCard.offsetLeft : 0;
+            const maxTranslate = getMaxTranslate();
+            const move = Math.min(cardOffset, maxTranslate);
             track.style.transform = `translateX(-${move}px)`;
             syncVideoAudio();
             requestAnimationFrame(() => activateCurrentCardAudio());
@@ -274,7 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const delta = event.clientX - startX;
             const cardWidth = getCardWidth();
             const pull = Math.min(Math.max(delta * 0.9, -cardWidth * 1.4), cardWidth * 1.4);
-            const targetMove = startScroll - pull;
+            const targetMove = Math.min(Math.max(startScroll - pull, 0), getMaxTranslate());
             track.style.transform = `translateX(-${targetMove}px)`;
         });
 
@@ -296,19 +300,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const visibilityObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
-                const videos = Array.from(track.querySelectorAll("video"));
+                if (!entry.isIntersecting) {
+                    Array.from(track.querySelectorAll("video")).forEach((video) => {
+                        video.pause();
+                        video.muted = true;
+                        video.volume = 0;
+                    });
+                    return;
+                }
 
-                videos.forEach((video) => {
-                    if (entry.isIntersecting) {
+                document.querySelectorAll("video").forEach((video) => {
+                    const owner = video.closest("[data-carousel]") || video.closest("[data-project-marquee-carousel]");
+                    const isThisSection = owner === carousel;
+
+                    if (isThisSection) {
+                        if (video.closest(".video-carousel-card") && video.closest(".video-carousel-card") !== track.querySelectorAll(".video-carousel-card")[currentIndex]) {
+                            video.pause();
+                            video.muted = true;
+                            video.volume = 0;
+                            return;
+                        }
+
+                        video.muted = false;
+                        video.volume = 1;
                         video.play().catch(() => {});
                     } else {
                         video.pause();
+                        video.muted = true;
+                        video.volume = 0;
                     }
                 });
 
-                if (entry.isIntersecting) {
-                    syncVideoAudio();
-                }
+                syncVideoAudio();
             });
         }, {
             threshold: 0.25,
@@ -342,14 +365,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const visibilityObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const videos = Array.from(viewport.querySelectorAll("video"));
-                    videos.forEach((video) => {
-                        video.play().catch(() => {});
-                    });
-                } else {
+                if (!entry.isIntersecting) {
                     pauseHiddenVideos();
+                    return;
                 }
+
+                document.querySelectorAll("video").forEach((video) => {
+                    const owner = video.closest("[data-project-marquee-carousel]") || video.closest("[data-carousel]");
+                    if (owner === carousel) {
+                        video.muted = false;
+                        video.volume = 1;
+                        video.play().catch(() => {});
+                    } else {
+                        video.pause();
+                        video.muted = true;
+                        video.volume = 0;
+                    }
+                });
             });
         }, {
             threshold: 0.25,
