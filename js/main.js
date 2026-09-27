@@ -150,12 +150,87 @@ document.addEventListener("DOMContentLoaded", () => {
             return Math.min(Math.max(value, 0), maxIndex);
         };
 
+        const fadeVolume = (video, toVolume, duration = 180) => {
+            if (!video) return;
+
+            const startVolume = Number.isFinite(video.volume) ? video.volume : 0;
+            const startTime = performance.now();
+
+            const step = (timestamp) => {
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                video.volume = startVolume + (toVolume - startVolume) * progress;
+
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                }
+            };
+
+            requestAnimationFrame(step);
+        };
+
+        const syncVideoAudio = () => {
+            const cards = Array.from(track.querySelectorAll(".video-carousel-card"));
+
+            cards.forEach((card, index) => {
+                const video = card.querySelector("video");
+                const button = card.querySelector(".video-card-audio-toggle");
+                const isActive = index === currentIndex;
+                const title = card.querySelector("h4")?.textContent?.trim() || "Video";
+
+                if (video) {
+                    if (isActive) {
+                        video.muted = false;
+                        video.volume = 0;
+                        video.play().catch(() => {});
+                        fadeVolume(video, 1);
+                    } else {
+                        video.muted = true;
+                        video.volume = 0;
+                    }
+                }
+
+                if (button) {
+                    const icon = button.querySelector("i");
+                    const isMuted = !isActive;
+                    button.classList.toggle("muted", isMuted);
+                    button.setAttribute("aria-label", isMuted ? `Unmute ${title}` : `Mute ${title}`);
+                    if (icon) {
+                        icon.className = isMuted ? "fa-solid fa-volume-xmark" : "fa-solid fa-volume-high";
+                    }
+                }
+            });
+        };
+
         const updatePosition = (index) => {
             const cardWidth = getCardWidth();
             currentIndex = clampIndex(index);
             const move = currentIndex * cardWidth;
             track.style.transform = `translateX(-${move}px)`;
+            syncVideoAudio();
         };
+
+        Array.from(track.querySelectorAll(".video-carousel-card")).forEach((card) => {
+            const visual = card.querySelector(".project-marquee-visual");
+            const video = card.querySelector("video");
+
+            if (!visual || !video) return;
+
+            const toggleButton = document.createElement("button");
+            toggleButton.type = "button";
+            toggleButton.className = "video-card-audio-toggle muted";
+            toggleButton.setAttribute("aria-label", "Unmute video");
+            toggleButton.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+            toggleButton.addEventListener("click", (event) => {
+                event.stopPropagation();
+                const cardIndex = Array.from(track.children).indexOf(card);
+                updatePosition(cardIndex);
+            });
+
+            visual.appendChild(toggleButton);
+            video.muted = true;
+            video.volume = 0;
+            video.playsInline = true;
+        });
 
         prevBtn.addEventListener("click", () => updatePosition(currentIndex - 1));
         nextBtn.addEventListener("click", () => updatePosition(currentIndex + 1));
