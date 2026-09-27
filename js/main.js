@@ -170,6 +170,36 @@ document.addEventListener("DOMContentLoaded", () => {
             requestAnimationFrame(step);
         };
 
+        const activateVideo = (video) => {
+            if (!video) return;
+
+            video.preload = "auto";
+            video.setAttribute("preload", "auto");
+            if (video.readyState < 2) {
+                video.load();
+            }
+
+            if (video.paused) {
+                const playPromise = video.play();
+                if (playPromise && typeof playPromise.catch === "function") {
+                    playPromise.catch(() => {});
+                }
+            }
+
+            video.muted = false;
+            video.volume = 1;
+        };
+
+        const deactivateVideo = (video) => {
+            if (!video) return;
+
+            if (!video.paused) {
+                video.pause();
+            }
+            video.muted = true;
+            video.volume = 0;
+        };
+
         const syncVideoAudio = () => {
             const cards = Array.from(track.querySelectorAll(".video-carousel-card"));
 
@@ -180,18 +210,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 const title = card.querySelector("h4")?.textContent?.trim() || "Video";
 
                 if (video) {
+                    video.preload = "auto";
+                    video.setAttribute("preload", "auto");
+
                     if (isActive) {
-                        video.muted = false;
-                        video.volume = 1;
-                        video.currentTime = Math.min(video.currentTime, video.duration || video.currentTime || 0);
-                        const playPromise = video.play();
-                        if (playPromise && typeof playPromise.catch === "function") {
-                            playPromise.catch(() => {});
-                        }
+                        activateVideo(video);
                     } else {
-                        video.pause();
-                        video.muted = true;
-                        video.volume = 0;
+                        deactivateVideo(video);
                     }
                 }
 
@@ -211,12 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const activeVideo = track.querySelectorAll(".video-carousel-card")[currentIndex]?.querySelector("video");
             if (!activeVideo) return;
 
-            activeVideo.muted = false;
-            activeVideo.volume = 1;
-            const playPromise = activeVideo.play();
-            if (playPromise && typeof playPromise.catch === "function") {
-                playPromise.catch(() => {});
-            }
+            activateVideo(activeVideo);
         };
 
         const updatePosition = (index) => {
@@ -248,9 +268,12 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             visual.appendChild(toggleButton);
+            video.preload = "auto";
+            video.setAttribute("preload", "auto");
             video.muted = true;
             video.volume = 0;
             video.playsInline = true;
+            video.load();
         });
 
         prevBtn.addEventListener("click", () => {
@@ -315,19 +338,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     if (isThisSection) {
                         if (video.closest(".video-carousel-card") && video.closest(".video-carousel-card") !== track.querySelectorAll(".video-carousel-card")[currentIndex]) {
-                            video.pause();
-                            video.muted = true;
-                            video.volume = 0;
+                            deactivateVideo(video);
                             return;
                         }
 
-                        video.muted = false;
-                        video.volume = 1;
-                        video.play().catch(() => {});
+                        activateVideo(video);
                     } else {
-                        video.pause();
-                        video.muted = true;
-                        video.volume = 0;
+                        deactivateVideo(video);
                     }
                 });
 
@@ -373,15 +390,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.querySelectorAll("video").forEach((video) => {
                     const owner = video.closest("[data-project-marquee-carousel]") || video.closest("[data-carousel]");
                     const isThisSection = owner === carousel;
+                    const isVideoEditing = Boolean(video.closest("[data-carousel]"));
 
                     if (isThisSection) {
-                        video.muted = true;
-                        video.volume = 0;
-                        video.pause();
+                        if (isVideoEditing) {
+                            const activeMatch = track.querySelectorAll(".video-carousel-card")[currentIndex]?.contains(video) ?? false;
+                            if (activeMatch) {
+                                activateVideo(video);
+                            } else {
+                                deactivateVideo(video);
+                            }
+                        } else {
+                            activateVideo(video);
+                        }
                     } else {
-                        video.pause();
-                        video.muted = true;
-                        video.volume = 0;
+                        deactivateVideo(video);
                     }
                 });
             });
