@@ -186,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const delta = lastPointerX - startX;
             const cardWidth = getCardWidth();
             const threshold = cardWidth * 0.2;
-            const direction = (delta > threshold) ? 1 : (delta < -threshold) ? -1 : 0;
+            const direction = (delta < -threshold) ? 1 : (delta > threshold) ? -1 : 0;
             if (direction !== 0) {
                 updatePosition(currentIndex + direction);
             } else {

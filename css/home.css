@@ -251,17 +251,21 @@ section {
 @media (max-width: 767px) {
     #home {
         min-height: auto;
-        padding-top: 5.2rem;
-        padding-bottom: 2.75rem;
+        padding-top: 5.8rem;
+        padding-bottom: 2.5rem;
     }
 
     #home > .max-w-\[1250px\] {
         padding-left: 1rem;
         padding-right: 1rem;
+        display: flex;
+        align-items: center;
     }
 
     #home .grid {
         gap: 1rem;
+        width: min(100%, 520px);
+        margin: 0 auto;
     }
 
     #home .home-copy {
@@ -270,6 +274,7 @@ section {
         margin-left: 0;
         text-align: left;
         align-items: flex-start;
+        width: 100%;
     }
 
     #home .home-copy h5 {
@@ -278,12 +283,14 @@ section {
         line-height: 0.96;
         letter-spacing: -0.05em;
         max-width: 100%;
+        width: 100%;
     }
 
     #home .home-copy p {
         max-width: 100%;
         font-size: clamp(0.88rem, 3.6vw, 1rem);
         text-align: left;
+        width: 100%;
     }
 
     #home .home-copy .hero-tagline {
@@ -322,6 +329,7 @@ section {
         letter-spacing: 0.08em !important;
         max-width: 100% !important;
         text-align: left !important;
+        width: 100%;
     }
 
     #home .home-copy .mt-14 {
@@ -331,6 +339,7 @@ section {
 
     #home .home-portrait-wrap {
         max-width: 220px;
+        width: 100%;
         margin: 0 auto 0.5rem;
         padding-top: 0;
         align-self: center;
