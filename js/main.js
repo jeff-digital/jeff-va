@@ -372,10 +372,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 document.querySelectorAll("video").forEach((video) => {
                     const owner = video.closest("[data-project-marquee-carousel]") || video.closest("[data-carousel]");
-                    if (owner === carousel) {
-                        video.muted = false;
-                        video.volume = 1;
-                        video.play().catch(() => {});
+                    const isThisSection = owner === carousel;
+
+                    if (isThisSection) {
+                        video.muted = true;
+                        video.volume = 0;
+                        video.pause();
                     } else {
                         video.pause();
                         video.muted = true;
