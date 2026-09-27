@@ -373,53 +373,118 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const getStep = () => firstCard.getBoundingClientRect().width + 16;
 
+        const activateAiPromptVideos = () => {
+            const videos = Array.from(carousel.querySelectorAll("video"));
+            videos.forEach((video, index) => {
+                video.preload = "auto";
+                video.setAttribute("preload", "auto");
+                video.playsInline = true;
+                video.loop = true;
+                video.muted = true;
+                video.volume = 0;
+
+                if (video.readyState < 2) {
+                    video.load();
+                }
+
+                const tryPlay = () => {
+                    if (video.paused) {
+                        const playPromise = video.play();
+                        if (playPromise && typeof playPromise.catch === "function") {
+                            playPromise.catch(() => {
+                                window.setTimeout(() => {
+                                    if (document.contains(video) && video.paused) {
+                                        video.muted = true;
+                                        video.volume = 0;
+                                        tryPlay();
+                                    }
+                                }, 250 + index * 100);
+                            });
+                        }
+                    }
+                };
+
+                tryPlay();
+            });
+        };
+
         const pauseHiddenVideos = () => {
             const videos = Array.from(viewport.querySelectorAll("video"));
             videos.forEach((video) => {
-                video.pause();
+                if (!video.paused) {
+                    video.pause();
+                }
+                video.muted = true;
+                video.volume = 0;
+            });
+        };
+
+        const isCarouselVisible = () => {
+            const rect = carousel.getBoundingClientRect();
+            return rect.top < window.innerHeight * 0.8 && rect.bottom > window.innerHeight * 0.2;
+        };
+
+        const syncAiPromptState = () => {
+            const shouldPlay = isCarouselVisible();
+
+            document.querySelectorAll("video").forEach((video) => {
+                const owner = video.closest("[data-project-marquee-carousel]") || video.closest("[data-carousel]");
+                const isThisSection = owner === carousel;
+                const isVideoEditing = Boolean(video.closest("[data-carousel]"));
+
+                if (isThisSection && !isVideoEditing) {
+                    video.muted = true;
+                    video.volume = 0;
+                    if (shouldPlay && video.paused) {
+                        const playPromise = video.play();
+                        if (playPromise && typeof playPromise.catch === "function") {
+                            playPromise.catch(() => {});
+                        }
+                    }
+                    if (!shouldPlay && !video.paused) {
+                        video.pause();
+                    }
+                    return;
+                }
+
+                if (!video.paused) {
+                    video.pause();
+                }
+                video.muted = true;
+                video.volume = 0;
             });
         };
 
         const visibilityObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) {
-                    pauseHiddenVideos();
-                    return;
-                }
+            const isVisible = entries.some((entry) => entry.isIntersecting);
 
-                document.querySelectorAll("video").forEach((video) => {
-                    const owner = video.closest("[data-project-marquee-carousel]") || video.closest("[data-carousel]");
-                    const isThisSection = owner === carousel;
-                    const isVideoEditing = Boolean(video.closest("[data-carousel]"));
+            if (!isVisible) {
+                pauseHiddenVideos();
+                return;
+            }
 
-                    if (isThisSection) {
-                        if (isVideoEditing) {
-                            const activeMatch = track.querySelectorAll(".video-carousel-card")[currentIndex]?.contains(video) ?? false;
-                            if (activeMatch) {
-                                activateVideo(video);
-                            } else {
-                                deactivateVideo(video);
-                            }
-                        } else {
-                            activateVideo(video);
-                        }
-                    } else {
-                        deactivateVideo(video);
-                    }
-                });
-            });
+            syncAiPromptState();
+            requestAnimationFrame(activateAiPromptVideos);
         }, {
             threshold: 0.25,
             rootMargin: "0px 0px -10% 0px"
         });
 
         visibilityObserver.observe(viewport);
+        syncAiPromptState();
+        requestAnimationFrame(activateAiPromptVideos);
+        window.addEventListener("scroll", syncAiPromptState, { passive: true });
+        window.addEventListener("resize", syncAiPromptState);
+        window.addEventListener("load", () => requestAnimationFrame(activateAiPromptVideos), { once: true });
+        window.addEventListener("pageshow", () => requestAnimationFrame(activateAiPromptVideos), { once: true });
 
         previousButton.addEventListener("click", () => {
             viewport.scrollBy({ left: -getStep(), behavior: "smooth" });
+            activateAiPromptVideos();
         });
         nextButton.addEventListener("click", () => {
             viewport.scrollBy({ left: getStep(), behavior: "smooth" });
+            activateAiPromptVideos();
         });
     });
 });
