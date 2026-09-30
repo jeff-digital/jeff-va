@@ -123,7 +123,7 @@ if (aboutLeftColumn && aboutRightColumn && servicesBlock && credentialsBlock) {
     aboutRightColumn.insertBefore(servicesBlock, credentialsBlock);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+const initializeVideoCarousels = () => {
     const videoCarousels = document.querySelectorAll("[data-carousel]");
 
     videoCarousels.forEach((carousel) => {
@@ -135,15 +135,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!viewport || !track || !prevBtn || !nextBtn) return;
 
         let currentIndex = 0;
-        let startX = 0;
-        let lastPointerX = 0;
-        let startScroll = 0;
-        let isDragging = false;
-
-        const getCardWidth = () => {
-            const firstCard = track.querySelector(".video-carousel-card");
-            return firstCard ? firstCard.getBoundingClientRect().width + 16 : 320;
-        };
 
         const clampIndex = (value) => {
             const maxIndex = Math.max(track.children.length - 1, 0);
@@ -173,6 +164,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const activateVideo = (video) => {
             if (!video) return;
 
+            video.autoplay = false;
+            video.removeAttribute("autoplay");
             video.preload = "auto";
             video.setAttribute("preload", "auto");
             if (video.readyState < 2) {
@@ -205,24 +198,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
             cards.forEach((card, index) => {
                 const video = card.querySelector("video");
+                const playToggle = card.querySelector(".video-card-play-toggle");
                 const button = card.querySelector(".video-card-audio-toggle");
                 const isActive = index === currentIndex;
                 const title = card.querySelector("h4")?.textContent?.trim() || "Video";
+                const isUserPaused = card.dataset.userPaused === "true";
 
                 if (video) {
                     video.preload = "auto";
                     video.setAttribute("preload", "auto");
 
-                    if (isActive) {
+                    if (isActive && !isUserPaused) {
                         activateVideo(video);
                     } else {
                         deactivateVideo(video);
                     }
                 }
 
+                if (playToggle) {
+                    const icon = playToggle.querySelector("i");
+                    const isPlaying = !!video && isActive && !video.paused && !isUserPaused;
+                    playToggle.classList.toggle("is-playing", isPlaying);
+                    playToggle.setAttribute("aria-label", isPlaying ? `Pause ${title}` : `Play ${title}`);
+                    if (icon) {
+                        icon.className = isPlaying ? "fa-solid fa-pause" : "fa-solid fa-play";
+                    }
+                }
+
                 if (button) {
                     const icon = button.querySelector("i");
-                    const isMuted = !isActive;
+                    const isMuted = !isActive || video?.muted;
                     button.classList.toggle("muted", isMuted);
                     button.setAttribute("aria-label", isMuted ? `Unmute ${title}` : `Mute ${title}`);
                     if (icon) {
@@ -233,10 +238,13 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         const activateCurrentCardAudio = () => {
-            const activeVideo = track.querySelectorAll(".video-carousel-card")[currentIndex]?.querySelector("video");
+            const activeCard = track.querySelectorAll(".video-carousel-card")[currentIndex];
+            const activeVideo = activeCard?.querySelector("video");
             if (!activeVideo) return;
 
-            activateVideo(activeVideo);
+            if (activeCard?.dataset.userPaused !== "true") {
+                activateVideo(activeVideo);
+            }
         };
 
         const updatePosition = (index) => {
@@ -247,7 +255,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const move = Math.min(cardOffset, maxTranslate);
             track.style.transform = `translateX(-${move}px)`;
             syncVideoAudio();
-            requestAnimationFrame(() => activateCurrentCardAudio());
         };
 
         Array.from(track.querySelectorAll(".video-carousel-card")).forEach((card) => {
@@ -255,6 +262,49 @@ document.addEventListener("DOMContentLoaded", () => {
             const video = card.querySelector("video");
 
             if (!visual || !video) return;
+
+            card.dataset.userPaused = "true";
+
+            const playToggleButton = document.createElement("button");
+            playToggleButton.type = "button";
+            playToggleButton.className = "video-card-play-toggle";
+            playToggleButton.setAttribute("aria-label", "Play video");
+            playToggleButton.innerHTML = '<i class="fa-solid fa-play"></i>';
+            playToggleButton.addEventListener("click", (event) => {
+                event.stopPropagation();
+
+                const cardIndex = Array.from(track.children).indexOf(card);
+                if (cardIndex !== currentIndex) {
+                    updatePosition(cardIndex);
+                }
+
+                const activeCard = track.querySelectorAll(".video-carousel-card")[currentIndex];
+                const activeVideo = activeCard?.querySelector("video");
+                if (!activeVideo) return;
+
+                const shouldPlay = activeVideo.paused;
+                Array.from(track.querySelectorAll(".video-carousel-card")).forEach((item) => {
+                    const itemVideo = item.querySelector("video");
+                    if (item === activeCard) {
+                        item.dataset.userPaused = shouldPlay ? "false" : "true";
+                    } else {
+                        item.dataset.userPaused = "true";
+                        if (itemVideo && !itemVideo.paused) {
+                            itemVideo.pause();
+                        }
+                    }
+                });
+
+                if (shouldPlay) {
+                    activateVideo(activeVideo);
+                } else {
+                    if (!activeVideo.paused) {
+                        activeVideo.pause();
+                    }
+                }
+
+                syncVideoAudio();
+            });
 
             const toggleButton = document.createElement("button");
             toggleButton.type = "button";
@@ -265,15 +315,44 @@ document.addEventListener("DOMContentLoaded", () => {
                 event.stopPropagation();
                 const cardIndex = Array.from(track.children).indexOf(card);
                 updatePosition(cardIndex);
+
+                const activeVideo = track.querySelectorAll(".video-carousel-card")[cardIndex]?.querySelector("video");
+                if (!activeVideo) return;
+
+                const isMuted = activeVideo.muted;
+                activeVideo.muted = !isMuted;
+                activeVideo.volume = activeVideo.muted ? 0 : 1;
+                syncVideoAudio();
             });
 
             card.addEventListener("click", () => {
                 const cardIndex = Array.from(track.children).indexOf(card);
                 updatePosition(cardIndex);
-                activateCurrentCardAudio();
+
+                const activeCard = track.querySelectorAll(".video-carousel-card")[currentIndex];
+                const activeVideo = activeCard?.querySelector("video");
+                if (!activeVideo) return;
+
+                Array.from(track.querySelectorAll(".video-carousel-card")).forEach((item) => {
+                    const itemVideo = item.querySelector("video");
+                    if (item === activeCard) {
+                        item.dataset.userPaused = "false";
+                    } else {
+                        item.dataset.userPaused = "true";
+                        if (itemVideo && !itemVideo.paused) {
+                            itemVideo.pause();
+                        }
+                    }
+                });
+
+                activateVideo(activeVideo);
+                syncVideoAudio();
             });
 
+            visual.appendChild(playToggleButton);
             visual.appendChild(toggleButton);
+            video.autoplay = false;
+            video.removeAttribute("autoplay");
             video.preload = "auto";
             video.setAttribute("preload", "auto");
             video.muted = true;
@@ -284,48 +363,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         prevBtn.addEventListener("click", () => {
             updatePosition(currentIndex - 1);
-            activateCurrentCardAudio();
         });
         nextBtn.addEventListener("click", () => {
             updatePosition(currentIndex + 1);
-            activateCurrentCardAudio();
         });
-
-        viewport.addEventListener("pointerdown", (event) => {
-            isDragging = true;
-            startX = event.clientX;
-            lastPointerX = event.clientX;
-            startScroll = currentIndex * getCardWidth();
-            viewport.classList.add("dragging");
-            viewport.setPointerCapture(event.pointerId);
-            activateCurrentCardAudio();
-        });
-
-        viewport.addEventListener("pointermove", (event) => {
-            if (!isDragging) return;
-            lastPointerX = event.clientX;
-            const delta = event.clientX - startX;
-            const cardWidth = getCardWidth();
-            const pull = Math.min(Math.max(delta * 0.9, -cardWidth * 1.4), cardWidth * 1.4);
-            const targetMove = Math.min(Math.max(startScroll - pull, 0), getMaxTranslate());
-            track.style.transform = `translateX(-${targetMove}px)`;
-        });
-
-        const finishDrag = () => {
-            if (!isDragging) return;
-            isDragging = false;
-            viewport.classList.remove("dragging");
-            const delta = lastPointerX - startX;
-            const cardWidth = getCardWidth();
-            const threshold = cardWidth * 0.2;
-            const direction = (delta < -threshold) ? 1 : (delta > threshold) ? -1 : 0;
-            if (direction !== 0) {
-                updatePosition(currentIndex + direction);
-            } else {
-                updatePosition(currentIndex);
-            }
-            requestAnimationFrame(() => activateCurrentCardAudio());
-        };
 
         const visibilityObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
@@ -343,7 +384,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     const isThisSection = owner === carousel;
 
                     if (isThisSection) {
-                        if (video.closest(".video-carousel-card") && video.closest(".video-carousel-card") !== track.querySelectorAll(".video-carousel-card")[currentIndex]) {
+                        const card = video.closest(".video-carousel-card");
+                        if (card && (card !== track.querySelectorAll(".video-carousel-card")[currentIndex] || card.dataset.userPaused === "true")) {
                             deactivateVideo(video);
                             return;
                         }
@@ -363,12 +405,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         visibilityObserver.observe(viewport);
 
-        viewport.addEventListener("pointerup", finishDrag);
-        viewport.addEventListener("pointerleave", finishDrag);
-        viewport.addEventListener("pointercancel", finishDrag);
         updatePosition(0);
     });
+};
 
+const initializeAiPromptCarousels = () => {
     document.querySelectorAll("[data-project-marquee-carousel]").forEach((carousel) => {
         const viewport = carousel.querySelector("[data-project-marquee]");
         const previousButton = carousel.querySelector("[data-marquee-direction='prev']");
@@ -520,16 +561,44 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("load", () => requestAnimationFrame(activateAiPromptVideos), { once: true });
         window.addEventListener("pageshow", () => requestAnimationFrame(activateAiPromptVideos), { once: true });
 
-        previousButton.addEventListener("click", () => {
-            activeAiIndex = Math.max(activeAiIndex - 1, 0);
-            viewport.scrollBy({ left: -getStep(), behavior: "smooth" });
+        const moveAiPromptCarousel = (direction) => {
+            const cards = Array.from(carousel.querySelectorAll(".project-marquee-card"));
+            const maxIndex = Math.max(cards.length - 1, 0);
+            const nextStep = Math.min(Math.max(direction, -1), 1);
+            activeAiIndex = Math.min(Math.max(activeAiIndex + nextStep, 0), maxIndex);
+
+            const currentScroll = viewport.scrollLeft;
+            const targetScroll = Math.max(0, Math.min(currentScroll + nextStep * getStep(), viewport.scrollWidth - viewport.clientWidth));
+            viewport.scrollLeft = targetScroll;
             activateAiPromptVideos();
+        };
+
+        previousButton.onclick = () => moveAiPromptCarousel(-1);
+        nextButton.onclick = () => moveAiPromptCarousel(1);
+
+        previousButton.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                moveAiPromptCarousel(-1);
+            }
         });
-        nextButton.addEventListener("click", () => {
-            const maxIndex = Math.max(Array.from(carousel.querySelectorAll(".project-marquee-card")).length - 1, 0);
-            activeAiIndex = Math.min(activeAiIndex + 1, maxIndex);
-            viewport.scrollBy({ left: getStep(), behavior: "smooth" });
-            activateAiPromptVideos();
+
+        nextButton.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                moveAiPromptCarousel(1);
+            }
         });
     });
-});
+};
+
+const initializeAllCarousels = () => {
+    initializeVideoCarousels();
+    initializeAiPromptCarousels();
+};
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeAllCarousels);
+} else {
+    initializeAllCarousels();
+}

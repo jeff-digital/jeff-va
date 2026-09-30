@@ -514,9 +514,9 @@ body {
     max-height: 20rem;
     height: 20rem;
 }
+.video-card-play-toggle,
 .video-card-audio-toggle {
     position: absolute;
-    right: 0.7rem;
     bottom: 0.7rem;
     z-index: 3;
     display: inline-flex;
@@ -533,11 +533,21 @@ body {
     transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 }
 
+.video-card-play-toggle {
+    left: 0.7rem;
+}
+
+.video-card-audio-toggle {
+    right: 0.7rem;
+}
+
+.video-card-play-toggle:hover,
 .video-card-audio-toggle:hover {
     transform: translateY(-1px);
     background: rgba(30, 41, 59, 0.82);
 }
 
+.video-card-play-toggle.is-playing,
 .video-card-audio-toggle.muted {
     border-color: rgba(255,255,255,0.24);
     background: rgba(15, 23, 42, 0.62);
