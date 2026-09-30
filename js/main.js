@@ -368,6 +368,42 @@ const initializeVideoCarousels = () => {
             updatePosition(currentIndex + 1);
         });
 
+        let touchStartX = 0;
+        let touchPointerId = null;
+        let suppressClickUntil = 0;
+
+        viewport.addEventListener("pointerdown", (event) => {
+            if (event.pointerType !== "touch" || !event.isPrimary || event.target.closest("button")) return;
+
+            touchPointerId = event.pointerId;
+            touchStartX = event.clientX;
+            viewport.setPointerCapture(event.pointerId);
+        });
+
+        viewport.addEventListener("pointerup", (event) => {
+            if (event.pointerId !== touchPointerId) return;
+
+            const deltaX = event.clientX - touchStartX;
+            touchPointerId = null;
+
+            if (Math.abs(deltaX) < Math.max(40, viewport.clientWidth * 0.12)) return;
+
+            suppressClickUntil = Date.now() + 500;
+            updatePosition(currentIndex + (deltaX < 0 ? 1 : -1));
+        });
+
+        viewport.addEventListener("pointercancel", () => {
+            touchPointerId = null;
+        });
+
+        viewport.addEventListener("click", (event) => {
+            if (Date.now() >= suppressClickUntil) return;
+
+            event.preventDefault();
+            event.stopPropagation();
+            suppressClickUntil = 0;
+        }, true);
+
         const visibilityObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (!entry.isIntersecting) {
