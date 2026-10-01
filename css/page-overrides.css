@@ -449,6 +449,10 @@ body {
     margin-bottom: 0.75rem;
 }
 
+.video-carousel-controls[hidden] {
+    display: none;
+}
+
 .video-carousel-button {
     display: inline-flex;
     align-items: center;

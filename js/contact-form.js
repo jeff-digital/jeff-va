@@ -4,8 +4,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const status = document.getElementById("contactFormStatus");
     const successModal = document.getElementById("contactSuccessModal");
     const closeModalButton = document.getElementById("contactSuccessClose");
+    const purposeSelect = document.getElementById("contactPurpose");
+    const otherPurposeField = document.getElementById("contactOtherPurposeField");
+    const otherPurposeInput = document.getElementById("contactOtherPurpose");
 
-    if (!form || !submitButton || !status || !successModal || !closeModalButton) return;
+    if (!form || !submitButton || !status || !successModal || !closeModalButton || !purposeSelect || !otherPurposeField || !otherPurposeInput) return;
+
+    const syncOtherPurposeField = () => {
+        const isOtherSelected = purposeSelect.value === "Other";
+        otherPurposeField.classList.toggle("hidden", !isOtherSelected);
+        otherPurposeInput.required = isOtherSelected;
+
+        if (!isOtherSelected) {
+            otherPurposeInput.value = "";
+        }
+    };
+
+    purposeSelect.addEventListener("change", syncOtherPurposeField);
+    syncOtherPurposeField();
 
     const closeSuccessModal = () => {
         successModal.classList.add("hidden");
@@ -56,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             form.reset();
+            syncOtherPurposeField();
             status.textContent = "";
             openSuccessModal();
         } catch {

@@ -1346,7 +1346,7 @@
 
         <div
             id="project-panel-website"
-            class="mb-16"
+            class="mb-16 pt-8"
             data-project-panel="website"
             role="tabpanel"
             aria-labelledby="project-tab-website"
@@ -1969,7 +1969,7 @@ A digital platform designed to help families identify suitable senior care facil
 
         <div
             id="project-panel-technical"
-            class="mb-16 hidden"
+            class="mb-16 hidden pt-8"
             data-project-panel="technical"
             role="tabpanel"
             aria-labelledby="project-tab-technical"
@@ -2233,7 +2233,7 @@ A digital platform designed to help families identify suitable senior care facil
 
         <div
             id="project-panel-administration"
-            class="hidden"
+            class="hidden pt-8"
             data-project-panel="administration"
             role="tabpanel"
             aria-labelledby="project-tab-administration"
@@ -2242,8 +2242,7 @@ A digital platform designed to help families identify suitable senior care facil
                     class="flex
                         items-center
                         gap-4
-                        mb-6
-                        mt-0"
+                        mb-6"
                 >
 
                     <span
@@ -3636,90 +3635,115 @@ A digital platform designed to help families identify suitable senior care facil
                 </div>
             </div>
 
-            <div>
-                <div class="mb-4 flex items-center justify-between gap-3">
-                    <div>
-                        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-blue-300">
-                            Video Editing
-                        </p>
-                        <p class="mt-2 text-sm text-slate-300">Project List</p>
+            <div class="space-y-10">
+                <div>
+                    <div class="mb-4 flex items-center justify-between gap-3">
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-[0.22em] text-blue-300">
+                                Video Editing
+                            </p>
+                            <h3 class="mt-2 text-lg font-semibold text-white">Reels</h3>
+                        </div>
+
+                        <div class="video-carousel-controls">
+                            <button type="button" class="video-carousel-button" data-direction="prev" aria-label="View previous reels">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </button>
+                            <button type="button" class="video-carousel-button" data-direction="next" aria-label="View next reels">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="video-carousel-controls">
-                        <button type="button" class="video-carousel-button" data-direction="prev" aria-label="View previous video edits">
-                            <i class="fa-solid fa-arrow-left"></i>
-                        </button>
-                        <button type="button" class="video-carousel-button" data-direction="next" aria-label="View next video edits">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
+                    <div class="video-carousel" data-carousel>
+                        <div class="video-carousel-viewport">
+                            <div class="video-carousel-track">
+                                <div class="video-carousel-card video-carousel-card--reel">
+                                    <div class="project-marquee-visual aspect-[4/5] bg-gradient-to-br from-[#1a2340] via-[#3b82f6] to-[#7dd3fc]">
+                                        <video muted loop playsinline preload="metadata">
+                                            <source src="https://media.jeffdigi.com/brand.mp4" type="video/mp4" />
+                                        </video>
+                                    </div>
+                                    <div class="project-marquee-copy">
+                                        <span class="eyebrow">Video</span>
+                                        <h4>Brand Reel</h4>
+                                        <p>Short-form edits built for attention, clarity and engagement.</p>
+                                    </div>
+                                </div>
+
+                                <div class="video-carousel-card video-carousel-card--reel">
+                                    <div class="project-marquee-visual aspect-[4/5] bg-gradient-to-br from-[#172554] via-[#312e81] to-[#a78bfa]">
+                                        <video muted loop playsinline preload="metadata">
+                                            <source src="https://media.jeffdigi.com/realestate.mp4" type="video/mp4" />
+                                        </video>
+                                    </div>
+                                    <div class="project-marquee-copy">
+                                        <span class="eyebrow">Video</span>
+                                        <h4>Real Estate Ad</h4>
+                                        <p>Property-focused reels designed to showcase spaces, value and lifestyle.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="video-carousel" data-carousel>
-                    <div class="video-carousel-viewport">
-                        <div class="video-carousel-track">
-                            <div class="video-carousel-card video-carousel-card--reel">
-                                <div class="project-marquee-visual aspect-[4/5] bg-gradient-to-br from-[#1a2340] via-[#3b82f6] to-[#7dd3fc]">
-                                    <video muted loop playsinline preload="metadata">
-                                        <source src="https://media.jeffdigi.com/brand.mp4" type="video/mp4" />
-                                    </video>
-                                </div>
-                                <div class="project-marquee-copy">
-                                    <span class="eyebrow">Video</span>
-                                    <h4>Brand Reel</h4>
-                                    <p>Short-form edits built for attention, clarity and engagement.</p>
-                                </div>
-                            </div>
+                <div>
+                    <div class="mb-4 flex items-center justify-between gap-3">
+                        <div>
+                            <h3 class="text-lg font-semibold text-white">Video Projects</h3>
+                        </div>
 
-                            <div class="video-carousel-card video-carousel-card--reel">
-                                <div class="project-marquee-visual aspect-[4/5] bg-gradient-to-br from-[#172554] via-[#312e81] to-[#a78bfa]">
-                                    <video muted loop playsinline preload="metadata">
-                                        <source src="https://media.jeffdigi.com/realestate.mp4" type="video/mp4" />
-                                    </video>
-                                </div>
-                                <div class="project-marquee-copy">
-                                    <span class="eyebrow">Video</span>
-                                    <h4>Real Estate Ad</h4>
-                                    <p>Property-focused reels designed to showcase spaces, value and lifestyle.</p>
-                                </div>
-                            </div>
+                        <div class="video-carousel-controls">
+                            <button type="button" class="video-carousel-button" data-direction="prev" aria-label="View previous content and ads">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </button>
+                            <button type="button" class="video-carousel-button" data-direction="next" aria-label="View next content and ads">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
 
-                            <div class="video-carousel-card">
-                                <div class="project-marquee-visual aspect-[16/10]">
-                                    <video muted loop playsinline preload="metadata">
-                                        <source src="https://media.jeffdigi.com/product.mp4" type="video/mp4" />
-                                    </video>
+                    <div class="video-carousel" data-carousel>
+                        <div class="video-carousel-viewport">
+                            <div class="video-carousel-track">
+                                <div class="video-carousel-card">
+                                    <div class="project-marquee-visual aspect-[16/10]">
+                                        <video muted loop playsinline preload="metadata">
+                                            <source src="https://media.jeffdigi.com/product.mp4" type="video/mp4" />
+                                        </video>
+                                    </div>
+                                    <div class="project-marquee-copy">
+                                        <span class="eyebrow">Video</span>
+                                        <h4>Product Video</h4>
+                                        <p>Product-focused motion content designed to spotlight value, detail and brand appeal.</p>
+                                    </div>
                                 </div>
-                                <div class="project-marquee-copy">
-                                    <span class="eyebrow">Video</span>
-                                    <h4>Product Video</h4>
-                                    <p>Product-focused motion content designed to spotlight value, detail and brand appeal.</p>
-                                </div>
-                            </div>
 
-                            <div class="video-carousel-card">
-                                <div class="project-marquee-visual aspect-[16/10]">
-                                    <video muted loop playsinline preload="metadata">
-                                        <source src="https://media.jeffdigi.com/portfolio.mp4" type="video/mp4" />
-                                    </video>
+                                <div class="video-carousel-card">
+                                    <div class="project-marquee-visual aspect-[16/10]">
+                                        <video muted loop playsinline preload="metadata">
+                                            <source src="https://media.jeffdigi.com/portfolio.mp4" type="video/mp4" />
+                                        </video>
+                                    </div>
+                                    <div class="project-marquee-copy">
+                                        <span class="eyebrow">Video</span>
+                                        <h4>Portfolio Montage</h4>
+                                        <p>My showcase reel highlighting motion, storytelling, and branded edits.</p>
+                                    </div>
                                 </div>
-                                <div class="project-marquee-copy">
-                                    <span class="eyebrow">Video</span>
-                                    <h4>Portfolio Montage</h4>
-                                    <p>My showcase reel highlighting motion, storytelling, and branded edits.</p>
-                                </div>
-                            </div>
 
-                            <div class="video-carousel-card">
-                                <div class="project-marquee-visual aspect-[16/10]">
-                                    <video muted loop playsinline preload="metadata">
-                                        <source src="https://media.jeffdigi.com/community.mp4" type="video/mp4" />
-                                    </video>
-                                </div>
-                                <div class="project-marquee-copy">
-                                    <span class="eyebrow">Video</span>
-                                    <h4>Community Engagement</h4>
-                                    <p>Community-focused edits created to encourage connection and participation.</p>
+                                <div class="video-carousel-card">
+                                    <div class="project-marquee-visual aspect-[16/10]">
+                                        <video muted loop playsinline preload="metadata">
+                                            <source src="https://media.jeffdigi.com/community.mp4" type="video/mp4" />
+                                        </video>
+                                    </div>
+                                    <div class="project-marquee-copy">
+                                        <span class="eyebrow">Video</span>
+                                        <h4>Community Engagement</h4>
+                                        <p>Community-focused edits created to encourage connection and participation.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -3786,15 +3810,15 @@ A digital platform designed to help families identify suitable senior care facil
                 </div>
             </aside>
 
-            <div class="self-center">
-        <div class="overflow-hidden rounded-xl border border-[#1a2340]/20 bg-white shadow-[0_20px_50px_-18px_rgba(26,35,64,0.24)]">
+            <div>
+        <div class="flex h-full flex-col overflow-hidden rounded-xl border border-[#1a2340]/20 bg-white shadow-[0_20px_50px_-18px_rgba(26,35,64,0.24)]">
             <div class="h-3 bg-[#1a2340] sm:h-3.5" aria-hidden="true"></div>
             <div class="px-5 pt-6 sm:px-8 sm:pt-8">
                 <h3 class="text-xl font-semibold text-[#101828]">Send a message</h3>
             </div>
         <form
             id="contactForm"
-            class="grid grid-cols-1 gap-4 px-5 pb-5 pt-4 sm:grid-cols-2 sm:px-8 sm:pb-8"
+            class="grid flex-1 grid-cols-1 content-start gap-4 px-5 pb-5 pt-4 sm:grid-cols-2 sm:px-8 sm:pb-8"
             action="https://formsubmit.co/almocerajeffreys@gmail.com"
             method="POST"
         >
@@ -3848,6 +3872,17 @@ A digital platform designed to help families identify suitable senior care facil
                 </select>
             </div>
 
+            <div id="contactOtherPurposeField" class="hidden sm:col-span-2">
+                <label for="contactOtherPurpose" class="mb-1.5 block text-sm font-medium text-[#1a2340]">Please specify</label>
+                <input
+                    id="contactOtherPurpose"
+                    name="purpose_other"
+                    type="text"
+                    placeholder="Tell me what you'd like to discuss"
+                    class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none transition focus:border-[#1a2340] focus:ring-2 focus:ring-[#1a2340]/10"
+                >
+            </div>
+
             <div class="sm:col-span-2">
                 <label for="contactMessage" class="mb-1.5 block text-sm font-medium text-[#1a2340]">How can I help?</label>
                 <textarea
@@ -3878,21 +3913,21 @@ A digital platform designed to help families identify suitable senior care facil
 </section>
 
 <section id="availability" class="reveal bg-white">
-    <div class="mx-auto max-w-[850px] px-6 pt-16 pb-28 text-center sm:px-8 sm:pt-20 sm:pb-32">
+    <div class="mx-auto max-w-[850px] px-6 pt-12 pb-[150px] text-center sm:px-8 sm:pt-16 sm:pb-[150px]">
         <h2 class="text-3xl font-bold text-[#1a2340]">Availability</h2>
-        <p class="mx-auto mt-3 max-w-[680px] text-sm leading-relaxed text-gray-700">
+        <p class="mx-auto mt-3 max-w-[680px] text-base leading-relaxed text-gray-700">
             Please note I'm off on weekends. Response times outside business hours may be longer, with replies sent the next business day.
         </p>
 
         <div class="mx-auto mt-6 max-w-[600px] rounded-xl border border-blue-200 bg-[#edf6ff] p-5 text-[#1a2340] shadow-sm sm:p-6">
-            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#1a2340]/70">Working hours</p>
-            <p class="mt-2 text-sm font-medium text-gray-700">Your local time</p>
+            <p class="text-[13px] font-semibold uppercase tracking-[0.14em] text-[#1a2340]/70">Working hours</p>
+            <p class="mt-2 text-base font-medium text-gray-700">Your local time</p>
             <p class="mt-1 text-xl font-bold leading-snug sm:text-2xl">
                 <span id="clientAvailability">Detecting...</span>
             </p>
-            <p class="mt-1 text-sm text-gray-600"><span id="clientTimezone">Detecting...</span></p>
+            <p class="mt-1 text-base text-gray-600"><span id="clientTimezone">Detecting...</span></p>
             <div class="mt-4 border-t border-blue-200 pt-3">
-                <p id="availabilityStatus" class="mt-2 text-sm font-medium text-[#1a2340]/80" role="status" aria-live="polite">
+                <p id="availabilityStatus" class="mt-2 text-base font-medium text-[#1a2340]/80" role="status" aria-live="polite">
                     Checking availability...
                 </p>
             </div>

@@ -134,6 +134,7 @@ const initializeVideoCarousels = () => {
 
         if (!viewport || !track || !prevBtn || !nextBtn) return;
 
+        const controls = prevBtn.closest(".video-carousel-controls");
         let currentIndex = 0;
 
         const clampIndex = (value) => {
@@ -142,6 +143,13 @@ const initializeVideoCarousels = () => {
         };
 
         const getMaxTranslate = () => Math.max(track.scrollWidth - viewport.clientWidth, 0);
+
+        const syncCarouselControls = () => {
+            const canScroll = getMaxTranslate() > 1;
+            if (controls) controls.hidden = !canScroll;
+            prevBtn.disabled = !canScroll;
+            nextBtn.disabled = !canScroll;
+        };
 
         const fadeVolume = (video, toVolume, duration = 180) => {
             if (!video) return;
@@ -254,6 +262,7 @@ const initializeVideoCarousels = () => {
             const maxTranslate = getMaxTranslate();
             const move = Math.min(cardOffset, maxTranslate);
             track.style.transform = `translateX(-${move}px)`;
+            syncCarouselControls();
             syncVideoAudio();
         };
 
@@ -442,6 +451,10 @@ const initializeVideoCarousels = () => {
         visibilityObserver.observe(viewport);
 
         updatePosition(0);
+        const resizeObserver = new ResizeObserver(() => updatePosition(currentIndex));
+        resizeObserver.observe(viewport);
+        resizeObserver.observe(track);
+        window.addEventListener("resize", () => updatePosition(currentIndex));
     });
 };
 
