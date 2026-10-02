@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <rect width="1200" height="700" fill="#f6f8fc"/>
+  <rect width="1200" height="62" fill="#fff"/>
+  <path d="M28 21h30v22H28z" rx="5" fill="#4285f4"/>
+  <text x="69" y="43" font-family="Arial,sans-serif" font-size="24" fill="#3c4043">Gmail</text>
+  <rect x="230" y="12" width="600" height="40" rx="20" fill="#f1f3f4"/>
+  <text x="260" y="38" font-family="Arial,sans-serif" font-size="15" fill="#77808c">Search mail</text>
+  <rect x="0" y="62" width="250" height="638" fill="#fff"/>
+  <rect x="20" y="82" width="145" height="47" rx="23" fill="#c2e7ff"/>
+  <text x="49" y="112" font-family="Arial,sans-serif" font-size="16" fill="#174ea6">✎  Compose</text>
+  <g font-family="Arial,sans-serif" font-size="16" fill="#454b54">
+    <text x="36" y="169">▣  Inbox</text><text x="36" y="211">☆  Starred</text>
+    <text x="36" y="253">◷  Snoozed</text><text x="36" y="295">➤  Sent</text>
+  </g>
+  <text x="34" y="354" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#3c4043">Labels</text>
+  <g font-family="Arial,sans-serif" font-size="16" fill="#374151">
+    <circle cx="40" cy="389" r="7" fill="#e94235"/><text x="58" y="395">Urgent</text>
+    <circle cx="40" cy="432" r="7" fill="#4285f4"/><text x="58" y="438">Clients</text>
+    <circle cx="40" cy="475" r="7" fill="#34a853"/><text x="58" y="481">Invoices</text>
+    <circle cx="40" cy="518" r="7" fill="#fbbc04"/><text x="58" y="524">Projects</text>
+    <circle cx="40" cy="561" r="7" fill="#a142f4"/><text x="58" y="567">Scheduling</text>
+    <circle cx="40" cy="604" r="7" fill="#00acc1"/><text x="58" y="610">Team</text>
+    <circle cx="40" cy="647" r="7" fill="#ff7043"/><text x="58" y="653">Follow-up</text>
+    <circle cx="40" cy="680" r="7" fill="#7e57c2"/><text x="58" y="686">Newsletters</text>
+  </g>
+  <rect x="270" y="80" width="900" height="48" rx="8" fill="#fff"/>
+  <text x="296" y="111" font-family="Arial,sans-serif" font-size="15" fill="#515863">☐　↻　⋮</text>
+  <g font-family="Arial,sans-serif" font-size="14" fill="#30343b">
+    <rect x="270" y="140" width="900" height="68" fill="#fff"/><text x="296" y="181" font-weight="700">Maya Chen</text><text x="430" y="181" font-weight="700">Contract review — signature requested</text><text x="1065" y="181">9:14 AM</text>
+    <rect x="270" y="209" width="900" height="68" fill="#fff"/><text x="296" y="250">Noah Patel</text><text x="430" y="250">Invoice 1048 — payment confirmation</text><text x="1065" y="250">8:42 AM</text>
+    <rect x="270" y="278" width="900" height="68" fill="#fff"/><text x="296" y="319" font-weight="700">Ava Brooks</text><text x="430" y="319" font-weight="700">Client call moved to 2:30 PM</text><text x="1065" y="319">Yesterday</text>
+    <rect x="270" y="347" width="900" height="68" fill="#fff"/><text x="296" y="388">Liam Carter</text><text x="430" y="388">Project files ready for review</text><text x="1065" y="388">Yesterday</text>
+    <rect x="270" y="416" width="900" height="68" fill="#fff"/><text x="296" y="457">Olivia James</text><text x="430" y="457">Q3 invoice and receipt attached</text><text x="1065" y="457">Mon</text>
+  </g>
+  <g font-family="Arial,sans-serif" font-size="12" font-weight="700">
+    <rect x="800" y="161" width="58" height="25" rx="12" fill="#fde8e6"/><text x="813" y="178" fill="#c5221f">Urgent</text>
+    <rect x="800" y="230" width="65" height="25" rx="12" fill="#e6f4ea"/><text x="812" y="247" fill="#188038">Invoices</text>
+    <rect x="800" y="299" width="56" height="25" rx="12" fill="#e8f0fe"/><text x="812" y="316" fill="#1967d2">Clients</text>
+    <rect x="800" y="368" width="65" height="25" rx="12" fill="#f3e8fd"/><text x="812" y="385" fill="#8430ce">Projects</text>
+    <rect x="800" y="437" width="65" height="25" rx="12" fill="#e6f4ea"/><text x="812" y="454" fill="#188038">Invoices</text>
+  </g>
+  <g stroke="#e8eaed"><path d="M270 208h900M270 277h900M270 346h900M270 415h900M270 484h900"/></g>
+</svg>

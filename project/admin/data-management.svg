@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <rect width="1200" height="700" fill="#fff"/>
+  <rect width="1200" height="60" fill="#f8f9fa"/>
+  <path d="M25 18h26v25H25z" rx="4" fill="#188038"/>
+  <text x="63" y="42" font-family="Arial,sans-serif" font-size="23" fill="#3c4043">Project Follow-up Tracker</text>
+  <rect x="25" y="82" width="1150" height="58" rx="7" fill="#e6f4ea"/>
+  <text x="50" y="118" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#137333">Client Tasks · Due Dates · Status</text>
+  <g font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#374151">
+    <rect x="25" y="160" width="1150" height="55" fill="#f1f3f4"/>
+    <text x="50" y="194">TASK</text><text x="470" y="194">OWNER</text><text x="650" y="194">DUE DATE</text><text x="865" y="194">STATUS</text><text x="1030" y="194">NEXT STEP</text>
+  </g>
+  <g font-family="Arial,sans-serif" font-size="17" fill="#30343b">
+    <rect x="25" y="216" width="1150" height="86" fill="#fff"/>
+    <text x="50" y="267">Review client contract</text><text x="470" y="267">M. Chen</text><text x="650" y="267">Oct 08, 2026</text><text x="1030" y="267">Send for approval</text>
+    <rect x="25" y="303" width="1150" height="86" fill="#fbfcfd"/>
+    <text x="50" y="354">Prepare Q3 invoice</text><text x="470" y="354">J. Lee</text><text x="650" y="354">Oct 10, 2026</text><text x="1030" y="354">Email client</text>
+    <rect x="25" y="390" width="1150" height="86" fill="#fff"/>
+    <text x="50" y="441">Schedule project kickoff</text><text x="470" y="441">A. Brooks</text><text x="650" y="441">Oct 12, 2026</text><text x="1030" y="441">Confirm time</text>
+    <rect x="25" y="477" width="1150" height="86" fill="#fbfcfd"/>
+    <text x="50" y="528">Collect signed documents</text><text x="470" y="528">N. Patel</text><text x="650" y="528">Oct 14, 2026</text><text x="1030" y="528">Follow up</text>
+    <rect x="25" y="564" width="1150" height="86" fill="#fff"/>
+    <text x="50" y="615">Share monthly report</text><text x="470" y="615">M. Chen</text><text x="650" y="615">Oct 16, 2026</text><text x="1030" y="615">Upload to Drive</text>
+  </g>
+  <g font-family="Arial,sans-serif" font-size="14" font-weight="700">
+    <rect x="855" y="238" width="115" height="34" rx="17" fill="#fce8e6"/><text x="877" y="260" fill="#c5221f">Urgent</text>
+    <rect x="855" y="325" width="115" height="34" rx="17" fill="#e6f4ea"/><text x="880" y="347" fill="#188038">Complete</text>
+    <rect x="855" y="412" width="115" height="34" rx="17" fill="#e8f0fe"/><text x="884" y="434" fill="#1967d2">In progress</text>
+    <rect x="855" y="499" width="115" height="34" rx="17" fill="#fef7e0"/><text x="881" y="521" fill="#b06000">Waiting</text>
+    <rect x="855" y="586" width="115" height="34" rx="17" fill="#e8f0fe"/><text x="884" y="608" fill="#1967d2">In progress</text>
+  </g>
+  <g stroke="#e5e7eb"><path d="M25 215h1150M25 302h1150M25 389h1150M25 476h1150M25 563h1150M25 650h1150"/></g>
+</svg>

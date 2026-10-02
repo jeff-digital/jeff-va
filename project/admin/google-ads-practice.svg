@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <rect width="1200" height="700" fill="#f5f7fb"/>
+  <rect width="1200" height="64" fill="#fff"/>
+  <circle cx="43" cy="32" r="18" fill="#4285f4"/>
+  <text x="75" y="40" font-family="Arial,sans-serif" font-size="23" fill="#30343b">Campaigns</text>
+  <rect x="880" y="16" width="270" height="34" rx="17" fill="#fff4e5"/>
+  <text x="905" y="38" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#b06000">PRACTICE PROJECT · LOCAL BAKERY</text>
+  <rect x="0" y="64" width="230" height="636" fill="#fff"/>
+  <g font-family="Arial,sans-serif" font-size="16" fill="#4b5563">
+    <text x="30" y="112">Overview</text><text x="30" y="158" font-weight="700" fill="#1967d2">Campaigns</text>
+    <text x="30" y="204">Ad groups</text><text x="30" y="250">Ads</text><text x="30" y="296">Keywords</text>
+    <text x="30" y="342">Conversions</text>
+  </g>
+  <text x="270" y="113" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#202124">Sweet Crumb Bakery | Search</text>
+  <text x="270" y="146" font-family="Arial,sans-serif" font-size="14" fill="#69717c">Search campaign · Draft structure · Conversion: Order inquiry</text>
+  <g font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#69717c">
+    <rect x="260" y="175" width="900" height="48" rx="7" fill="#e9eef6"/>
+    <text x="285" y="205">CAMPAIGN / AD GROUP</text><text x="665" y="205">KEYWORD THEMES</text><text x="960" y="205">CONVERSION</text>
+  </g>
+  <g fill="#fff">
+    <rect x="260" y="230" width="900" height="105"/><rect x="260" y="340" width="900" height="105"/>
+    <rect x="260" y="450" width="900" height="105"/>
+  </g>
+  <g font-family="Arial,sans-serif" font-size="17" fill="#30343b">
+    <text x="285" y="270" font-weight="700">Search | Custom Cakes</text><text x="305" y="302">Ad: Custom cakes for every occasion</text>
+    <text x="285" y="380" font-weight="700">Search | Fresh Bread</text><text x="305" y="412">Ad: Freshly baked bread, made daily</text>
+    <text x="285" y="490" font-weight="700">Search | Bakery Near Me</text><text x="305" y="522">Ad: Visit your neighborhood bakery</text>
+  </g>
+  <g font-family="Arial,sans-serif" font-size="14" fill="#5f6670">
+    <text x="665" y="270">custom birthday cakes</text><text x="665" y="296">custom cake bakery</text>
+    <text x="665" y="380">fresh bread bakery</text><text x="665" y="406">artisan bread near me</text>
+    <text x="665" y="490">local bakery near me</text><text x="665" y="516">bakery open today</text>
+  </g>
+  <g font-family="Arial,sans-serif" font-size="13" font-weight="700">
+    <rect x="960" y="252" width="150" height="32" rx="16" fill="#e6f4ea"/><text x="982" y="273" fill="#188038">Order inquiry</text>
+    <rect x="960" y="362" width="150" height="32" rx="16" fill="#e6f4ea"/><text x="982" y="383" fill="#188038">Order inquiry</text>
+    <rect x="960" y="472" width="150" height="32" rx="16" fill="#e6f4ea"/><text x="982" y="493" fill="#188038">Order inquiry</text>
+  </g>
+  <g stroke="#e7eaf0"><path d="M260 336h900M260 446h900M260 556h900"/></g>
+  <text x="270" y="610" font-family="Arial,sans-serif" font-size="14" fill="#69717c">Mock campaign plan for portfolio demonstration — no live ads or performance claims.</text>
+</svg>

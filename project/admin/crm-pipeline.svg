@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <rect width="1200" height="700" fill="#f5f7fb"/>
+  <rect width="1200" height="64" fill="#fff"/>
+  <rect x="24" y="18" width="30" height="28" rx="7" fill="#ff7a59"/>
+  <text x="68" y="42" font-family="Arial,sans-serif" font-size="23" fill="#30343b">Sales Workspace</text>
+  <rect x="935" y="14" width="225" height="36" rx="18" fill="#fff0eb"/>
+  <text x="960" y="38" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#c94f32">MOCK HUBSPOT PIPELINE</text>
+  <rect x="0" y="64" width="215" height="636" fill="#fff"/>
+  <g font-family="Arial,sans-serif" font-size="16" fill="#4b5563">
+    <text x="28" y="115">Contacts</text><text x="28" y="161">Companies</text>
+    <text x="28" y="207" font-weight="700" fill="#c94f32">Deals</text><text x="28" y="253">Tasks</text>
+    <text x="28" y="299">Reports</text>
+  </g>
+  <text x="250" y="112" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#202124">New Business Pipeline</text>
+  <text x="250" y="145" font-family="Arial,sans-serif" font-size="14" fill="#69717c">4 stages · Follow-up tasks assigned · Sample records</text>
+  <g font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#374151">
+    <rect x="245" y="174" width="220" height="43" rx="7" fill="#e8f0fe"/><text x="264" y="201">New Lead　3</text>
+    <rect x="475" y="174" width="220" height="43" rx="7" fill="#e6f4ea"/><text x="494" y="201">Qualified　2</text>
+    <rect x="705" y="174" width="220" height="43" rx="7" fill="#fef7e0"/><text x="724" y="201">Proposal　2</text>
+    <rect x="935" y="174" width="220" height="43" rx="7" fill="#f3e8fd"/><text x="954" y="201">Negotiation　1</text>
+  </g>
+  <g fill="#fff" stroke="#e2e6ec">
+    <rect x="245" y="230" width="220" height="132" rx="8"/><rect x="245" y="374" width="220" height="132" rx="8"/>
+    <rect x="245" y="518" width="220" height="132" rx="8"/><rect x="475" y="230" width="220" height="132" rx="8"/>
+    <rect x="475" y="374" width="220" height="132" rx="8"/><rect x="705" y="230" width="220" height="132" rx="8"/>
+    <rect x="705" y="374" width="220" height="132" rx="8"/><rect x="935" y="230" width="220" height="132" rx="8"/>
+  </g>
+  <g font-family="Arial,sans-serif" fill="#30343b">
+    <text x="263" y="263" font-size="16" font-weight="700">Ava Brooks</text><text x="263" y="289" font-size="13">Northstar Studio</text><text x="263" y="327" font-size="13" fill="#69717c">Task: Send intro email</text>
+    <text x="263" y="407" font-size="16" font-weight="700">Noah Patel</text><text x="263" y="433" font-size="13">Brightline Co.</text><text x="263" y="471" font-size="13" fill="#69717c">Task: Book discovery call</text>
+    <text x="263" y="551" font-size="16" font-weight="700">Maya Chen</text><text x="263" y="577" font-size="13">Willow &amp; Pine</text><text x="263" y="615" font-size="13" fill="#69717c">Task: Qualify requirements</text>
+    <text x="493" y="263" font-size="16" font-weight="700">Liam Carter</text><text x="493" y="289" font-size="13">Cedar Creative</text><text x="493" y="327" font-size="13" fill="#69717c">Task: Share service overview</text>
+    <text x="493" y="407" font-size="16" font-weight="700">Olivia James</text><text x="493" y="433" font-size="13">Juniper Goods</text><text x="493" y="471" font-size="13" fill="#69717c">Task: Follow up Friday</text>
+    <text x="723" y="263" font-size="16" font-weight="700">Ethan Rivera</text><text x="723" y="289" font-size="13">Bluebird Events</text><text x="723" y="327" font-size="13" fill="#69717c">Task: Send proposal</text>
+    <text x="723" y="407" font-size="16" font-weight="700">Zoe Martin</text><text x="723" y="433" font-size="13">Oak &amp; Coast</text><text x="723" y="471" font-size="13" fill="#69717c">Task: Check in Tuesday</text>
+    <text x="953" y="263" font-size="16" font-weight="700">Sam Taylor</text><text x="953" y="289" font-size="13">Kindred Market</text><text x="953" y="327" font-size="13" fill="#69717c">Task: Confirm next steps</text>
+  </g>
+</svg>

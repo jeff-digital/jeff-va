@@ -110,12 +110,12 @@ body {
     line-height: 1.35;
 }
 
-/* Administration projects use compact editorial cards instead of image overlays. */
+/* Administration, graphic design, and social media projects use editorial cards. */
 #project-panel-administration > .grid {
     gap: 2.5rem;
 }
 
-#project-panel-administration > .grid > div {
+#project-panel-administration > .grid > div:first-child {
     position: relative;
     padding: 0;
     background: transparent;
@@ -123,7 +123,7 @@ body {
     border-radius: 0;
 }
 
-#project-panel-administration > .grid > div > span {
+#project-panel-administration > .grid > div:first-child > span {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -133,7 +133,7 @@ body {
     letter-spacing: 0.14em;
 }
 
-#project-panel-administration > .grid > div > span::before {
+#project-panel-administration > .grid > div:first-child > span::before {
     content: "";
     width: 1.75rem;
     height: 1.75rem;
@@ -142,18 +142,18 @@ body {
     box-shadow: inset 0 0 0 1px #cfe8fc;
 }
 
-#project-panel-administration > .grid > div > span::after {
+#project-panel-administration > .grid > div:first-child > span::after {
     display: none;
 }
 
-#project-panel-administration > .grid > div > h4 {
+#project-panel-administration > .grid > div:first-child > h4 {
     min-height: 0;
     margin-top: 0.35rem;
     font-size: 1.45rem;
     line-height: 1.2;
 }
 
-#project-panel-administration > .grid > div > h4::after {
+#project-panel-administration > .grid > div:first-child > h4::after {
     display: block;
     margin-top: 0.25rem;
     color: #667085;
@@ -162,8 +162,55 @@ body {
     line-height: 1.35;
 }
 
-#project-panel-administration > .grid > div:nth-child(1) > h4::after {
+#project-panel-administration > .grid > div:first-child > h4::after {
     content: "Helping businesses stay organized and productive.";
+}
+
+#project-panel-administration > .grid > div:is(:nth-child(2), :nth-child(3)) {
+    padding: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    background: #f9fafb;
+    box-shadow: 0 5px 18px rgba(26, 35, 64, 0.06);
+}
+
+#project-panel-administration > .grid > div:is(:nth-child(2), :nth-child(3)) > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #2196f3;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+}
+
+#project-panel-administration > .grid > div:is(:nth-child(2), :nth-child(3)) > span::before {
+    content: "";
+    width: 1.75rem;
+    height: 1.75rem;
+    flex-shrink: 0;
+    border-radius: 0.4rem;
+    background: #e8f4ff;
+    box-shadow: inset 0 0 0 1px #cfe8fc;
+}
+
+#project-panel-administration > .grid > div:is(:nth-child(2), :nth-child(3)) > h4 {
+    min-height: 0;
+    margin-top: 0.35rem;
+    font-size: 1.45rem;
+    line-height: 1.2;
+}
+
+#project-panel-administration > .grid > div:is(:nth-child(2), :nth-child(3)) > h4::after {
+    display: block;
+    margin-top: 0.25rem;
+    color: #667085;
+    font-size: 0.7rem;
+    font-weight: 500;
+    line-height: 1.35;
 }
 
 #project-panel-administration > .grid > div:nth-child(2) > h4::after {
@@ -174,31 +221,31 @@ body {
     content: "Helping brands grow through clear, engaging content.";
 }
 
-#project-panel-administration > .grid > div > .grid {
+#project-panel-administration > .grid > div:is(:first-child, :nth-child(2), :nth-child(3)) > .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
     margin-top: 0.85rem;
 }
 
-#project-panel-administration .group {
+#project-panel-administration > .grid > div:is(:first-child, :nth-child(2), :nth-child(3)) > .grid > .group {
     display: flex;
     flex-direction: column;
     aspect-ratio: auto;
     min-height: 0;
     overflow: hidden;
-    border: 1px solid #e6ebf1;
+    border: 1px solid #d9e2ec;
     border-radius: 0.8rem;
     background: #fff;
-    box-shadow: 0 5px 18px rgba(26, 35, 64, 0.06);
+    box-shadow: 0 6px 20px rgba(26, 35, 64, 0.09);
     transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
-#project-panel-administration .group:hover {
+#project-panel-administration > .grid > div:is(:first-child, :nth-child(2), :nth-child(3)) > .grid > .group:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 26px rgba(26, 35, 64, 0.12);
 }
 
-#project-panel-administration .group > div:first-child {
+#project-panel-administration > .grid > div:first-child > .grid > .group > div:first-child {
     position: relative;
     inset: auto;
     display: block;
@@ -206,33 +253,23 @@ body {
     flex: 0 0 auto;
     overflow: hidden;
     background: #f5f8fb;
+    border-bottom: 1px solid #e6ebf1;
 }
 
-/* Graphic Design and Social Media cards place their image directly in the card. */
-#project-panel-administration .group > img:first-child {
-    position: relative !important;
-    inset: auto !important;
-    display: block !important;
-    width: 100%;
-    height: 14rem !important;
+#project-panel-administration > .grid > div:is(:nth-child(2), :nth-child(3)) > .grid > .group > div:first-child {
+    position: relative;
+    inset: auto;
+    display: block;
+    height: auto;
+    aspect-ratio: 4 / 3;
     flex: 0 0 auto;
-    object-fit: cover;
+    overflow: hidden;
+    background: #f5f8fb;
 }
 
-#project-panel-administration .group:has(> img:first-child) {
-    height: auto !important;
-    aspect-ratio: auto !important;
-    overflow: visible;
-}
-
-#project-panel-administration .group > img:first-child + div + div {
-    position: relative !important;
-    inset: auto !important;
-    display: block !important;
-    min-height: 9.3rem !important;
-}
-
-#project-panel-administration .group img {
+#project-panel-administration > .grid > div:is(:first-child, :nth-child(2), :nth-child(3)) > .grid > .group img {
+    position: absolute;
+    inset: 0;
     display: block;
     width: 100%;
     height: 100%;
@@ -240,24 +277,28 @@ body {
     transition: transform 300ms ease;
 }
 
-#project-panel-administration .group:hover img {
+#project-panel-administration > .grid > div:is(:nth-child(2), :nth-child(3)) > .grid > .group > div:first-child img {
+    object-fit: contain;
+}
+
+#project-panel-administration > .grid > div:is(:first-child, :nth-child(2), :nth-child(3)) > .grid > .group:hover img {
     transform: scale(1.035);
 }
 
-#project-panel-administration .group > div:nth-child(2) {
+#project-panel-administration > .grid > div:is(:first-child, :nth-child(2), :nth-child(3)) > .grid > .group > div:nth-child(2) {
     display: none;
 }
 
-#project-panel-administration .group > div:last-child {
+#project-panel-administration > .grid > div:is(:first-child, :nth-child(2), :nth-child(3)) > .grid > .group > div:last-child {
     position: static;
     inset: auto;
     display: block;
-    min-height: 9.3rem;
-    padding: 0.75rem 0.85rem 0.85rem;
+    min-height: 7.2rem;
+    padding: 0.7rem 0.75rem 0.8rem;
     color: #1a2340;
 }
 
-#project-panel-administration .group > div:last-child span {
+#project-panel-administration > .grid > div:is(:first-child, :nth-child(2), :nth-child(3)) > .grid > .group > div:last-child span {
     display: block;
     color: #1a2340;
     font-size: 0.78rem;
@@ -266,26 +307,39 @@ body {
     white-space: normal;
 }
 
-#project-panel-administration .group > div:last-child p {
-    display: -webkit-box;
-    overflow: hidden;
-    margin-top: 0.35rem;
+#project-panel-administration > .grid > div:is(:first-child, :nth-child(2), :nth-child(3)) > .grid > .group > div:last-child p {
+    display: block;
+    overflow: visible;
+    margin-top: 0.3rem;
     color: #667085;
-    font-size: 0.67rem;
+    font-size: 0.68rem;
     line-height: 1.35;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
 }
 
-#project-panel-administration .project-card-tags {
+#project-panel-administration > .grid > div:first-child > .grid > .group > div:last-child > span:first-child {
+    font-size: 0.86rem;
+    line-height: 1.3;
+}
+
+#project-panel-administration > .grid > div:first-child > .grid > .group > div:last-child p {
+    color: #596579;
+    font-size: 0.75rem;
+    line-height: 1.45;
+}
+
+#project-panel-administration > .grid > div:first-child > .grid > .admin-email-card > div:first-child,
+#project-panel-administration > .grid > div:first-child > .grid > .admin-data-card > div:first-child {
+    height: 16rem;
+}
+
+#project-panel-administration > .grid > div:is(:first-child, :nth-child(2), :nth-child(3)) > .grid > .group > div:last-child .project-card-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.3rem;
     margin-top: 0.55rem;
 }
 
-#project-panel-administration .group > div:last-child .project-card-tags span {
+#project-panel-administration > .grid > div:is(:first-child, :nth-child(2), :nth-child(3)) > .grid > .group > div:last-child .project-card-tags span {
     display: inline-flex;
     width: auto;
     padding: 0.18rem 0.4rem;
@@ -297,7 +351,7 @@ body {
     line-height: 1.15;
 }
 
-#project-panel-administration .group > div:last-child .project-card-action {
+#project-panel-administration > .grid > div:is(:first-child, :nth-child(2), :nth-child(3)) > .grid > .group > div:last-child .project-card-action {
     display: none;
     margin-top: 0.55rem;
     color: #1f70ac;
@@ -307,42 +361,83 @@ body {
 }
 
 @media (max-width: 639px) {
-    #project-panel-administration > .grid > div > .grid {
+    #project-panel-administration > .grid > div:is(:first-child, :nth-child(2), :nth-child(3)) > .grid {
         gap: 0.75rem;
     }
 
-    #project-panel-administration .group > div:first-child,
-    #project-panel-administration .group > img:first-child {
-        height: 7rem !important;
+    #project-panel-administration > .grid > div:first-child > .grid > .group > div:first-child {
+        height: 9rem !important;
     }
 
-    #project-panel-administration .group > div:last-child {
+    #project-panel-administration > .grid > div:is(:nth-child(2), :nth-child(3)) > .grid > .group > div:first-child {
+        height: auto;
+        aspect-ratio: 4 / 3;
+    }
+
+    #project-panel-administration > .grid > div:first-child > .grid > .admin-email-card > div:first-child,
+    #project-panel-administration > .grid > div:first-child > .grid > .admin-data-card > div:first-child {
+        height: 10rem !important;
+    }
+
+    #project-panel-administration > .grid > div:is(:first-child, :nth-child(2), :nth-child(3)) > .grid > .group > div:last-child {
         min-height: 8.1rem;
         padding: 0.65rem;
     }
 
-    #project-panel-administration .group > div:last-child p {
-        font-size: 0.62rem;
+    #project-panel-administration > .grid > div:is(:first-child, :nth-child(2), :nth-child(3)) > .grid > .group > div:last-child p {
+        font-size: 0.66rem;
     }
 
-    #project-panel-administration .project-card-tags {
+    #project-panel-administration > .grid > div:first-child > .grid > .group > div:last-child p {
+        font-size: 0.75rem;
+        line-height: 1.45;
+    }
+
+    #project-panel-administration > .grid > div:is(:first-child, :nth-child(2), :nth-child(3)) > .grid > .group > div:last-child .project-card-tags {
         gap: 0.25rem;
         margin-top: 0.45rem;
     }
 
-    #project-panel-administration > .grid > div > span::after {
+    #project-panel-administration > .grid > div:first-child > span::after {
         display: none;
     }
 }
 
-@media (min-width: 640px) {
-    #project-panel-administration > .grid > div > .grid {
+@media (max-width: 479px) {
+    #project-panel-administration > .grid > div:is(:first-child, :nth-child(2), :nth-child(3)) > .grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    #project-panel-administration > .grid > div:first-child > .grid > .group > div:first-child {
+        height: 11rem !important;
+    }
+
+    #project-panel-administration > .grid > div:first-child > .grid > .admin-email-card > div:first-child,
+    #project-panel-administration > .grid > div:first-child > .grid > .admin-data-card > div:first-child {
+        height: 12rem !important;
+    }
+
+    #project-panel-administration > .grid > div:is(:nth-child(2), :nth-child(3)) > .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
+@media (min-width: 640px) {
+    #project-panel-administration > .grid > div:is(:first-child, :nth-child(2), :nth-child(3)) > .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #project-panel-administration > .grid > div:is(:nth-child(2), :nth-child(3)) > .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
 @media (min-width: 1024px) {
-    #project-panel-administration > .grid > div > .grid {
+    #project-panel-administration > .grid > div:first-child > .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    #project-panel-administration > .grid > div:is(:nth-child(2), :nth-child(3)) > .grid {
         grid-template-columns: repeat(5, minmax(0, 1fr));
     }
 }
@@ -650,7 +745,7 @@ body {
         animation: none;
     }
 
-    #project-panel-administration .group > div:last-child {
+    #project-panel-administration > .grid > div:first-child > .grid > .group > div:last-child {
         transition: none;
         transform: none;
     }
