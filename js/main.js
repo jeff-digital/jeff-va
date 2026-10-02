@@ -644,6 +644,52 @@ const initializeAiPromptCarousels = () => {
 const initializeAllCarousels = () => {
     initializeVideoCarousels();
     initializeAiPromptCarousels();
+
+    document.querySelectorAll("[data-social-services-viewport]").forEach((viewport) => {
+        const section = viewport.closest("#social-services");
+        const previousButton = section?.querySelector("[data-social-services-direction='prev']");
+        const nextButton = section?.querySelector("[data-social-services-direction='next']");
+        const cards = Array.from(viewport.querySelectorAll(".social-services-card"));
+
+        if (!section || !previousButton || !nextButton || !cards.length) return;
+
+        let activeServiceIndex = 0;
+
+        const syncActiveService = () => {
+            const viewportLeft = viewport.getBoundingClientRect().left;
+            activeServiceIndex = cards.reduce((closestIndex, card, index) => {
+                const closestDistance = Math.abs(cards[closestIndex].getBoundingClientRect().left - viewportLeft);
+                const cardDistance = Math.abs(card.getBoundingClientRect().left - viewportLeft);
+                return cardDistance < closestDistance ? index : closestIndex;
+            }, 0);
+        };
+
+        const moveServices = (direction) => {
+            syncActiveService();
+            activeServiceIndex = Math.max(0, Math.min(activeServiceIndex + direction, cards.length - 1));
+            const targetCard = cards[activeServiceIndex];
+            const targetLeft = viewport.scrollLeft
+                + targetCard.getBoundingClientRect().left
+                - viewport.getBoundingClientRect().left;
+            viewport.scrollTo({ left: targetLeft, behavior: "smooth" });
+        };
+
+        previousButton.addEventListener("click", () => moveServices(-1));
+        nextButton.addEventListener("click", () => moveServices(1));
+        viewport.addEventListener("scroll", syncActiveService, { passive: true });
+
+        viewport.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowLeft") {
+                event.preventDefault();
+                moveServices(-1);
+            }
+
+            if (event.key === "ArrowRight") {
+                event.preventDefault();
+                moveServices(1);
+            }
+        });
+    });
 };
 
 if (document.readyState === "loading") {
