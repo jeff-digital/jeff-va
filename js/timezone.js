@@ -35,7 +35,7 @@ function updateClientAvailability() {
             const offlineMessage = isWeekend
                 ? "I'm currently offline because it's the weekend. I'll respond when I'm back online."
                 : !isOwnerAvailable
-                    ? "I'm currently offline outside my available hours in the Philippines. I'll respond when I'm back online."
+                    ? "I’m currently offline outside my available hours in the Philippines. Feel free to leave me a message, and I’ll get back to you as soon as possible once I’m back online."
                     : "I'm currently unavailable. I'll respond as soon as I'm online again.";
 
             availabilityStatusEl.textContent = offlineMessage;
