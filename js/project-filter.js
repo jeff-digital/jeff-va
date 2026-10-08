@@ -33,9 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
         showToolCategory("essential-tools");
     }
 
-    const projectOrder = ["administration", "website", "technical"];
+    const projectOrder = ["website", "technical"];
     const projectContainer = projectPanels[0]?.parentElement;
-    let activeProjectCategory = "administration";
+    let activeProjectCategory = "website";
 
     if (projectContainer) {
         projectOrder.forEach((category) => {
@@ -139,5 +139,5 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    showProjectCategory("administration", false);
+    showProjectCategory("website", false);
 });

@@ -35,12 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(element);
     });
 
-    if (window.location.hash === "#projects") {
-        const projectsSection = document.getElementById("projects");
-        if (projectsSection) {
-            requestAnimationFrame(() => {
-                projectsSection.classList.add("show");
-            });
+    if (window.location.hash === "#featured-case-studies") {
+        const featuredCaseStudies = document.getElementById("featured-case-studies");
+        if (featuredCaseStudies) {
+            requestAnimationFrame(() => featuredCaseStudies.classList.add("show"));
         }
     }
 });
