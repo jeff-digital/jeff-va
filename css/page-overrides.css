@@ -806,7 +806,6 @@ footer .border-t {
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-x: contain;
-    scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
 }
 
@@ -839,6 +838,7 @@ footer .border-t {
     background: rgba(255,255,255,0.04);
     box-shadow: 0 14px 32px rgba(0,0,0,0.18);
     height: auto;
+    contain: layout paint;
 }
 
 .project-marquee-card.portrait .project-marquee-visual {
@@ -913,6 +913,7 @@ footer .border-t {
     background: rgba(255,255,255,0.04);
     box-shadow: 0 12px 26px rgba(0,0,0,0.18);
     height: auto;
+    contain: layout paint;
 }
 
 .video-carousel-card--reel {
@@ -1090,9 +1091,12 @@ body {
     top: 0;
     z-index: 50;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(26, 35, 64, 0.94);
+    background: rgba(26, 35, 64, 0.98);
     box-shadow: 0 8px 24px rgba(11, 19, 35, 0.12);
-    backdrop-filter: blur(14px);
+}
+
+.certificate-modal-panel {
+    contain: layout paint;
 }
 
 #home {
@@ -1100,6 +1104,10 @@ body {
     background:
         radial-gradient(circle at 82% 20%, rgba(33, 150, 243, 0.22), transparent 29rem),
         var(--portfolio-navy);
+}
+
+picture {
+    display: contents;
 }
 
 .home-portrait-wrap img {

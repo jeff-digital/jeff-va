@@ -10,10 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
             whatsappModal.classList.remove("flex");
             whatsappModal.setAttribute("aria-hidden", "true");
             document.body.classList.remove("overflow-hidden");
+            window.resumePortfolioVideos?.();
         };
 
         const openWhatsAppModal = (event) => {
             event.preventDefault();
+            window.pausePortfolioVideos?.();
             whatsappModal.classList.remove("hidden");
             whatsappModal.classList.add("flex");
             whatsappModal.setAttribute("aria-hidden", "false");
@@ -78,9 +80,11 @@ document.addEventListener("DOMContentLoaded", () => {
             resumeModal.classList.remove("flex");
             resumeModal.setAttribute("aria-hidden", "true");
             document.body.classList.remove("overflow-hidden");
+            window.resumePortfolioVideos?.();
         };
 
         const openResumeModal = () => {
+            window.pausePortfolioVideos?.();
             resumeModal.classList.remove("hidden");
             resumeModal.classList.add("flex");
             resumeModal.setAttribute("aria-hidden", "false");
@@ -135,7 +139,10 @@ const initializeVideoCarousels = () => {
         if (!viewport || !track || !prevBtn || !nextBtn) return;
 
         const controls = prevBtn.closest(".video-carousel-controls");
+        const videoCards = Array.from(track.querySelectorAll(".video-carousel-card"));
+        const videos = videoCards.map((card) => card.querySelector("video")).filter(Boolean);
         let currentIndex = 0;
+        let isCarouselVisible = false;
 
         const clampIndex = (value) => {
             const maxIndex = Math.max(track.children.length - 1, 0);
@@ -172,13 +179,21 @@ const initializeVideoCarousels = () => {
         const activateVideo = (video) => {
             if (!video) return;
 
+            if (!isCarouselVisible || hasOpenPortfolioModal() || document.body.classList.contains("overflow-hidden")) {
+                deactivateVideo(video);
+                return;
+            }
+
+            portfolioVideos.forEach((otherVideo) => {
+                if (otherVideo !== video) {
+                    deactivateVideo(otherVideo);
+                }
+            });
+
             video.autoplay = false;
             video.removeAttribute("autoplay");
-            video.preload = "auto";
-            video.setAttribute("preload", "auto");
-            if (video.readyState < 2) {
-                video.load();
-            }
+            video.preload = "metadata";
+            video.setAttribute("preload", "metadata");
 
             if (video.paused) {
                 const playPromise = video.play();
@@ -197,28 +212,26 @@ const initializeVideoCarousels = () => {
             if (!video.paused) {
                 video.pause();
             }
+            video.preload = "none";
+            video.setAttribute("preload", "none");
             video.muted = true;
             video.volume = 0;
         };
 
         const syncVideoAudio = () => {
-            const cards = Array.from(track.querySelectorAll(".video-carousel-card"));
-
-            cards.forEach((card, index) => {
+            videoCards.forEach((card, index) => {
                 const video = card.querySelector("video");
                 const playToggle = card.querySelector(".video-card-play-toggle");
                 const button = card.querySelector(".video-card-audio-toggle");
                 const isActive = index === currentIndex;
                 const title = card.querySelector("h4")?.textContent?.trim() || "Video";
                 const isUserPaused = card.dataset.userPaused === "true";
-
                 if (video) {
-                    video.preload = "auto";
-                    video.setAttribute("preload", "auto");
-
-                    if (isActive && !isUserPaused) {
+                    if (isActive && !isUserPaused && isCarouselVisible) {
                         activateVideo(video);
                     } else {
+                        video.preload = "none";
+                        video.setAttribute("preload", "none");
                         deactivateVideo(video);
                     }
                 }
@@ -246,7 +259,7 @@ const initializeVideoCarousels = () => {
         };
 
         const activateCurrentCardAudio = () => {
-            const activeCard = track.querySelectorAll(".video-carousel-card")[currentIndex];
+            const activeCard = videoCards[currentIndex];
             const activeVideo = activeCard?.querySelector("video");
             if (!activeVideo) return;
 
@@ -257,7 +270,7 @@ const initializeVideoCarousels = () => {
 
         const updatePosition = (index) => {
             currentIndex = clampIndex(index);
-            const activeCard = track.querySelectorAll(".video-carousel-card")[currentIndex];
+            const activeCard = videoCards[currentIndex];
             const cardOffset = activeCard ? activeCard.offsetLeft : 0;
             const maxTranslate = getMaxTranslate();
             const move = Math.min(cardOffset, maxTranslate);
@@ -266,7 +279,7 @@ const initializeVideoCarousels = () => {
             syncVideoAudio();
         };
 
-        Array.from(track.querySelectorAll(".video-carousel-card")).forEach((card) => {
+        videoCards.forEach((card) => {
             const visual = card.querySelector(".project-marquee-visual");
             const video = card.querySelector("video");
 
@@ -282,17 +295,17 @@ const initializeVideoCarousels = () => {
             playToggleButton.addEventListener("click", (event) => {
                 event.stopPropagation();
 
-                const cardIndex = Array.from(track.children).indexOf(card);
+                const cardIndex = videoCards.indexOf(card);
                 if (cardIndex !== currentIndex) {
                     updatePosition(cardIndex);
                 }
 
-                const activeCard = track.querySelectorAll(".video-carousel-card")[currentIndex];
+                const activeCard = videoCards[currentIndex];
                 const activeVideo = activeCard?.querySelector("video");
                 if (!activeVideo) return;
 
                 const shouldPlay = activeVideo.paused;
-                Array.from(track.querySelectorAll(".video-carousel-card")).forEach((item) => {
+                videoCards.forEach((item) => {
                     const itemVideo = item.querySelector("video");
                     if (item === activeCard) {
                         item.dataset.userPaused = shouldPlay ? "false" : "true";
@@ -322,10 +335,10 @@ const initializeVideoCarousels = () => {
             toggleButton.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
             toggleButton.addEventListener("click", (event) => {
                 event.stopPropagation();
-                const cardIndex = Array.from(track.children).indexOf(card);
+                const cardIndex = videoCards.indexOf(card);
                 updatePosition(cardIndex);
 
-                const activeVideo = track.querySelectorAll(".video-carousel-card")[cardIndex]?.querySelector("video");
+                const activeVideo = videoCards[cardIndex]?.querySelector("video");
                 if (!activeVideo) return;
 
                 const isMuted = activeVideo.muted;
@@ -335,14 +348,14 @@ const initializeVideoCarousels = () => {
             });
 
             card.addEventListener("click", () => {
-                const cardIndex = Array.from(track.children).indexOf(card);
+                const cardIndex = videoCards.indexOf(card);
                 updatePosition(cardIndex);
 
-                const activeCard = track.querySelectorAll(".video-carousel-card")[currentIndex];
+                const activeCard = videoCards[currentIndex];
                 const activeVideo = activeCard?.querySelector("video");
                 if (!activeVideo) return;
 
-                Array.from(track.querySelectorAll(".video-carousel-card")).forEach((item) => {
+                videoCards.forEach((item) => {
                     const itemVideo = item.querySelector("video");
                     if (item === activeCard) {
                         item.dataset.userPaused = "false";
@@ -362,12 +375,11 @@ const initializeVideoCarousels = () => {
             visual.appendChild(toggleButton);
             video.autoplay = false;
             video.removeAttribute("autoplay");
-            video.preload = "auto";
-            video.setAttribute("preload", "auto");
+            video.preload = "none";
+            video.setAttribute("preload", "none");
             video.muted = true;
             video.volume = 0;
             video.playsInline = true;
-            video.load();
         });
 
         prevBtn.addEventListener("click", () => {
@@ -415,33 +427,17 @@ const initializeVideoCarousels = () => {
 
         const visibilityObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
+                isCarouselVisible = entry.isIntersecting;
                 if (!entry.isIntersecting) {
-                    Array.from(track.querySelectorAll("video")).forEach((video) => {
-                        video.pause();
-                        video.muted = true;
-                        video.volume = 0;
-                    });
+                    videos.forEach(deactivateVideo);
+                    visibleVideoCarousels.delete(carousel);
+                    window.dispatchEvent(new Event("portfolio:video-carousel-visibility-changed"));
                     return;
                 }
 
-                document.querySelectorAll("video").forEach((video) => {
-                    const owner = video.closest("[data-carousel]") || video.closest("[data-project-marquee-carousel]");
-                    const isThisSection = owner === carousel;
-
-                    if (isThisSection) {
-                        const card = video.closest(".video-carousel-card");
-                        if (card && (card !== track.querySelectorAll(".video-carousel-card")[currentIndex] || card.dataset.userPaused === "true")) {
-                            deactivateVideo(video);
-                            return;
-                        }
-
-                        activateVideo(video);
-                    } else {
-                        deactivateVideo(video);
-                    }
-                });
-
+                visibleVideoCarousels.add(carousel);
                 syncVideoAudio();
+                window.dispatchEvent(new Event("portfolio:video-carousel-visibility-changed"));
             });
         }, {
             threshold: 0.25,
@@ -449,6 +445,9 @@ const initializeVideoCarousels = () => {
         });
 
         visibilityObserver.observe(viewport);
+        window.addEventListener("portfolio:modal-closed", () => {
+            if (isCarouselVisible) syncVideoAudio();
+        });
 
         updatePosition(0);
         const resizeObserver = new ResizeObserver(() => updatePosition(currentIndex));
@@ -463,33 +462,43 @@ const initializeAiPromptCarousels = () => {
         const viewport = carousel.querySelector("[data-project-marquee]");
         const previousButton = carousel.querySelector("[data-marquee-direction='prev']");
         const nextButton = carousel.querySelector("[data-marquee-direction='next']");
-        const firstCard = viewport?.querySelector(".project-marquee-card");
+        const cards = Array.from(carousel.querySelectorAll(".project-marquee-card"));
 
-        if (!viewport || !previousButton || !nextButton || !firstCard) return;
+        if (!viewport || !previousButton || !nextButton || cards.length === 0) return;
 
-        const getStep = () => firstCard.getBoundingClientRect().width + 16;
+        const getStep = () => cards[0].getBoundingClientRect().width + 16;
+        const aiVideos = cards.map((card) => card.querySelector("video")).filter(Boolean);
+        const cardVisibility = new Map(cards.map((card, index) => [index, 0]));
         let activeAiIndex = 0;
+        let visibleAiIndex = -1;
+        let isCarouselVisible = false;
 
-        const activateAiPromptCard = (index) => {
-            const cards = Array.from(carousel.querySelectorAll(".project-marquee-card"));
-            const nextIndex = Math.min(Math.max(index, 0), Math.max(cards.length - 1, 0));
-            activeAiIndex = nextIndex;
+        const syncAiPromptVideos = () => {
+            aiVideos.forEach((video) => {
+                const cardIndex = cards.findIndex((card) => card.contains(video));
+                const isActive = cardIndex === activeAiIndex &&
+                    cardIndex === visibleAiIndex &&
+                    isCarouselVisible &&
+                    visibleVideoCarousels.size === 0 &&
+                    !hasOpenPortfolioModal() &&
+                    !document.body.classList.contains("overflow-hidden");
 
-            cards.forEach((card, cardIndex) => {
-                const video = card.querySelector("video");
-                if (!video) return;
-
-                if (cardIndex === activeAiIndex) {
-                    video.preload = "auto";
-                    video.setAttribute("preload", "auto");
+                if (isActive) {
+                    portfolioVideos.forEach((otherVideo) => {
+                        if (otherVideo !== video) {
+                            otherVideo.pause();
+                            otherVideo.preload = "none";
+                            otherVideo.setAttribute("preload", "none");
+                            otherVideo.muted = true;
+                            otherVideo.volume = 0;
+                        }
+                    });
+                    video.preload = "metadata";
+                    video.setAttribute("preload", "metadata");
                     video.playsInline = true;
                     video.loop = true;
                     video.muted = true;
                     video.volume = 0;
-
-                    if (video.readyState < 2) {
-                        video.load();
-                    }
 
                     if (video.paused) {
                         const playPromise = video.play();
@@ -497,148 +506,115 @@ const initializeAiPromptCarousels = () => {
                             playPromise.catch(() => {});
                         }
                     }
-                    return;
-                }
-
-                if (!video.paused) {
-                    video.pause();
-                }
-                video.muted = true;
-                video.volume = 0;
-            });
-        };
-
-        const activateAiPromptVideos = () => {
-            activateAiPromptCard(activeAiIndex);
-        };
-
-        const pauseHiddenVideos = () => {
-            const videos = Array.from(viewport.querySelectorAll("video"));
-            videos.forEach((video) => {
-                if (!video.paused) {
-                    video.pause();
-                }
-                video.muted = true;
-                video.volume = 0;
-            });
-        };
-
-        const isCarouselVisible = () => {
-            const rect = carousel.getBoundingClientRect();
-            return rect.top < window.innerHeight * 0.8 && rect.bottom > window.innerHeight * 0.2;
-        };
-
-        const syncAiPromptState = () => {
-            const hasActiveVideoEditing = Array.from(document.querySelectorAll("[data-carousel]")).some((videoCarousel) => {
-                const viewport = videoCarousel.querySelector(".video-carousel-viewport");
-                if (!viewport) return false;
-
-                const rect = viewport.getBoundingClientRect();
-                return rect.top < window.innerHeight * 0.9 && rect.bottom > window.innerHeight * 0.1;
-            });
-
-            if (hasActiveVideoEditing) {
-                Array.from(carousel.querySelectorAll("video")).forEach((video) => {
-                    if (!video.paused) {
-                        video.pause();
-                    }
+                } else {
+                    video.preload = "none";
+                    video.setAttribute("preload", "none");
+                    if (!video.paused) video.pause();
                     video.muted = true;
                     video.volume = 0;
-                });
-                return;
-            }
-
-            const shouldPlay = isCarouselVisible();
-
-            document.querySelectorAll("video").forEach((video) => {
-                const owner = video.closest("[data-project-marquee-carousel]") || video.closest("[data-carousel]");
-                const isThisSection = owner === carousel;
-                const isVideoEditing = Boolean(video.closest("[data-carousel]"));
-
-                if (isThisSection && !isVideoEditing) {
-                    video.muted = true;
-                    video.volume = 0;
-                    if (shouldPlay && video.paused) {
-                        const playPromise = video.play();
-                        if (playPromise && typeof playPromise.catch === "function") {
-                            playPromise.catch(() => {});
-                        }
-                    }
-                    if (!shouldPlay && !video.paused) {
-                        video.pause();
-                    }
-                    return;
                 }
-
-                if (!video.paused) {
-                    video.pause();
-                }
-                video.muted = true;
-                video.volume = 0;
             });
+        };
+
+        const activateAiPromptCard = (index) => {
+            activeAiIndex = Math.min(Math.max(index, 0), cards.length - 1);
+            syncAiPromptVideos();
         };
 
         const visibilityObserver = new IntersectionObserver((entries) => {
-            const isVisible = entries.some((entry) => entry.isIntersecting);
+            entries.forEach((entry) => {
+                isCarouselVisible = entry.isIntersecting;
+                if (!isCarouselVisible) {
+                    aiVideos.forEach((video) => {
+                        if (!video.paused) video.pause();
+                        video.preload = "none";
+                        video.setAttribute("preload", "none");
+                        video.muted = true;
+                        video.volume = 0;
+                    });
+                    return;
+                }
 
-            if (!isVisible) {
-                pauseHiddenVideos();
-                return;
-            }
-
-            syncAiPromptState();
-            requestAnimationFrame(activateAiPromptVideos);
+                syncAiPromptVideos();
+            });
         }, {
             threshold: 0.25,
             rootMargin: "0px 0px -10% 0px"
         });
 
-        Array.from(carousel.querySelectorAll(".project-marquee-card")).forEach((card, index) => {
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                const index = cards.indexOf(entry.target);
+                if (index !== -1) {
+                    cardVisibility.set(index, entry.intersectionRatio);
+                }
+            });
+
+            const mostVisibleCard = Array.from(cardVisibility.entries())
+                .filter(([, ratio]) => ratio >= 0.5)
+                .sort((a, b) => b[1] - a[1])[0];
+            visibleAiIndex = mostVisibleCard ? mostVisibleCard[0] : -1;
+            if (visibleAiIndex !== -1) activeAiIndex = visibleAiIndex;
+            syncAiPromptVideos();
+        }, {
+            root: viewport,
+            threshold: [0, 0.5, 0.75, 1]
+        });
+
+        cards.forEach((card, index) => {
             const video = card.querySelector("video");
             if (video) {
-                card.addEventListener("click", () => {
-                    activateAiPromptCard(index);
-                });
+                video.preload = "none";
+                video.setAttribute("preload", "none");
+                card.addEventListener("click", () => activateAiPromptCard(index));
             }
+            cardObserver.observe(card);
         });
 
         visibilityObserver.observe(viewport);
-        syncAiPromptState();
-        requestAnimationFrame(activateAiPromptVideos);
-        window.addEventListener("scroll", syncAiPromptState, { passive: true });
-        window.addEventListener("resize", syncAiPromptState);
-        window.addEventListener("load", () => requestAnimationFrame(activateAiPromptVideos), { once: true });
-        window.addEventListener("pageshow", () => requestAnimationFrame(activateAiPromptVideos), { once: true });
+        window.addEventListener("portfolio:video-carousel-visibility-changed", syncAiPromptVideos);
+        window.addEventListener("portfolio:modal-closed", syncAiPromptVideos);
 
         const moveAiPromptCarousel = (direction) => {
-            const cards = Array.from(carousel.querySelectorAll(".project-marquee-card"));
-            const maxIndex = Math.max(cards.length - 1, 0);
-            const nextStep = Math.min(Math.max(direction, -1), 1);
-            activeAiIndex = Math.min(Math.max(activeAiIndex + nextStep, 0), maxIndex);
-
-            const currentScroll = viewport.scrollLeft;
-            const targetScroll = Math.max(0, Math.min(currentScroll + nextStep * getStep(), viewport.scrollWidth - viewport.clientWidth));
-            viewport.scrollLeft = targetScroll;
-            activateAiPromptVideos();
+            const nextIndex = Math.min(Math.max(activeAiIndex + direction, 0), cards.length - 1);
+            const targetScroll = Math.max(0, Math.min(
+                viewport.scrollLeft + direction * getStep(),
+                viewport.scrollWidth - viewport.clientWidth
+            ));
+            activeAiIndex = nextIndex;
+            syncAiPromptVideos();
+            viewport.scrollTo({ left: targetScroll, behavior: "smooth" });
         };
 
-        previousButton.onclick = () => moveAiPromptCarousel(-1);
-        nextButton.onclick = () => moveAiPromptCarousel(1);
-
-        previousButton.addEventListener("keydown", (event) => {
-            if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                moveAiPromptCarousel(-1);
-            }
-        });
-
-        nextButton.addEventListener("keydown", (event) => {
-            if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                moveAiPromptCarousel(1);
-            }
-        });
+        previousButton.addEventListener("click", () => moveAiPromptCarousel(-1));
+        nextButton.addEventListener("click", () => moveAiPromptCarousel(1));
     });
+};
+
+const hasOpenPortfolioModal = () => Boolean(document.querySelector(
+    "dialog[open], #contactSuccessModal:not(.hidden), #certificateModal:not(.hidden), #whatsappQrModal:not(.hidden), #resumeModal:not(.hidden)"
+));
+
+const portfolioVideos = Array.from(document.querySelectorAll("video"));
+const visibleVideoCarousels = new Set();
+
+portfolioVideos.forEach((video) => {
+    video.preload = "none";
+    video.setAttribute("preload", "none");
+});
+
+window.pausePortfolioVideos = () => {
+    portfolioVideos.forEach((video) => {
+        if (!video.paused) video.pause();
+        video.preload = "none";
+        video.setAttribute("preload", "none");
+        video.muted = true;
+        video.volume = 0;
+    });
+};
+
+window.resumePortfolioVideos = () => {
+    window.dispatchEvent(new Event("portfolio:modal-closed"));
 };
 
 const initializeAllCarousels = () => {

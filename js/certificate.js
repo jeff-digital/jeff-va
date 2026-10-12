@@ -1,30 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-    const certificateContainer = document.getElementById("certificateModalContainer");
-
-    if (!certificateContainer) {
-        console.error("certificateModalContainer not found.");
-        return;
-    }
-
-    fetch("certificate.html")
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`HTTP error: ${response.status}`);
-            }
-
-            return response.text();
-        })
-        .then((html) => {
-            certificateContainer.innerHTML = html;
-            initializeCertificateModal();
-        })
-        .catch((error) => {
-            console.error("Failed to load certificate.html:", error);
-        });
-});
-
-function initializeCertificateModal() {
     const viewCertificateButton = document.getElementById("viewCertificateButton");
     const certificateModal = document.getElementById("certificateModal");
     const closeCertificateButton = document.getElementById("closeCertificateButton");
@@ -38,34 +12,52 @@ function initializeCertificateModal() {
         return;
     }
 
+    let filterFrame = 0;
+    let certificatesWarmed = false;
+
     function displayCertificates() {
-        if (!certificateList || !noCertificates) {
-            return;
-        }
+        if (!certificateList || !noCertificates) return;
 
-        const selectedCategory = certificateCategory?.value ?? "all";
-        const selectedYear = certificateYear?.value ?? "all";
-        const certificateItems = certificateList.querySelectorAll(".certificate-item");
-        let visibleCount = 0;
+        cancelAnimationFrame(filterFrame);
+        filterFrame = requestAnimationFrame(() => {
+            const selectedCategory = certificateCategory?.value ?? "all";
+            const selectedYear = certificateYear?.value ?? "all";
+            const certificateItems = certificateList.querySelectorAll(".certificate-item");
+            let visibleCount = 0;
 
-        certificateItems.forEach((certificate) => {
-            const categoryMatches =
-                selectedCategory === "all" ||
-                certificate.dataset.category === selectedCategory;
-            const yearMatches =
-                selectedYear === "all" ||
-                certificate.dataset.year === selectedYear;
-            const isVisible = categoryMatches && yearMatches;
+            certificateItems.forEach((certificate) => {
+                const categoryMatches =
+                    selectedCategory === "all" ||
+                    certificate.dataset.category === selectedCategory;
+                const yearMatches =
+                    selectedYear === "all" ||
+                    certificate.dataset.year === selectedYear;
+                const isVisible = categoryMatches && yearMatches;
 
-            certificate.classList.toggle("hidden", !isVisible);
-            visibleCount += isVisible ? 1 : 0;
+                certificate.hidden = !isVisible;
+                visibleCount += isVisible ? 1 : 0;
+            });
+
+            noCertificates.hidden = visibleCount > 0;
         });
+    }
 
-        noCertificates.classList.toggle("hidden", visibleCount > 0);
+    function warmCertificateImages() {
+        if (certificatesWarmed) return;
+        certificatesWarmed = true;
+
+        certificateModal.querySelectorAll("img").forEach((image) => {
+            const preloadImage = new Image();
+            preloadImage.decoding = "async";
+            preloadImage.src = image.currentSrc || image.src;
+        });
     }
 
     if (viewCertificateButton) {
+        viewCertificateButton.addEventListener("pointerenter", warmCertificateImages, { once: true });
+        viewCertificateButton.addEventListener("focus", warmCertificateImages, { once: true });
         viewCertificateButton.addEventListener("click", () => {
+            window.pausePortfolioVideos?.();
             certificateModal.classList.remove("hidden");
             certificateModal.classList.add("flex");
             document.body.classList.add("overflow-hidden");
@@ -73,36 +65,27 @@ function initializeCertificateModal() {
         });
     }
 
-    if (certificateCategory) {
-        certificateCategory.addEventListener("change", displayCertificates);
-    }
-
-    if (certificateYear) {
-        certificateYear.addEventListener("change", displayCertificates);
-    }
+    certificateCategory?.addEventListener("change", displayCertificates);
+    certificateYear?.addEventListener("change", displayCertificates);
 
     function closeCertificateModal() {
         certificateModal.classList.add("hidden");
         certificateModal.classList.remove("flex");
         document.body.classList.remove("overflow-hidden");
+        if (!document.body.classList.contains("overflow-hidden")) {
+            window.resumePortfolioVideos?.();
+        }
     }
 
-    if (closeCertificateButton) {
-        closeCertificateButton.addEventListener("click", closeCertificateModal);
-    }
+    closeCertificateButton?.addEventListener("click", closeCertificateModal);
 
     certificateModal.addEventListener("click", (event) => {
-        if (event.target === certificateModal) {
-            closeCertificateModal();
-        }
+        if (event.target === certificateModal) closeCertificateModal();
     });
 
     document.addEventListener("keydown", (event) => {
-        if (
-            event.key === "Escape" &&
-            !certificateModal.classList.contains("hidden")
-        ) {
+        if (event.key === "Escape" && !certificateModal.classList.contains("hidden")) {
             closeCertificateModal();
         }
     });
-}
+});

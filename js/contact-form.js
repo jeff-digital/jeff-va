@@ -28,10 +28,12 @@ document.addEventListener("DOMContentLoaded", () => {
         successModal.classList.remove("flex");
         successModal.setAttribute("aria-hidden", "true");
         document.body.classList.remove("overflow-hidden");
+        window.resumePortfolioVideos?.();
         submitButton.focus();
     };
 
     const openSuccessModal = () => {
+        window.pausePortfolioVideos?.();
         successModal.classList.remove("hidden");
         successModal.classList.add("flex");
         successModal.setAttribute("aria-hidden", "false");

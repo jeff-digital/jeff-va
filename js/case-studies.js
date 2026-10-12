@@ -87,6 +87,7 @@
         title.textContent = heading.textContent.trim();
         caseStudy.open = false;
         contentContainer.append(content);
+        window.pausePortfolioVideos?.();
         lockBackgroundScroll();
         dialog.showModal();
 
@@ -118,6 +119,7 @@
 
     dialog.addEventListener("close", () => {
         unlockBackgroundScroll();
+        window.resumePortfolioVideos?.();
 
         if (activeCaseStudy && activeContent) {
             activeCaseStudy.append(activeContent);
