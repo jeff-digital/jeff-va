@@ -996,6 +996,40 @@ footer .border-t {
     backface-visibility: hidden;
 }
 
+.video-card-status {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: center;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+    pointer-events: none;
+}
+
+.video-card-status[data-state="ready"] {
+    display: none;
+}
+
+.video-card-status[data-state="idle"] {
+    display: none;
+}
+
+.video-card-status[data-state="play-prompt"] {
+    background: rgba(15, 23, 42, 0.24);
+}
+
+.video-card-status[data-state="error"],
+.video-card-status[data-state="tap-to-play"] {
+    background: rgba(15, 23, 42, 0.55);
+}
+
 .project-marquee-copy {
     display: flex;
     flex: 1 1 auto;
@@ -1445,16 +1479,20 @@ picture {
 }
 
 .case-study-dialog {
-    width: min(64rem, calc(100vw - 3rem));
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(56rem, 92vw);
     max-width: none;
-    max-height: 92vh;
-    max-height: 92dvh;
+    height: 100vh;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
     overflow: auto;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
     touch-action: pan-y;
     border: 1px solid #e2e7ef;
-    border-radius: 1.1rem;
+    border-radius: 1.1rem 0 0 1.1rem;
     background: #fff;
     padding: 0;
     color: #1a2340;
@@ -1473,7 +1511,7 @@ picture {
 .case-study-dialog-header {
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 3;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -1550,6 +1588,11 @@ picture {
     line-height: 1.55;
 }
 
+.case-study-overview p,
+.case-study-overview li {
+    text-align: justify;
+}
+
 .case-study-overview ul {
     list-style-type: disc;
     padding-left: 1.1rem;
@@ -1564,7 +1607,23 @@ picture {
 }
 
 .case-study-samples {
+    position: sticky;
+    top: 5.5rem;
+    align-self: start;
     min-width: 0;
+    max-height: calc(100dvh - 6.5rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: #fff;
+    z-index: 2;
+}
+
+.case-study-samples h4 {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #fff;
+    padding: 0.25rem 0;
 }
 
 .case-study-samples figure {
@@ -1610,47 +1669,6 @@ picture {
     object-fit: contain;
 }
 
-.case-study-additional-samples {
-    margin-top: 0.8rem;
-    border-top: 1px solid #e2e7ef;
-    padding-top: 0.65rem;
-}
-
-.case-study-additional-samples > summary {
-    display: flex;
-    min-height: 2.75rem;
-    align-items: center;
-    cursor: pointer;
-    color: #1a2340;
-    font-size: 0.82rem;
-    font-weight: 700;
-    list-style: none;
-}
-
-.case-study-additional-samples > summary::-webkit-details-marker {
-    display: none;
-}
-
-.case-study-additional-samples > summary::after {
-    margin-left: auto;
-    color: #2196f3;
-    content: "+";
-    font-size: 1.25rem;
-}
-
-.case-study-additional-samples[open] > summary::after {
-    content: "−";
-}
-
-.case-study-additional-samples > .case-study-sample-grid {
-    margin-top: 0.5rem;
-}
-
-.case-study-additional-samples > summary:focus-visible {
-    outline: 3px solid #2196f3;
-    outline-offset: 3px;
-}
-
 .project-archive {
     padding: 1.25rem 0;
 }
@@ -1678,6 +1696,9 @@ picture {
 
     .case-study-samples {
         max-width: 42rem;
+        grid-row: 1;
+        top: 5.5rem;
+        max-height: min(38dvh, 20rem);
     }
 }
 
@@ -1710,12 +1731,12 @@ picture {
     }
 
     .case-study-dialog {
-        width: calc(92vw - 1.84rem);
+        inset: 0.5rem;
+        width: calc(100vw - 1rem);
         max-width: none;
-        max-height: 82vh;
-        max-height: 82dvh;
-        height: auto;
-        border: 1px solid #e2e7ef;
+        height: calc(100vh - 1rem);
+        height: calc(100dvh - 1rem);
+        border: 0;
         border-radius: 0.75rem;
     }
 
@@ -1732,14 +1753,6 @@ picture {
         padding: 1.1rem;
     }
 
-}
-
-@media (min-width: 640px) and (max-width: 767px) {
-    .case-study-dialog {
-        width: calc(100vw - 2.5rem);
-        max-height: 88vh;
-        max-height: 88dvh;
-    }
 }
 
 @media (prefers-reduced-motion: reduce) {

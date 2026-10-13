@@ -141,8 +141,34 @@ const initializeVideoCarousels = () => {
         const controls = prevBtn.closest(".video-carousel-controls");
         const videoCards = Array.from(track.querySelectorAll(".video-carousel-card"));
         const videos = videoCards.map((card) => card.querySelector("video")).filter(Boolean);
+        const videoStatusTimeouts = new WeakMap();
         let currentIndex = 0;
         let isCarouselVisible = false;
+
+        const clearVideoStatusTimeout = (video) => {
+            const timeoutId = videoStatusTimeouts.get(video);
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+                videoStatusTimeouts.delete(video);
+            }
+        };
+
+        const setVideoStatus = (video, state, message) => {
+            const status = video.closest(".project-marquee-visual")?.querySelector(".video-card-status");
+            if (!status) return;
+
+            status.dataset.state = state;
+            status.textContent = message;
+        };
+
+        const markVideoUnavailable = (video, state = "error", message = "Video preview is unavailable. Press play to retry.") => {
+            clearVideoStatusTimeout(video);
+            const card = video.closest(".video-carousel-card");
+            if (card) card.dataset.userPaused = "true";
+            if (!video.paused) video.pause();
+            setVideoStatus(video, state, message);
+            syncVideoAudio();
+        };
 
         const clampIndex = (value) => {
             const maxIndex = Math.max(track.children.length - 1, 0);
@@ -184,33 +210,54 @@ const initializeVideoCarousels = () => {
                 return;
             }
 
-            portfolioVideos.forEach((otherVideo) => {
-                if (otherVideo !== video) {
-                    deactivateVideo(otherVideo);
-                }
-            });
-
+            window.claimPortfolioVideo?.(video);
             video.autoplay = false;
             video.removeAttribute("autoplay");
             video.preload = "metadata";
             video.setAttribute("preload", "metadata");
 
             if (video.paused) {
+                video.muted = true;
+                video.volume = 0;
+                clearVideoStatusTimeout(video);
+                setVideoStatus(video, "loading", "Loading video preview…");
+                videoStatusTimeouts.set(video, setTimeout(() => {
+                    if (!video.paused && video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
+                        markVideoUnavailable(video);
+                    }
+                    videoStatusTimeouts.delete(video);
+                }, 12000));
+
                 const playPromise = video.play();
                 if (playPromise && typeof playPromise.catch === "function") {
-                    playPromise.catch(() => {});
+                    playPromise.catch((error) => {
+                        if (error.name === "AbortError") return;
+
+                        markVideoUnavailable(
+                            video,
+                            error.name === "NotAllowedError" ? "tap-to-play" : "error",
+                            error.name === "NotAllowedError"
+                                ? "Tap play to preview this video."
+                                : "Video preview is unavailable. Press play to retry."
+                        );
+                    });
                 }
             }
-
-            video.muted = false;
-            video.volume = 1;
         };
 
         const deactivateVideo = (video) => {
             if (!video) return;
 
+            clearVideoStatusTimeout(video);
             if (!video.paused) {
                 video.pause();
+                const card = video.closest(".video-carousel-card");
+                if (card) card.dataset.userPaused = "true";
+            }
+            const status = video.closest(".project-marquee-visual")?.querySelector(".video-card-status");
+            if (status && status.dataset.state !== "error") {
+                status.dataset.state = "play-prompt";
+                status.textContent = "Click video to play";
             }
             video.preload = "none";
             video.setAttribute("preload", "none");
@@ -226,8 +273,15 @@ const initializeVideoCarousels = () => {
                 const isActive = index === currentIndex;
                 const title = card.querySelector("h4")?.textContent?.trim() || "Video";
                 const isUserPaused = card.dataset.userPaused === "true";
+                const cardRect = card.getBoundingClientRect();
+                const viewportRect = viewport.getBoundingClientRect();
+                const visibleWidth = Math.max(
+                    0,
+                    Math.min(cardRect.right, viewportRect.right) - Math.max(cardRect.left, viewportRect.left)
+                );
+                const isCardVisible = cardRect.width > 0 && visibleWidth / cardRect.width >= 0.5;
                 if (video) {
-                    if (isActive && !isUserPaused && isCarouselVisible) {
+                    if (isCardVisible && !isUserPaused && isCarouselVisible) {
                         activateVideo(video);
                     } else {
                         video.preload = "none";
@@ -238,7 +292,7 @@ const initializeVideoCarousels = () => {
 
                 if (playToggle) {
                     const icon = playToggle.querySelector("i");
-                    const isPlaying = !!video && isActive && !video.paused && !isUserPaused;
+                    const isPlaying = !!video && !video.paused && !isUserPaused;
                     playToggle.classList.toggle("is-playing", isPlaying);
                     playToggle.setAttribute("aria-label", isPlaying ? `Pause ${title}` : `Play ${title}`);
                     if (icon) {
@@ -287,6 +341,53 @@ const initializeVideoCarousels = () => {
 
             card.dataset.userPaused = "true";
 
+            const videoStatus = document.createElement("span");
+            videoStatus.className = "video-card-status";
+            videoStatus.setAttribute("role", "status");
+            videoStatus.setAttribute("aria-live", "polite");
+            videoStatus.dataset.state = "play-prompt";
+            videoStatus.textContent = "Click video to play";
+            visual.appendChild(videoStatus);
+
+            video.addEventListener("loadeddata", () => {
+                clearVideoStatusTimeout(video);
+                if (!video.paused) {
+                    videoStatus.dataset.state = "ready";
+                    videoStatus.textContent = "";
+                }
+            });
+
+            video.addEventListener("playing", () => {
+                clearVideoStatusTimeout(video);
+                videoStatus.dataset.state = "ready";
+                videoStatus.textContent = "";
+            });
+
+            video.addEventListener("pause", () => {
+                if (videoStatus.dataset.state !== "error" && videoStatus.dataset.state !== "tap-to-play") {
+                    videoStatus.dataset.state = "play-prompt";
+                    videoStatus.textContent = "Click video to play";
+                }
+            });
+
+            video.addEventListener("error", () => {
+                markVideoUnavailable(video);
+            });
+
+            video.addEventListener("waiting", () => {
+                if (video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
+                    clearVideoStatusTimeout(video);
+                    videoStatusTimeouts.set(video, setTimeout(() => {
+                        if (!video.paused && video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
+                            markVideoUnavailable(video);
+                        }
+                        videoStatusTimeouts.delete(video);
+                    }, 12000));
+                    videoStatus.textContent = "Loading video preview…";
+                    videoStatus.dataset.state = "loading";
+                }
+            });
+
             const playToggleButton = document.createElement("button");
             playToggleButton.type = "button";
             playToggleButton.className = "video-card-play-toggle";
@@ -296,6 +397,7 @@ const initializeVideoCarousels = () => {
                 event.stopPropagation();
 
                 const cardIndex = videoCards.indexOf(card);
+                const shouldPlay = video.paused || card.dataset.userPaused === "true";
                 if (cardIndex !== currentIndex) {
                     updatePosition(cardIndex);
                 }
@@ -304,21 +406,11 @@ const initializeVideoCarousels = () => {
                 const activeVideo = activeCard?.querySelector("video");
                 if (!activeVideo) return;
 
-                const shouldPlay = activeVideo.paused;
-                videoCards.forEach((item) => {
-                    const itemVideo = item.querySelector("video");
-                    if (item === activeCard) {
-                        item.dataset.userPaused = shouldPlay ? "false" : "true";
-                    } else {
-                        item.dataset.userPaused = "true";
-                        if (itemVideo && !itemVideo.paused) {
-                            itemVideo.pause();
-                        }
-                    }
-                });
-
+                activeCard.dataset.userPaused = shouldPlay ? "false" : "true";
                 if (shouldPlay) {
                     activateVideo(activeVideo);
+                    activeVideo.muted = false;
+                    activeVideo.volume = 1;
                 } else {
                     if (!activeVideo.paused) {
                         activeVideo.pause();
@@ -338,8 +430,14 @@ const initializeVideoCarousels = () => {
                 const cardIndex = videoCards.indexOf(card);
                 updatePosition(cardIndex);
 
-                const activeVideo = videoCards[cardIndex]?.querySelector("video");
+                const activeCard = videoCards[cardIndex];
+                const activeVideo = activeCard?.querySelector("video");
                 if (!activeVideo) return;
+
+                if (activeVideo.paused) {
+                    activeCard.dataset.userPaused = "false";
+                    activateVideo(activeVideo);
+                }
 
                 const isMuted = activeVideo.muted;
                 activeVideo.muted = !isMuted;
@@ -355,19 +453,10 @@ const initializeVideoCarousels = () => {
                 const activeVideo = activeCard?.querySelector("video");
                 if (!activeVideo) return;
 
-                videoCards.forEach((item) => {
-                    const itemVideo = item.querySelector("video");
-                    if (item === activeCard) {
-                        item.dataset.userPaused = "false";
-                    } else {
-                        item.dataset.userPaused = "true";
-                        if (itemVideo && !itemVideo.paused) {
-                            itemVideo.pause();
-                        }
-                    }
-                });
-
+                activeCard.dataset.userPaused = "false";
                 activateVideo(activeVideo);
+                activeVideo.muted = false;
+                activeVideo.volume = 1;
                 syncVideoAudio();
             });
 
@@ -430,12 +519,10 @@ const initializeVideoCarousels = () => {
                 isCarouselVisible = entry.isIntersecting;
                 if (!entry.isIntersecting) {
                     videos.forEach(deactivateVideo);
-                    visibleVideoCarousels.delete(carousel);
                     window.dispatchEvent(new Event("portfolio:video-carousel-visibility-changed"));
                     return;
                 }
 
-                visibleVideoCarousels.add(carousel);
                 syncVideoAudio();
                 window.dispatchEvent(new Event("portfolio:video-carousel-visibility-changed"));
             });
@@ -476,23 +563,15 @@ const initializeAiPromptCarousels = () => {
         const syncAiPromptVideos = () => {
             aiVideos.forEach((video) => {
                 const cardIndex = cards.findIndex((card) => card.contains(video));
+                const card = cards[cardIndex];
                 const isActive = cardIndex === activeAiIndex &&
-                    cardIndex === visibleAiIndex &&
                     isCarouselVisible &&
-                    visibleVideoCarousels.size === 0 &&
                     !hasOpenPortfolioModal() &&
-                    !document.body.classList.contains("overflow-hidden");
+                    !document.body.classList.contains("overflow-hidden") &&
+                    card?.dataset.userPaused === "false";
 
                 if (isActive) {
-                    portfolioVideos.forEach((otherVideo) => {
-                        if (otherVideo !== video) {
-                            otherVideo.pause();
-                            otherVideo.preload = "none";
-                            otherVideo.setAttribute("preload", "none");
-                            otherVideo.muted = true;
-                            otherVideo.volume = 0;
-                        }
-                    });
+                    window.claimPortfolioVideo?.(video);
                     video.preload = "metadata";
                     video.setAttribute("preload", "metadata");
                     video.playsInline = true;
@@ -501,15 +580,31 @@ const initializeAiPromptCarousels = () => {
                     video.volume = 0;
 
                     if (video.paused) {
+                        const status = video.closest(".project-marquee-visual")?.querySelector(".video-card-status");
+                        if (status) {
+                            status.dataset.state = "loading";
+                            status.textContent = "Loading video preview…";
+                        }
                         const playPromise = video.play();
                         if (playPromise && typeof playPromise.catch === "function") {
-                            playPromise.catch(() => {});
+                            playPromise.catch((error) => {
+                                if (error.name === "AbortError") return;
+                                card.dataset.userPaused = "true";
+                                const status = video.closest(".project-marquee-visual")?.querySelector(".video-card-status");
+                                if (status) {
+                                    status.dataset.state = "error";
+                                    status.textContent = "Video unavailable. Click to retry.";
+                                }
+                            });
                         }
                     }
                 } else {
                     video.preload = "none";
                     video.setAttribute("preload", "none");
-                    if (!video.paused) video.pause();
+                    if (!video.paused) {
+                        video.pause();
+                        if (card) card.dataset.userPaused = "true";
+                    }
                     video.muted = true;
                     video.volume = 0;
                 }
@@ -517,7 +612,12 @@ const initializeAiPromptCarousels = () => {
         };
 
         const activateAiPromptCard = (index) => {
-            activeAiIndex = Math.min(Math.max(index, 0), cards.length - 1);
+            const nextIndex = Math.min(Math.max(index, 0), cards.length - 1);
+            const card = cards[nextIndex];
+            const video = card?.querySelector("video");
+            const shouldPlay = nextIndex !== activeAiIndex || card?.dataset.userPaused !== "false" || video?.paused;
+            activeAiIndex = nextIndex;
+            if (card) card.dataset.userPaused = shouldPlay ? "false" : "true";
             syncAiPromptVideos();
         };
 
@@ -526,7 +626,11 @@ const initializeAiPromptCarousels = () => {
                 isCarouselVisible = entry.isIntersecting;
                 if (!isCarouselVisible) {
                     aiVideos.forEach((video) => {
-                        if (!video.paused) video.pause();
+                        if (!video.paused) {
+                            video.pause();
+                            const card = video.closest(".project-marquee-card");
+                            if (card) card.dataset.userPaused = "true";
+                        }
                         video.preload = "none";
                         video.setAttribute("preload", "none");
                         video.muted = true;
@@ -564,9 +668,37 @@ const initializeAiPromptCarousels = () => {
         cards.forEach((card, index) => {
             const video = card.querySelector("video");
             if (video) {
+                card.dataset.userPaused = "true";
+                const status = document.createElement("span");
+                status.className = "video-card-status";
+                status.dataset.state = "play-prompt";
+                status.textContent = "Click video to play";
+                status.setAttribute("role", "status");
+                status.setAttribute("aria-live", "polite");
+                video.closest(".project-marquee-visual")?.appendChild(status);
+                video.addEventListener("playing", () => {
+                    status.dataset.state = "ready";
+                    status.textContent = "";
+                });
+                video.addEventListener("pause", () => {
+                    if (status.dataset.state !== "error") {
+                        status.dataset.state = "play-prompt";
+                        status.textContent = "Click video to play";
+                    }
+                });
+                video.addEventListener("error", () => {
+                    status.dataset.state = "error";
+                    status.textContent = "Video unavailable. Click to retry.";
+                    card.dataset.userPaused = "true";
+                });
                 video.preload = "none";
                 video.setAttribute("preload", "none");
-                card.addEventListener("click", () => activateAiPromptCard(index));
+                video.addEventListener("click", () => activateAiPromptCard(index));
+                card.addEventListener("click", (event) => {
+                    if (!event.target.closest("video")) {
+                        activateAiPromptCard(index);
+                    }
+                });
             }
             cardObserver.observe(card);
         });
@@ -596,7 +728,44 @@ const hasOpenPortfolioModal = () => Boolean(document.querySelector(
 ));
 
 const portfolioVideos = Array.from(document.querySelectorAll("video"));
-const visibleVideoCarousels = new Set();
+window.claimPortfolioVideo = (activeVideo) => {
+    portfolioVideos.forEach((video) => {
+        if (video === activeVideo) return;
+
+        if (!video.paused) video.pause();
+        video.preload = "none";
+        video.setAttribute("preload", "none");
+        video.muted = true;
+        video.volume = 0;
+
+        const card = video.closest(".video-carousel-card, .project-marquee-card");
+        if (card) {
+            card.dataset.userPaused = "true";
+            const button = card.querySelector(".video-card-play-toggle");
+            if (button) {
+                const title = card.querySelector("h4")?.textContent?.trim() || "Video";
+                button.classList.remove("is-playing");
+                button.setAttribute("aria-label", `Play ${title}`);
+                const icon = button.querySelector("i");
+                if (icon) icon.className = "fa-solid fa-play";
+            }
+            const audioButton = card.querySelector(".video-card-audio-toggle");
+            if (audioButton) {
+                const title = card.querySelector("h4")?.textContent?.trim() || "Video";
+                audioButton.classList.add("muted");
+                audioButton.setAttribute("aria-label", `Unmute ${title}`);
+                const icon = audioButton.querySelector("i");
+                if (icon) icon.className = "fa-solid fa-volume-xmark";
+            }
+        }
+
+        const status = video.closest(".project-marquee-visual")?.querySelector(".video-card-status");
+        if (status && status.dataset.state !== "error") {
+            status.dataset.state = "play-prompt";
+            status.textContent = "Click video to play";
+        }
+    });
+};
 
 portfolioVideos.forEach((video) => {
     video.preload = "none";
