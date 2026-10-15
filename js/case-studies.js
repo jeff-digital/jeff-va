@@ -38,35 +38,29 @@
     let backgroundScrollState = null;
 
     const lockBackgroundScroll = () => {
-        if (backgroundScrollState) {
-            return;
-        }
-
+        if (backgroundScrollState) return;
+        const root = document.documentElement;
         const body = document.body;
-        const scrollY = window.scrollY;
-
+        // Keep the page in normal flow instead of relaying out the entire portfolio.
+        const scrollbarWidth = window.innerWidth - root.clientWidth;
+        const bodyPadding = parseFloat(getComputedStyle(body).paddingRight) || 0;
         backgroundScrollState = {
-            scrollY,
-            bodyStyle: body.style.cssText
+            rootOverflow: root.style.overflow,
+            bodyOverflow: body.style.overflow,
+            bodyPaddingRight: body.style.paddingRight
         };
-
-        body.style.position = "fixed";
-        body.style.top = `-${scrollY}px`;
-        body.style.left = "0";
-        body.style.right = "0";
-        body.style.width = "100%";
+        root.style.overflow = "hidden";
         body.style.overflow = "hidden";
+        if (scrollbarWidth) body.style.paddingRight = bodyPadding + scrollbarWidth + "px";
     };
 
     const unlockBackgroundScroll = () => {
-        if (!backgroundScrollState) {
-            return;
-        }
-
-        const { scrollY, bodyStyle } = backgroundScrollState;
+        if (!backgroundScrollState) return;
+        const state = backgroundScrollState;
         backgroundScrollState = null;
-        document.body.style.cssText = bodyStyle;
-        window.scrollTo(0, scrollY);
+        document.documentElement.style.overflow = state.rootOverflow;
+        document.body.style.overflow = state.bodyOverflow;
+        document.body.style.paddingRight = state.bodyPaddingRight;
     };
 
     const openCaseStudy = (caseStudy, trigger) => {
@@ -90,6 +84,7 @@
         window.pausePortfolioVideos?.();
         lockBackgroundScroll();
         dialog.showModal();
+        dialog.scrollTop = 0;
 
         if (window.location.hash !== `#${caseStudy.id}`) {
             history.pushState(null, "", `#${caseStudy.id}`);
@@ -131,7 +126,7 @@
 
         activeCaseStudy = null;
         activeContent = null;
-        opener?.focus();
+        opener?.focus({ preventScroll: true });
         opener = null;
     });
 

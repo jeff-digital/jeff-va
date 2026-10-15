@@ -540,7 +540,7 @@ const initializeVideoCarousels = () => {
         const resizeObserver = new ResizeObserver(() => updatePosition(currentIndex));
         resizeObserver.observe(viewport);
         resizeObserver.observe(track);
-        window.addEventListener("resize", () => updatePosition(currentIndex));
+        // ResizeObserver already covers viewport and track size changes.
     });
 };
 
@@ -797,3 +797,8 @@ if (document.readyState === "loading") {
 } else {
     initializeAllCarousels();
 }
+
+// Stop decoding video when the portfolio is in a background tab.
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) window.pausePortfolioVideos?.();
+});

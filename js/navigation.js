@@ -3,8 +3,12 @@
     const header = document.querySelector(".site-header");
 
     if (header) {
+        let wasScrolled;
         const updateHeaderState = () => {
-            header.classList.toggle("is-scrolled", window.scrollY > 12);
+            const isScrolled = window.scrollY > 12;
+            if (isScrolled === wasScrolled) return;
+            wasScrolled = isScrolled;
+            header.classList.toggle("is-scrolled", isScrolled);
         };
 
         updateHeaderState();
@@ -22,8 +26,10 @@
         }
 
         const targetId = link.getAttribute("href");
+        // Dialog links are handled exclusively by case-studies.js.
+        if (targetId?.startsWith("#case-study-")) return;
         const target = targetId && targetId !== "#"
-            ? document.querySelector(targetId)
+            ? document.getElementById(targetId.slice(1))
             : null;
 
         if (!target) {
@@ -32,12 +38,13 @@
 
         event.preventDefault();
 
+        target.classList.add("show");
         const targetTop = targetId === "#home"
             ? 0
             : Math.max(
                 0,
                 target.getBoundingClientRect().top + window.scrollY -
-                (nav ? nav.offsetHeight : 0)
+                (header ? header.offsetHeight : (nav ? nav.offsetHeight : 0))
             );
 
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
