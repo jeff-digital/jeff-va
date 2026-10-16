@@ -15,6 +15,21 @@
         window.addEventListener("scroll", updateHeaderState, { passive: true });
     }
 
+    const clearSectionHash = () => {
+        const hash = window.location.hash;
+        // Preserve shareable case-study links, which have their own dialog routing.
+        if (!hash || hash.startsWith("#case-study-")) return;
+        if (hash !== "#" && !document.getElementById(hash.slice(1))) return;
+        const cleanUrl = new URL(window.location.href);
+        cleanUrl.hash = "";
+        history.replaceState(history.state, "", cleanUrl.href);
+    };
+
+    // Let the browser reach an incoming anchor before cleaning the address.
+    if (document.readyState === "complete") clearSectionHash();
+    else window.addEventListener("load", clearSectionHash, { once: true });
+    window.addEventListener("hashchange", clearSectionHash);
+
     document.addEventListener("click", (event) => {
         const link = event.target.closest('a[href^="#"]');
 
@@ -53,6 +68,6 @@
             window.scrollTo({ top: targetTop, behavior: "smooth" });
         }
 
-        history.pushState(null, "", targetId);
+        clearSectionHash();
     });
 })();

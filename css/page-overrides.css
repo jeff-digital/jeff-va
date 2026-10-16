@@ -1797,7 +1797,8 @@ picture {
 .case-study-dialog-header { padding: 1.5rem 2rem; align-items: center; }
 .case-study-dialog-header h2 { max-width: 45rem; font-size: clamp(1.3rem, 2.5vw, 2rem); }
 .case-study-dialog-body .case-study-content { display: flex; flex-direction: column; padding: 2rem; gap: 2.5rem; }
-.case-study-dialog-body .case-study-samples { position: static; order: -1; width: 100%; background: #f4f6f9; }
+/* Let wheel and touch scrolling over samples reach the dialog. */
+.case-study-dialog-body .case-study-samples { position: static; order: -1; width: 100%; max-height: none; overflow: visible; overscroll-behavior: auto; background: #f4f6f9; }
 .case-study-dialog-body .case-study-samples > figure img { max-height: 28rem; object-fit: contain; }
 .case-study-dialog-body .case-study-overview { grid-template-columns: minmax(0, 1fr); gap: 0; counter-reset: case-section; }
 .case-study-dialog-body .case-study-overview section { display: grid; grid-template-columns: minmax(10rem, .7fr) minmax(0, 2fr); column-gap: 2rem; padding: 1.6rem 0; border-top: 1px solid #e2e7ef; counter-increment: case-section; }
@@ -1892,3 +1893,8 @@ picture {
  .case-project-facts, .case-stack-list > div { grid-template-columns: minmax(0,1fr); gap: .6rem; }
  .case-project-facts { gap: 1.1rem; }
 }
+
+/* Schedule-based availability message. */
+.availability-message { margin-top: .5rem; padding: .9rem 1rem; border: 1px solid; border-radius: .75rem; font-size: .875rem; font-weight: 500; line-height: 1.6; }
+.availability-message--available { background: #dcfce7; border-color: #86efac; color: #166534; }
+.availability-message--unavailable { background: #fee2e2; border-color: #fca5a5; color: #991b1b; }

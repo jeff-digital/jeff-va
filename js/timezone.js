@@ -1,53 +1,40 @@
-function updateClientAvailability() {
-    const ownerTimezone = "Asia/Manila";
-    const now = new Date();
-    const isWeekend = now.getDay() === 0 || now.getDay() === 6;
-
-    const phTimeFormatter = new Intl.DateTimeFormat("en-US", {
-        timeZone: ownerTimezone,
+(() => {
+    const formatter = new Intl.DateTimeFormat("en-US", {
+        timeZone: "Asia/Manila",
         hour: "2-digit",
         minute: "2-digit",
-        hour12: false
+        hourCycle: "h23"
     });
+    const hours = document.getElementById("clientAvailability");
+    const timezone = document.getElementById("clientTimezone");
+    const status = document.getElementById("availabilityStatus");
+    if (hours) hours.textContent = "Daily · 8:00 PM – 5:00 AM next day";
+    if (timezone) timezone.textContent = "Philippine Time (UTC+8)";
+    let previousAvailability;
 
-    const phTimeParts = phTimeFormatter.formatToParts(now);
-    const phHour = Number(phTimeParts.find(part => part.type === "hour")?.value || 0);
-    const phMinute = Number(phTimeParts.find(part => part.type === "minute")?.value || 0);
-    const phTotalMinutes = phHour * 60 + phMinute;
-    const isOwnerAvailable = phTotalMinutes >= 20 * 60 || phTotalMinutes < 6 * 60;
-
-    const clientAvailability = document.getElementById("clientAvailability");
-    const clientTimezoneEl = document.getElementById("clientTimezone");
-    const availabilityStatusEl = document.getElementById("availabilityStatus");
-
-    if (clientAvailability) {
-        clientAvailability.textContent = "8:00 PM – 6:00 AM (Philippines Time)";
+    function updateClientAvailability() {
+        if (!status) return;
+        const parts = formatter.formatToParts(new Date());
+        const hour = Number(parts.find(part => part.type === "hour").value);
+        const minute = Number(parts.find(part => part.type === "minute").value);
+        const minutes = hour * 60 + minute;
+        const available = minutes >= 20 * 60 || minutes < 5 * 60;
+        if (available === previousAvailability) return;
+        previousAvailability = available;
+        status.textContent = available
+            ? "Within my working hours — available for messages."
+            : "Outside my working hours. Leave a message and I’ll respond during my next shift, starting at 8:00 PM Philippine time.";
+        status.className = available
+            ? "availability-message availability-message--available"
+            : "availability-message availability-message--unavailable";
     }
 
-    if (clientTimezoneEl) {
-        clientTimezoneEl.textContent = ownerTimezone;
-    }
-
-    if (availabilityStatusEl) {
-        const isOnline = typeof navigator !== "undefined" ? navigator.onLine : true;
-
-        if (!isOnline || isWeekend || !isOwnerAvailable) {
-            const offlineMessage = isWeekend
-                ? "I'm currently offline because it's the weekend. I'll respond when I'm back online."
-                : !isOwnerAvailable
-                    ? "I’m currently offline outside my available hours in the Philippines. Feel free to leave me a message, and I’ll get back to you as soon as possible once I’m back online."
-                    : "I'm currently unavailable. I'll respond as soon as I'm online again.";
-
-            availabilityStatusEl.textContent = offlineMessage;
-            availabilityStatusEl.className = "mt-2 text-sm font-medium text-red-600";
-            return;
-        }
-
-        availabilityStatusEl.textContent = "I'm currently online and available for messages in the Philippines time zone.";
-        availabilityStatusEl.className = "mt-2 text-sm font-medium text-green-700";
-    }
-}
-
-updateClientAvailability();
-window.addEventListener("online", updateClientAvailability);
-window.addEventListener("offline", updateClientAvailability);
+    updateClientAvailability();
+    window.setInterval(() => {
+        if (!document.hidden) updateClientAvailability();
+    }, 15000);
+    document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) updateClientAvailability();
+    });
+    window.addEventListener("pageshow", updateClientAvailability);
+})();
