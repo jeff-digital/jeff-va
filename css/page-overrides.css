@@ -1898,3 +1898,7 @@ picture {
 .availability-message { margin-top: .5rem; padding: .9rem 1rem; border: 1px solid; border-radius: .75rem; font-size: .875rem; font-weight: 500; line-height: 1.6; }
 .availability-message--available { background: #dcfce7; border-color: #86efac; color: #166534; }
 .availability-message--unavailable { background: #fee2e2; border-color: #fca5a5; color: #991b1b; }
+
+/* Circular check beside the hero name; keep it with the surname on mobile. */
+#home .hero-name-ending { white-space: nowrap; }
+#home .hero-name-check { display: inline-block; width: .45em; height: .45em; vertical-align: .08em; margin-left: .03em; }
