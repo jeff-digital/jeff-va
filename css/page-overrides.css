@@ -408,7 +408,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     color: #9ecbff;
     font-size: 0.7rem;
     font-weight: 800;
@@ -1900,5 +1900,10 @@ picture {
 .availability-message--unavailable { background: #fee2e2; border-color: #fca5a5; color: #991b1b; }
 
 /* Circular check beside the hero name; keep it with the surname on mobile. */
-#home .hero-name-ending { white-space: nowrap; }
-#home .hero-name-check { display: inline-block; width: .45em; height: .45em; vertical-align: .08em; margin-left: .03em; }
+#home .hero-name { display: inline-flex; align-items: center; gap: .22em; white-space: nowrap; }
+/* Optical alignment with the visible letters, rather than the font line box. */
+#home .hero-name-check { display: block; flex: 0 0 auto; width: .42em; height: .42em; transform: translateY(-.06em); shape-rendering: geometricPrecision; }
+
+@media (max-width: 767px) {
+    #home .hero-kicker { margin-bottom: 1rem; }
+}
