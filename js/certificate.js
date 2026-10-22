@@ -13,7 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     let filterFrame = 0;
-    let certificatesWarmed = false;
+    const certificateItems = certificateList
+        ? Array.from(certificateList.querySelectorAll(".certificate-item"))
+        : [];
 
     function displayCertificates() {
         if (!certificateList || !noCertificates) return;
@@ -22,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
         filterFrame = requestAnimationFrame(() => {
             const selectedCategory = certificateCategory?.value ?? "all";
             const selectedYear = certificateYear?.value ?? "all";
-            const certificateItems = certificateList.querySelectorAll(".certificate-item");
             let visibleCount = 0;
 
             certificateItems.forEach((certificate) => {
@@ -42,22 +43,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    function warmCertificateImages() {
-        if (certificatesWarmed) return;
-        certificatesWarmed = true;
-
-        certificateModal.querySelectorAll("img").forEach((image) => {
-            const preloadImage = new Image();
-            preloadImage.decoding = "async";
-            preloadImage.src = image.currentSrc || image.src;
-        });
-    }
-
     if (viewCertificateButton) {
-        viewCertificateButton.addEventListener("pointerenter", warmCertificateImages, { once: true });
-        viewCertificateButton.addEventListener("focus", warmCertificateImages, { once: true });
         viewCertificateButton.addEventListener("click", () => {
             window.pausePortfolioVideos?.();
+            document.body.classList.add("certificate-modal-open");
             certificateModal.classList.remove("hidden");
             certificateModal.classList.add("flex");
             document.body.classList.add("overflow-hidden");
@@ -71,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function closeCertificateModal() {
         certificateModal.classList.add("hidden");
         certificateModal.classList.remove("flex");
+        document.body.classList.remove("certificate-modal-open");
         document.body.classList.remove("overflow-hidden");
         if (!document.body.classList.contains("overflow-hidden")) {
             window.resumePortfolioVideos?.();
