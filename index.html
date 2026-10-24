@@ -2386,16 +2386,27 @@
     <div class="mx-auto max-w-[850px] px-6 pt-12 pb-[150px] text-center sm:px-8 sm:pt-16 sm:pb-[150px]">
         <h2 class="text-3xl font-bold text-[#1a2340]">Simple, clear availability</h2>
         <p class="mx-auto mt-3 max-w-[680px] text-base leading-relaxed text-gray-700">
-            I’m available every day, including weekends, from 8:00 PM to 5:00 AM the next morning in Philippine time. Messages received outside these hours are answered during my next shift.
+            My regular hours are Monday–Friday, 8:00 PM–5:00 AM Philippine time. The card converts my next shift to your local time. Feel free to message me anytime; replies may take longer when I’m offline.
         </p>
 
         <div class="mx-auto mt-6 max-w-[600px] rounded-xl border border-blue-200 bg-[#edf6ff] p-5 text-[#1a2340] shadow-sm sm:p-6">
             <p class="text-[13px] font-semibold uppercase tracking-[0.14em] text-[#1a2340]/70">Working hours</p>
-            <p class="mt-2 text-base font-medium text-gray-700">Every day · Monday–Sunday</p>
-            <p class="mt-1 text-xl font-bold leading-snug sm:text-2xl">
-                <span id="clientAvailability">Daily · 8:00 PM – 5:00 AM next day</span>
-            </p>
-            <p class="mt-1 text-base text-gray-600"><span id="clientTimezone">Philippine Time (UTC+8)</span></p>
+
+            <div class="availability-time-grid">
+                <div class="availability-time-block">
+                    <p class="availability-time-label">My schedule</p>
+                    <p class="availability-time-days">Monday–Friday</p>
+                    <p id="clientAvailability" class="availability-time-value">8:00 PM–5:00 AM</p>
+                    <p id="clientTimezone" class="availability-time-zone">Philippine Time (UTC+8)</p>
+                </div>
+
+                <div class="availability-time-block availability-time-block--local">
+                    <p class="availability-time-label">Your local time</p>
+                    <p id="clientLocalAvailability" class="availability-time-value">Calculating your local hours…</p>
+                    <p id="clientLocalTimezone" class="availability-time-zone">Using your device timezone</p>
+                </div>
+            </div>
+
             <div class="mt-4 border-t border-blue-200 pt-3">
                 <p id="availabilityStatus" class="mt-2 text-base font-medium text-[#1a2340]/80" role="status" aria-live="polite">
                     Checking availability...

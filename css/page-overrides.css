@@ -2118,9 +2118,21 @@ picture {
 }
 
 /* Schedule-based availability message. */
-.availability-message { margin-top: .5rem; padding: .9rem 1rem; border: 1px solid; border-radius: .75rem; font-size: .875rem; font-weight: 500; line-height: 1.6; }
-.availability-message--available { background: #dcfce7; border-color: #86efac; color: #166534; }
-.availability-message--unavailable { background: #fee2e2; border-color: #fca5a5; color: #991b1b; }
+.availability-time-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; margin-top: 1rem; text-align: left; }
+.availability-time-block { display: flex; min-height: 9.25rem; flex-direction: column; justify-content: center; border: 1px solid #d5e4f2; border-radius: .9rem; background: rgba(255, 255, 255, .72); padding: 1rem; }
+.availability-time-block--local { border-color: #a9d4f7; background: #fff; box-shadow: 0 8px 20px rgba(33, 150, 243, .08); }
+#availability .availability-time-label { margin: 0 0 .55rem; color: #65738b; font-size: .67rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+#availability .availability-time-days { margin: 0 0 .15rem; color: #34425c; font-size: .8rem; font-weight: 700; }
+#availability .availability-time-value { margin: 0; color: #1a2340; font-size: 1rem; font-weight: 800; line-height: 1.4; }
+#availability .availability-time-zone { margin: .35rem 0 0; color: #667085; font-size: .72rem; line-height: 1.45; overflow-wrap: anywhere; }
+.availability-message { margin-top: .5rem; padding: .9rem 1rem; border: 1px solid; border-radius: .75rem; font-size: .875rem; font-weight: 700; line-height: 1.6; }
+#availability .availability-message--available { background: #dcfce7; border-color: #86efac; color: #166534; }
+#availability .availability-message--unavailable { background: #fee2e2; border-color: #fca5a5; color: #991b1b; }
+
+@media (max-width: 639px) {
+    .availability-time-grid { grid-template-columns: minmax(0, 1fr); }
+    .availability-time-block { min-height: 0; text-align: center; }
+}
 
 /* Circular check beside the hero name; keep it with the surname on mobile. */
 #home .hero-name { display: inline-flex; align-items: center; gap: .22em; white-space: nowrap; }
