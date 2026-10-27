@@ -113,20 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-const aboutGrid = document.querySelector('#about > div > div.grid');
-const aboutLeftColumn = aboutGrid?.children[0];
-const aboutRightColumn = aboutGrid?.children[1];
-const servicesBlock = aboutLeftColumn?.querySelector('.mt-9');
-const credentialsBlock = aboutRightColumn?.querySelector('.mt-8');
-
-if (aboutLeftColumn && aboutRightColumn && servicesBlock && credentialsBlock) {
-    const softwareBlocks = Array.from(aboutRightColumn.children)
-        .filter((child) => child !== credentialsBlock);
-
-    softwareBlocks.forEach((block) => aboutLeftColumn.insertBefore(block, servicesBlock));
-    aboutRightColumn.insertBefore(servicesBlock, credentialsBlock);
-}
-
 const initializeVideoCarousels = () => {
     const videoCarousels = document.querySelectorAll("[data-carousel]");
 
@@ -724,7 +710,7 @@ const initializeAiPromptCarousels = () => {
 };
 
 const hasOpenPortfolioModal = () => Boolean(document.querySelector(
-    "dialog[open], #contactSuccessModal:not(.hidden), #certificateModal:not(.hidden), #whatsappQrModal:not(.hidden), #resumeModal:not(.hidden)"
+    "dialog[open], #contactSuccessModal:not(.hidden), #whatsappQrModal:not(.hidden), #resumeModal:not(.hidden)"
 ));
 
 const portfolioVideos = Array.from(document.querySelectorAll("video"));

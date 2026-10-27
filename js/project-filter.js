@@ -9,24 +9,37 @@ document.addEventListener("DOMContentLoaded", () => {
     function showToolCategory(category) {
         toolPanels.forEach((panel) => {
             const isSelected = panel.dataset.toolPanel === category;
-            panel.classList.toggle("hidden", !isSelected);
+            panel.hidden = !isSelected;
+            panel.setAttribute("aria-hidden", String(!isSelected));
         });
 
         toolButtons.forEach((button) => {
             const isSelected = button.dataset.toolFilter === category;
-            button.classList.toggle("bg-[#1a2340]", isSelected);
-            button.classList.toggle("text-white", isSelected);
-            button.classList.toggle("border-[#1a2340]", isSelected);
-            button.classList.toggle("bg-white", !isSelected);
-            button.classList.toggle("text-[#1a2340]", !isSelected);
-            button.classList.toggle("border-gray-200", !isSelected);
+            button.setAttribute("aria-selected", String(isSelected));
+            button.tabIndex = isSelected ? 0 : -1;
         });
     }
 
     if (toolButtons.length && toolPanels.length) {
-        toolButtons.forEach((button) => {
+        toolButtons.forEach((button, index) => {
             button.addEventListener("click", () => {
                 showToolCategory(button.dataset.toolFilter);
+            });
+
+            button.addEventListener("keydown", (event) => {
+                if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+
+                event.preventDefault();
+                let nextIndex = index;
+
+                if (event.key === "ArrowLeft") nextIndex = (index - 1 + toolButtons.length) % toolButtons.length;
+                if (event.key === "ArrowRight") nextIndex = (index + 1) % toolButtons.length;
+                if (event.key === "Home") nextIndex = 0;
+                if (event.key === "End") nextIndex = toolButtons.length - 1;
+
+                const nextButton = toolButtons[nextIndex];
+                showToolCategory(nextButton.dataset.toolFilter);
+                nextButton.focus();
             });
         });
 
