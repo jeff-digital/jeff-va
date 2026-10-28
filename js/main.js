@@ -252,6 +252,9 @@ const initializeVideoCarousels = () => {
         };
 
         const syncVideoAudio = () => {
+            // Read layout once before updating any card's classes or controls.
+            const viewportRect = viewport.getBoundingClientRect();
+            const cardRects = videoCards.map((card) => card.getBoundingClientRect());
             videoCards.forEach((card, index) => {
                 const video = card.querySelector("video");
                 const playToggle = card.querySelector(".video-card-play-toggle");
@@ -259,8 +262,7 @@ const initializeVideoCarousels = () => {
                 const isActive = index === currentIndex;
                 const title = card.querySelector("h4")?.textContent?.trim() || "Video";
                 const isUserPaused = card.dataset.userPaused === "true";
-                const cardRect = card.getBoundingClientRect();
-                const viewportRect = viewport.getBoundingClientRect();
+                const cardRect = cardRects[index];
                 const visibleWidth = Math.max(
                     0,
                     Math.min(cardRect.right, viewportRect.right) - Math.max(cardRect.left, viewportRect.left)
