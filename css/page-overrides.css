@@ -9,6 +9,25 @@ body {
     overflow-x: hidden;
 }
 
+/* Keep background scrolling locked for the lifetime of an open side panel. */
+html:has(dialog[open]),
+html:has(dialog[open]) body {
+    overflow: hidden;
+}
+
+#mobileMenu {
+    height: 100dvh;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+}
+
+@media (max-width: 767px) {
+    html:has(#mobileMenuButton[aria-expanded="true"]),
+    html:has(#mobileMenuButton[aria-expanded="true"]) body {
+        overflow: hidden;
+    }
+}
+
 *:not([class*="fa-"]) {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
 }
@@ -857,6 +876,7 @@ body {
     min-height: 0;
     flex: 1;
     overflow-y: auto;
+    overscroll-behavior-y: contain;
 }
 
 .certificate-gallery-view {

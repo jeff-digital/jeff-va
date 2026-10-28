@@ -86,8 +86,9 @@
         dialog.showModal();
         dialog.scrollTop = 0;
 
-        if (window.location.hash !== `#${caseStudy.id}`) {
-            history.pushState(null, "", `#${caseStudy.id}`);
+        // Support existing shared links, then keep the address clean while viewing.
+        if (window.location.hash === `#${caseStudy.id}`) {
+            history.replaceState(history.state, "", `${window.location.pathname}${window.location.search}`);
         }
     };
 
@@ -118,10 +119,6 @@
 
         if (activeCaseStudy && activeContent) {
             activeCaseStudy.append(activeContent);
-        }
-
-        if (activeCaseStudy && window.location.hash === `#${activeCaseStudy.id}`) {
-            history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
         }
 
         activeCaseStudy = null;
