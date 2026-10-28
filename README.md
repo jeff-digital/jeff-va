@@ -9,6 +9,11 @@ The build preserves the existing stylesheet cascade and script order, and uses
 content hashes so changed files receive new URLs. The static host does not need
 Node.js at runtime.
 
+The package manager is pinned to pnpm 9.10.0, matching the Cloudflare build
+environment. Keep the root package listed in `pnpm-workspace.yaml`; pnpm 9
+requires a nonempty `packages` list when that file is present. Cloudflare's
+automatic `pnpm install --frozen-lockfile` can then install the committed lockfile.
+
 Images in `assets/` are resized WebP delivery variants; original project images
 remain available in their original folders. The hero has responsive 400px and
 800px variants and high fetch priority. Other content images load lazily.
