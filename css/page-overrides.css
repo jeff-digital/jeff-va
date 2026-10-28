@@ -2681,6 +2681,51 @@ picture {
 }
 
 /* Editorial case-study narratives, matching the supplied reference. */
+.case-study-dialog-body .design-samples {
+    order: -3;
+    background: transparent;
+}
+
+.case-study-dialog-body .design-samples .case-study-sample-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.case-study-dialog .design-samples figure {
+    content-visibility: visible;
+    contain-intrinsic-size: none;
+}
+
+.case-study-dialog-body .design-samples figure img {
+    width: 100%;
+    height: clamp(90px, calc((100dvh - 19rem) / 2), 180px);
+    object-fit: contain;
+    padding: 0.4rem;
+    background: #fff;
+}
+
+.case-study-dialog-body .design-samples figcaption {
+    padding: 0.45rem 0.65rem;
+    font-size: 0.7rem;
+}
+
+@media (max-width: 767px) {
+    .case-study-dialog-body .design-samples .case-study-sample-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
+    }
+
+    .case-study-dialog-body .design-samples figure img {
+        height: clamp(90px, 16dvh, 140px);
+    }
+
+    .case-study-dialog-body .design-samples figcaption {
+        min-height: 2.75rem;
+        padding: 0.35rem 0.45rem;
+        font-size: 0.65rem;
+    }
+}
+
 .case-narrative-intro { order: -2; }
 .case-narrative-intro h3 { max-width: 44rem; font-size: clamp(1.7rem, 3.4vw, 2.7rem); line-height: 1.15; font-weight: 700; letter-spacing: -.035em; margin: .75rem 0 1rem; }
 .case-narrative-lead { max-width: 47rem; color: #536078; font-size: 1rem; line-height: 1.75; }
