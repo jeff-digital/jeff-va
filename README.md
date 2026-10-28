@@ -14,6 +14,11 @@ environment. Keep the root package listed in `pnpm-workspace.yaml`; pnpm 9
 requires a nonempty `packages` list when that file is present. Cloudflare's
 automatic `pnpm install --frozen-lockfile` can then install the committed lockfile.
 
+Cloudflare currently serves the repository root as its static assets directory.
+`.assetsignore` allows only public website files and folders into that upload,
+excluding `node_modules`, Git metadata, temporary files, and build tooling.
+When adding a new public top-level folder, also add it to this allowlist.
+
 Images in `assets/` are resized WebP delivery variants; original project images
 remain available in their original folders. The hero has responsive 400px and
 800px variants and high fetch priority. Other content images load lazily.

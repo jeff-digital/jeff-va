@@ -1,0 +1,13 @@
+# Publish only website files when Cloudflare uses the repository as assets.directory.
+/*
+!/assets/
+!/certificate/
+!/css/
+!/documents/
+!/image/
+!/js/
+!/project/
+!/*.html
+!/robots.txt
+!/sitemap.xml
+!/_headers
