@@ -20,9 +20,11 @@ excluding `node_modules`, Git metadata, temporary files, and build tooling.
 When adding a new public top-level folder, also add it to this allowlist.
 
 Images in `assets/` are resized WebP delivery variants; original project images
-remain available in their original folders. The hero has responsive 400px and
-800px variants and high fetch priority. Other content images load lazily.
-Inter's Latin variable font is self-hosted with `font-display: swap`; local SVG
+remain available in their original folders. The hero has preloaded responsive
+400px and 800px AVIF variants, WebP fallbacks, and high fetch priority. Other
+content images load lazily. Keep the preload and picture source lists in sync
+to avoid duplicate downloads. The home and About sections render without entry fades.
+Inter's Latin variable font is subset and self-hosted with `font-display: swap`; local SVG
 masks provide the Font Awesome icons, including the video control states.
 Third-party licenses are in `assets/`.
 

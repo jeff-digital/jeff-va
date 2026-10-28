@@ -1123,17 +1123,6 @@ body.certificate-lightbox-open {
     overflow: hidden;
 }
 
-#about.reveal {
-    opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 450ms ease-out, transform 450ms ease-out;
-}
-
-#about.reveal.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
 #about :is(a, button):focus-visible,
 .certificate-lightbox :is(a, button):focus-visible {
     outline: 3px solid rgba(47, 140, 255, 0.38);

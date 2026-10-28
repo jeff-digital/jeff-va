@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const revealTargets = document.querySelectorAll("section:not(#home)");
+    // Keep the first two sections visible without waiting for JavaScript or a fade.
+    const revealTargets = document.querySelectorAll("section:not(#home):not(#about)");
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
