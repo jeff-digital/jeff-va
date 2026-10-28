@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const revealTargets = document.querySelectorAll("section.reveal:not(#home)");
+    const revealTargets = document.querySelectorAll("section:not(#home)");
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         },
         {
-            threshold: 0,
-            rootMargin: "120px 0px"
+            threshold: 0.08,
+            rootMargin: "80px 0px"
         }
     );
 
