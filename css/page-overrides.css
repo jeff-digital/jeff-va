@@ -2662,10 +2662,8 @@ picture {
     .availability-time-block { min-height: 0; text-align: center; }
 }
 
-/* Circular check beside the hero name; keep it with the surname on mobile. */
-#home .hero-name { display: inline-flex; align-items: center; gap: .22em; white-space: nowrap; }
-/* Optical alignment with the visible letters, rather than the font line box. */
-#home .hero-name-check { display: block; flex: 0 0 auto; width: .42em; height: .42em; transform: translateY(-.06em); shape-rendering: geometricPrecision; }
+/* Keep the hero name on one line on mobile. */
+#home .hero-name { white-space: nowrap; }
 
 @media (max-width: 767px) {
     #home .hero-kicker { margin-bottom: 1rem; }
