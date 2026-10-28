@@ -5,7 +5,7 @@ import { transform } from 'esbuild';
 // Keep the original cascade and script execution order. Commit generated assets
 // so the static host can serve the repository without a build step.
 const styles = ['css/fonts.css', 'css/icons.css', 'css/home.css', 'css/page-overrides.css', 'css/tailwind.css'];
-const scripts = ['menu', 'navigation', 'timezone', 'certificate', 'main', 'case-studies', 'contact-form', 'project-filter', 'reveal'];
+const scripts = ['menu', 'navigation', 'timezone', 'certificate', 'main', 'case-studies', 'contact-form', 'project-filter', 'reveal', 'core-categories'];
 await mkdir('assets', { recursive: true });
 const outputs = [];
 for (const [extension, files, options] of [

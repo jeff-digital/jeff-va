@@ -646,6 +646,64 @@ body {
     line-height: 1.5;
 }
 
+.about-stats .core-categories {
+    position: relative;
+    display: block;
+    padding: 0;
+}
+
+.core-categories-trigger {
+    display: grid;
+    grid-template-columns: minmax(4.75rem, auto) 1fr;
+    align-items: baseline;
+    gap: 1rem;
+    width: 100%;
+    padding: 0.75rem 0;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.core-categories-trigger > span {
+    text-decoration: underline dotted;
+    text-underline-offset: 0.25em;
+}
+
+.core-categories-trigger:focus-visible {
+    outline: 2px solid #176da8;
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+.core-categories-tooltip {
+    position: absolute;
+    z-index: 10;
+    bottom: 100%;
+    right: 0;
+    width: min(19rem, 100%);
+    padding: 1rem 1.15rem;
+    border: 1px solid #34425c;
+    border-radius: 0.75rem;
+    background: #1a2340;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(11, 19, 35, 0.18);
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+
+#about .core-categories-tooltip p {
+    margin: 0;
+    color: #fff;
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+
+#about .core-categories-tooltip p + p {
+    margin-top: 0.3rem;
+}
+
 .about-tools {
     margin-top: 4.5rem;
     padding-top: 3rem;
